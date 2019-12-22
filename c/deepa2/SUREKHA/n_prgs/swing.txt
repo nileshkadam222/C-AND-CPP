@@ -1,0 +1,27 @@
+Java Swing:
+swing is a set of java classes which provides more powerful and flexible components.Because it is a light weight component in which you can observe look and feel.Swing does not support the native methods. Because these methods are already implemented in C++.
+
+JApplet: It is fundamental of java swing denoted by JApplet class which extends Applet.
+
+When you add the component of JApplet instance, donot invoke add() method of the applet. You just call add() for the content pane of the JApplet.
+i.e. Container getContentPane()
+
+The ImageIcon class implements Icon interface.
+Methods
+int getIconHeight()
+int getIconWidth()
+void paintIcon(Component comp, Graphics g, int x, int y)
+
+
+JButton:
+constructors:
+JButton(Icon i)
+JButton(String s)
+JButton(String s, Icon i)
+
+JComboBox:
+It provides a combo box which is a combination of text field and a drop down list. It extends JComponent. Normally it displays one entry
+
+constructors
+JComboBox()
+JComboBox(Vector v)

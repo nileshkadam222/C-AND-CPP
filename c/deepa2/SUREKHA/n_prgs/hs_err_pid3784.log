@@ -1,0 +1,158 @@
+#
+# An unexpected error has been detected by HotSpot Virtual Machine:
+#
+#  EXCEPTION_ACCESS_VIOLATION (0xc0000005) at pc=0x7c901010, pid=3784, tid=1296
+#
+# Java VM: Java HotSpot(TM) Client VM (1.5.0_02-b09 mixed mode, sharing)
+# Problematic frame:
+# C  [ntdll.dll+0x1010]
+#
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x00035f08):  JavaThread "main" [_thread_in_native, id=1296]
+
+siginfo: ExceptionCode=0xc0000005, reading address 0x00000018
+
+Registers:
+EAX=0x00000004, EBX=0x26a6f6c0, ECX=0x7ffdf000, EDX=0x00000004
+ESP=0x0007f9ac, EBP=0x0007f9c4, ESI=0x00000000, EDI=0x02c822bc
+EIP=0x7c901010, EFLAGS=0x00010246
+
+Top of Stack: (sp=0x0007f9ac)
+0x0007f9ac:   74355a16 00000004 02c822bc 7432139f
+0x0007f9bc:   02c822bc 02c82290 0007f9d8 74324a10
+0x0007f9cc:   02c822bc 00acafb0 02c82290 0007f9f0
+0x0007f9dc:   7434c5d9 02c82290 00acafb0 26a6f6c0
+0x0007f9ec:   00035fc4 0007fa38 6d3e4e09 74350000
+0x0007f9fc:   00035f08 26a6f6c0 00ad826f 00035fc4
+0x0007fa0c:   0007fa54 02c82290 00000000 0007fa48
+0x0007fa1c:   0007fa1c 00000000 0007fa54 26a717c8 
+
+Instructions: (pc=0x7c901010)
+0x7c901000:   90 90 90 90 90 64 8b 0d 18 00 00 00 8b 54 24 04
+0x7c901010:   83 7a 14 00 75 4f f0 ff 42 04 75 19 8b 41 24 89 
+
+
+Stack: [0x00040000,0x00080000),  sp=0x0007f9ac,  free space=254k
+Native frames: (J=compiled Java code, j=interpreted, Vv=VM code, C=native code)
+C  [ntdll.dll+0x1010]
+C  [ODBC32.dll+0x4a10]
+C  [ODBC32.dll+0x2c5d9]
+C  [JdbcOdbc.dll+0x4e09]
+j  sun.jdbc.odbc.JdbcOdbc.SQLFetch(J)Z+46
+j  sun.jdbc.odbc.JdbcOdbcResultSet.next()Z+161
+j  tablenames.main([Ljava/lang/String;)V+71
+v  ~StubRoutines::call_stub
+V  [jvm.dll+0x818e8]
+V  [jvm.dll+0xd4989]
+V  [jvm.dll+0x817b9]
+V  [jvm.dll+0x88747]
+C  [java.exe+0x14c0]
+C  [java.exe+0x64cd]
+C  [kernel32.dll+0x16d4f]
+
+Java frames: (J=compiled Java code, j=interpreted, Vv=VM code)
+j  sun.jdbc.odbc.JdbcOdbc.fetch(J[B)V+0
+j  sun.jdbc.odbc.JdbcOdbc.SQLFetch(J)Z+46
+j  sun.jdbc.odbc.JdbcOdbcResultSet.next()Z+161
+j  tablenames.main([Ljava/lang/String;)V+71
+v  ~StubRoutines::call_stub
+
+---------------  P R O C E S S  ---------------
+
+Java Threads: ( => current thread )
+  0x00a6c410 JavaThread "Low Memory Detector" daemon [_thread_blocked, id=3880]
+  0x00a6b110 JavaThread "CompilerThread0" daemon [_thread_blocked, id=2300]
+  0x00a6a298 JavaThread "Signal Dispatcher" daemon [_thread_blocked, id=2364]
+  0x0003ee68 JavaThread "Finalizer" daemon [_thread_blocked, id=3976]
+  0x0003e1e8 JavaThread "Reference Handler" daemon [_thread_blocked, id=476]
+=>0x00035f08 JavaThread "main" [_thread_in_native, id=1296]
+
+Other Threads:
+  0x00a671c8 VMThread [id=112]
+  0x00a6d788 WatcherThread [id=728]
+
+VM state:not at safepoint (normal execution)
+
+VM Mutex/Monitor currently owned by a thread: None
+
+Heap
+ def new generation   total 576K, used 366K [0x22a50000, 0x22af0000, 0x22f30000)
+  eden space 512K,  71% used [0x22a50000, 0x22aab8b8, 0x22ad0000)
+  from space 64K,   0% used [0x22ad0000, 0x22ad0000, 0x22ae0000)
+  to   space 64K,   0% used [0x22ae0000, 0x22ae0000, 0x22af0000)
+ tenured generation   total 1408K, used 0K [0x22f30000, 0x23090000, 0x26a50000)
+   the space 1408K,   0% used [0x22f30000, 0x22f30000, 0x22f30200, 0x23090000)
+ compacting perm gen  total 8192K, used 390K [0x26a50000, 0x27250000, 0x2aa50000)
+   the space 8192K,   4% used [0x26a50000, 0x26ab1a50, 0x26ab1c00, 0x27250000)
+    ro space 8192K,  66% used [0x2aa50000, 0x2afa88a8, 0x2afa8a00, 0x2b250000)
+    rw space 12288K,  46% used [0x2b250000, 0x2b7e4818, 0x2b7e4a00, 0x2be50000)
+
+Dynamic libraries:
+0x00400000 - 0x0040c000 	C:\Program Files\Java\jdk1.5.0_02\bin\java.exe
+0x7c900000 - 0x7c9b0000 	C:\WINDOWS\system32\ntdll.dll
+0x7c800000 - 0x7c8f4000 	C:\WINDOWS\system32\kernel32.dll
+0x77dd0000 - 0x77e6b000 	C:\WINDOWS\system32\ADVAPI32.dll
+0x77e70000 - 0x77f01000 	C:\WINDOWS\system32\RPCRT4.dll
+0x77c10000 - 0x77c68000 	C:\WINDOWS\system32\MSVCRT.dll
+0x6d6b0000 - 0x6d835000 	C:\Program Files\Java\jdk1.5.0_02\jre\bin\client\jvm.dll
+0x77d40000 - 0x77dd0000 	C:\WINDOWS\system32\USER32.dll
+0x77f10000 - 0x77f56000 	C:\WINDOWS\system32\GDI32.dll
+0x76b40000 - 0x76b6d000 	C:\WINDOWS\system32\WINMM.dll
+0x6d2f0000 - 0x6d2f8000 	C:\Program Files\Java\jdk1.5.0_02\jre\bin\hpi.dll
+0x76bf0000 - 0x76bfb000 	C:\WINDOWS\system32\PSAPI.DLL
+0x6d680000 - 0x6d68c000 	C:\Program Files\Java\jdk1.5.0_02\jre\bin\verify.dll
+0x6d370000 - 0x6d38d000 	C:\Program Files\Java\jdk1.5.0_02\jre\bin\java.dll
+0x6d6a0000 - 0x6d6af000 	C:\Program Files\Java\jdk1.5.0_02\jre\bin\zip.dll
+0x6d3e0000 - 0x6d3ed000 	C:\Program Files\Java\jdk1.5.0_02\jre\bin\JdbcOdbc.dll
+0x74320000 - 0x7435d000 	C:\WINDOWS\system32\ODBC32.dll
+0x5d090000 - 0x5d127000 	C:\WINDOWS\system32\COMCTL32.dll
+0x7c9c0000 - 0x7d1d4000 	C:\WINDOWS\system32\SHELL32.dll
+0x77f60000 - 0x77fd6000 	C:\WINDOWS\system32\SHLWAPI.dll
+0x763b0000 - 0x763f9000 	C:\WINDOWS\system32\comdlg32.dll
+0x773d0000 - 0x774d2000 	C:\WINDOWS\WinSxS\x86_Microsoft.Windows.Common-Controls_6595b64144ccf1df_6.0.2600.2180_x-ww_a84f1ff9\comctl32.dll
+0x20000000 - 0x20017000 	C:\WINDOWS\system32\odbcint.dll
+0x77c00000 - 0x77c08000 	C:\WINDOWS\system32\VERSION.dll
+0x774e0000 - 0x7761c000 	C:\WINDOWS\system32\ole32.dll
+0x5b860000 - 0x5b8b4000 	C:\WINDOWS\system32\NETAPI32.dll
+0x77fe0000 - 0x77ff1000 	C:\WINDOWS\system32\Secur32.dll
+0x5fe80000 - 0x5fe9b000 	C:\WINDOWS\system32\odbccp32.dll
+0x71ab0000 - 0x71ac7000 	C:\WINDOWS\system32\WS2_32.dll
+0x71aa0000 - 0x71aa8000 	C:\WINDOWS\system32\WS2HELP.dll
+0x77c70000 - 0x77c93000 	C:\WINDOWS\system32\msv1_0.dll
+0x76d60000 - 0x76d79000 	C:\WINDOWS\system32\iphlpapi.dll
+0x76f20000 - 0x76f47000 	C:\WINDOWS\system32\DNSAPI.dll
+0x76f60000 - 0x76f8c000 	C:\WINDOWS\system32\WLDAP32.dll
+0x77a80000 - 0x77b14000 	C:\WINDOWS\system32\crypt32.dll
+0x77b20000 - 0x77b32000 	C:\WINDOWS\system32\MSASN1.dll
+0x71a50000 - 0x71a8f000 	C:\WINDOWS\system32\mswsock.dll
+0x662b0000 - 0x66308000 	C:\WINDOWS\system32\hnetcfg.dll
+0x71a90000 - 0x71a98000 	C:\WINDOWS\System32\wshtcpip.dll
+0x76fb0000 - 0x76fb8000 	C:\WINDOWS\System32\winrnr.dll
+0x76fc0000 - 0x76fc6000 	C:\WINDOWS\system32\rasadhlp.dll
+0x767f0000 - 0x76817000 	C:\WINDOWS\system32\schannel.dll
+0x769c0000 - 0x76a73000 	C:\WINDOWS\system32\USERENV.dll
+0x0ffd0000 - 0x0fff8000 	C:\WINDOWS\system32\rsaenh.dll
+0x68100000 - 0x68124000 	C:\WINDOWS\system32\dssenh.dll
+
+VM Arguments:
+java_command: tablenames
+
+Environment Variables:
+PATH=C:\report\bin;C:\form\bin;C:\nar\bin;C:\oracle\product\10.2.0\db_1\bin;C:\Program Files\Java\jdk1.5.0_02\bin;C:\forms\BIN;C:\nar\jdk\bin;C:\form\jdk\bin;C:\Program Files\Microsoft SQL Server\80\Tools\Binn\;C:\Program Files\Microsoft SQL Server\90\Tools\binn\
+USERNAME=a
+OS=Windows_NT
+PROCESSOR_IDENTIFIER=x86 Family 6 Model 15 Stepping 13, GenuineIntel
+
+
+---------------  S Y S T E M  ---------------
+
+OS: Windows XP Build 2600 Service Pack 2
+
+CPU:total 2 family 6, cmov, cx8, fxsr, mmx, sse, sse2, ht
+
+Memory: 4k page, physical 1037568k(321132k free), swap 2499108k(1549128k free)
+
+vm_info: Java HotSpot(TM) Client VM (1.5.0_02-b09) for windows-x86, built on Mar  4 2005 01:53:53 by "java_re" with MS VC++ 6.0
+

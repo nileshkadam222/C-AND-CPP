@@ -1,0 +1,31 @@
+Interface:
+It is basically a kind of class.Like classes, interfaces contains methods and variables but with major difference.Because it define only abstract methods and final fields. Interfaces donot specify any code to implement these methods and data fields contain only constant.
+
+For ex:  interface Item
+              {
+                   static final int code = 100;
+                    static final String name = "Java";
+                    void display();
+                  }
+
+Extending Interface: Like classes interface can be extended
+                  interface Item
+              {
+                   static final int code = 100;
+                    static final String name = "Java";
+                    void display();
+                  }
+                   interface Item extends ItemConstants
+                  {
+                       void display();
+                  }
+
+While interfaces are allowed to extend other interfaces, subinterfaces cannot define the methods declared in the super interfaces. Superinterfaces are still interfaces not classes. It is is the responsibility of any class that implements the derived interface to define all the methods. Interfaces extends two or more interfaces, they are separated by comas.
+
+Implementing interface: Interfaces are used as superclasses whose properties are inherited by classes. It is necessary to create a class that inherits the given interface.
+
+for ex: class B extends A implements interface1, interface2
+               {
+                    body of class name
+               }
+

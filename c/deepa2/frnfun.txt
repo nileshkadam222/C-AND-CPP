@@ -1,0 +1,366 @@
+#include <iostream>
+using namespace std;
+class exforsys
+{
+private:
+        int a,b;
+public:
+        void test()
+        {
+                a=100;
+                b=200;
+        }
+        friend int compute(exforsys e1);
+ 
+                //Friend Function Declaration with keyword friend and with the object of class exforsys to which it is friend passed to it
+};
+ 
+int compute(exforsys e1)
+{
+        //Friend Function Definition which has access to private data
+        return int(e1.a+e1.b)-5;
+}
+ 
+void main()
+{
+        exforsys e;
+        e.test();
+        cout << "The result is:" << compute(e);
+ 
+                //Calling of Friend Function with object as argument.
+}
+=========================================
+// friend functions
+#include <iostream>
+using namespace std;
+
+class CRectangle {
+    int width, height;
+  public:
+    void set_values (int, int);
+    int area () {return (width * height);}
+    friend CRectangle duplicate (CRectangle);
+};
+
+void CRectangle::set_values (int a, int b) {
+  width = a;
+  height = b;
+}
+
+CRectangle duplicate (CRectangle rectparam)
+{
+  CRectangle rectres;
+  rectres.width = rectparam.width*2;
+  rectres.height = rectparam.height*2;
+  return (rectres);
+}
+
+int main () {
+  CRectangle rect, rectb;
+  rect.set_values (2,3);
+  rectb = duplicate (rect);
+  cout << rectb.area();
+  return 0;
+}
+=================================================
+// friend class
+#include <iostream>
+using namespace std;
+
+class CSquare;
+
+class CRectangle {
+    int width, height;
+  public:
+    int area ()
+      {return (width * height);}
+    void convert (CSquare a);
+};
+
+class CSquare {
+  private:
+    int side;
+  public:
+    void set_side (int a)
+      {side=a;}
+    friend class CRectangle;
+};
+
+void CRectangle::convert (CSquare a) {
+  width = a.side;
+  height = a.side;
+}
+  
+int main () {
+  CSquare sqr;
+  CRectangle rect;
+  sqr.set_side(4);
+  rect.convert(sqr);
+  cout << rect.area();
+  return 0;
+}
+==============================================
+class Accumulator
+{
+private:
+    int m_nValue;
+public:
+    Accumulator() { m_nValue = 0; }
+    void Add(int nValue) { m_nValue += nValue; }
+ 
+    // Make the Reset() function a friend of this class
+    friend void Reset(Accumulator &cAccumulator);
+};
+ 
+// Reset() is now a friend of the Accumulator class
+void Reset(Accumulator &cAccumulator)
+{
+    // And can access the private data of Accumulator objects
+    cAccumulator.m_nValue = 0;
+}
+====================================================
+class Storage
+{
+private:
+    int m_nValue;
+    double m_dValue;
+public:
+    Storage(int nValue, double dValue)
+    {
+        m_nValue = nValue;
+        m_dValue = dValue;
+    }
+ 
+    // Make the Display class a friend of Storage
+    friend class Display;
+};
+ 
+class Display
+{
+private:
+    bool m_bDisplayIntFirst;
+ 
+public:
+    Display(bool bDisplayIntFirst) { m_bDisplayIntFirst = bDisplayIntFirst; }
+ 
+    void DisplayItem(Storage &cStorage)
+    {
+        if (m_bDisplayIntFirst)
+            std::cout << cStorage.m_nValue << " " << cStorage.m_dValue << std::endl;
+        else // display double first
+            std::cout << cStorage.m_dValue << " " << cStorage.m_nValue << std::endl;
+    }
+};
+int main()
+{
+    Storage cStorage(5, 6.7);
+    Display cDisplay(false);
+ 
+    cDisplay.DisplayItem(cStorage);
+ 
+    return 0;
+}
+====================================
+class Tutorial {
+
+int privateData; // this int is private and is insulated from the outside world
+
+public:
+
+Tutorial(): privateData(5); // default constructor initializes privateData to 5
+
+// ...
+
+class Tutorial {
+
+int privateData;
+
+friend void Display(); // our non-member function
+
+// ...
+class Tutorial {
+
+int privateData;
+
+friend void Display();
+
+friend class Outside; // our external class
+
+// ...
+
+void Display() {
+
+Tutorial t;
+
+cout << t.privateData << endl;
+
+}
+
+class Outside {
+
+public:
+
+void Display() {
+
+Tutorial x;
+
+cout << x.Display() << endl;
+
+};
+
+main() {
+
+Display();
+
+Outside x;
+
+x.Display();
+
+}
+
+=============================================================
+INHERITANCE
+=============================================================
+
+    #include <iostream>
+    using namespace std;
+    class exforsys
+    {
+    public:
+            exforsys(void) { x=0; }
+            void f(int n1)
+            {
+                    x= n1*5;
+            }
+     
+            void output(void) { cout << "n" << "x=" << x; }
+     
+    private:
+            int x;
+    };
+     
+    class sample: public exforsys
+    {
+    public:
+            sample(void) { s1=0; }
+     
+            void f1(int n1)
+            {
+                    s1=n1*10;
+            }
+     
+            void output(void)
+            {
+                    exforsys::output();
+                    cout << "n" << "s1=" << s1;
+            }
+     
+    private:
+            int s1;
+    };
+     
+    int main(void)
+    {
+            sample s;
+            s.f(10);
+            s.f1(20);
+            s.output();
+    }
+
+=======================================================
+#include <iostream>
+using namespace std;
+
+class A {
+   int data;
+public:
+   void f(int arg) { data = arg; }
+   int g() { return data; }
+};
+
+class B {
+public:
+   A x;
+};
+
+int main() {
+   B obj;
+   obj.x.f(20);
+   cout << obj.x.g() << endl;
+//   cout << obj.g() << endl;
+}
+=========================================================
+#include <iostream>
+using namespace std;
+
+class A {
+   int data;
+public:
+   void f(int arg) { data = arg; }
+   int g() { return data; }
+};
+
+class B : public A { };
+
+int main() {
+   B obj;
+   obj.f(20);
+   cout << obj.g() << endl;
+}
+===================================
+#include <iostream>
+using namespace std;
+
+class BaseClass {
+  int i;
+public:
+  void setInt(int n);
+  int getInt();
+};
+
+class DerivedClass : public BaseClass {
+  int j;
+public:
+  void setJ(int n);
+  int mul();
+};
+
+void BaseClass::setInt(int n)
+{
+  i = n;
+}
+
+int BaseClass::getInt()
+{
+  return i;
+}
+
+void DerivedClass::setJ(int n)
+{
+  j = n;
+}
+
+int DerivedClass::mul()
+{
+  return j * getInt();
+}
+
+int main()
+{
+  DerivedClass ob;
+
+  ob.setInt(10);        // load i in BaseClass
+  ob.setJ(4);          // load j in DerivedClass
+
+  cout << ob.mul();     // displays 40
+
+  return 0;
+}
+===============================================
+MULTIPLE INHERITANCE
+==============================================
+class A { /* ... */ };
+class B { /* ... */ };
+class C { /* ... */ };
+class X : public A, private B, public C { /* ... */ };
+======================================================

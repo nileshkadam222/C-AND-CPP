@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+</head>
+
+<body bgcolor="#FFFF66">
+<font size="2" face="Arial, Helvetica, sans-serif" color="#FF3300">
+This assumes that you have copied the AddressBook database over to the root folder of your C Drive. If you've copied it to another folder, change the "Data Source" part to match. For example, if you copied it to a folder called "databases" you'd put this:
+Data Source = C:\databases\AddressBook.mdb
+You can also specify a folder such as MyDocuments (or Documents in Vista and Windows 7). You do it like this:
+dbSource = "Data Source = C:\Users\Owner\Documents\AddressBook.mdb"
+Another way to specify a file path is this:
+Dim fldr As String
+fldr = Environment.GetFolderPath( Environment.SpecialFolder.MyDocuments ) & "/AddressBook.mdb"
+dbSource = "Data Source = " & fldr
+On the second line, spread over two lines in the code above, we have this:
+Environment.GetFolderPath()
+The folder path you're getting goes between the round brackets of GetFolderPath:
+Environment.SpecialFolder.MyDocuments
+The Special Folder in this case is the MyDocuments folder. 
+But back to our connection code. ConnectionString is a property of the con variable. The con variable holds our Connection Object. We're passing the Connection String the name of a data provider, and a path to the database.
+ 
+Opening the Connection
+Now that we have a ConnectionString, we can go ahead and open the datatbase. This is quite easy - just use the Open method of the Connection Object:
+con.Open()
+Once open, the connection has to be closed again. This time, just use the Close method:
+con.Close()
+Add the following four lines to your code:
+con.Open()
+MsgBox("Database is now open")
+con.Close()
+MsgBox("Database is now Closed")
+Your coding window will then look like this (use the file path below, if you have Vista or Windows 7, after moving the database to your Documents folder):
+ 
+</font>
+<br /> <br /><br />
+<a href="home.html" target="_parent"> Home </a>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="about.html" target="_parent"> About </a>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="concept.html" target="_parent"> Concept </a>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="setting.html" target="_parent"> Setting </a>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="contact.html" target="_parent"> Contact </a>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="MAIN.html" target="_parent"> Main </a>
+
+</body>
+</html>

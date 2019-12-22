@@ -1,0 +1,50 @@
+<html>
+ <head>
+   <title>
+     getElementBuId Select example
+   </title>
+   <script language="javascript" >
+      function selectOption() {
+	alert("You hvae selected site "+ 
+           document.getElementById("listSelect").value);
+      }
+      function selectTypeOption() {
+	alert("You have selected type "+
+           document.getElementById("typeSelect").value);
+      }
+   </script>
+  </head>
+  <body>
+   <div style="background: #DFDFFF; width:'100%';" align="center">
+    <font color="#000080" size="12pt">
+    <b>getElementById in &lt;select&gt;</b>
+    </font>
+   </div>
+   <p>&nbsp;</p>
+     Select Type : 
+    <select id="typeSelect" style="width:150px;"
+                                 onChange="selectTypeOption();">
+	<option value="Technologies">Technologies</option>
+	<option value="News">News </option>
+	<option value="Job Search">Job Search</option>
+    </select>
+    <p>&nbsp;</p>
+       Select Site : 
+      <select id="listSelect" style="width:150px;" 
+                                 onChange="selectOption();">
+	<option value="Rose India">Rose India</option>
+	<option value="News Track India">News Track India</option>
+	<option value="Cool Jobs">Cool Jobs</option>
+      </select>
+   </body>
+</html>
+
+
+
+form validation
+
+if (form.email.value == "") {
+    alert( "Please enter your email address." );
+    form.email.focus();
+    return false ;
+

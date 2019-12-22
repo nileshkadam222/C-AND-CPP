@@ -1,0 +1,19 @@
+Servlet:
+The java servlet is a simple java  program which is always running on server side. Just your regular applet is running on client browser the same is with servlet, instead on running on client browser it always run on server side.
+
+Advantage:
+1) The servlet is ustilised only for user authentication and authorisation.
+2) You can use your business logic in servlet.
+
+Servlet Life cycle:
+When the client sends the multiple request to the server, the data will transmit along with http protocol inside the webserver. The servlet get instantiated inside the webserver and set its initialization parameters and create its environment. The webserver is accepting the request and generates the request object then alongwith the request object the sever will invoke the service() method. The necessary processing will be done in side the server and it manipulates the request by invoking the service() and creates a response object. The response object values are mapping with the database or by using instance pooling. The object holds the information along with html and java code and separate these code and sending the text/html code on client browser. If there is no any other request from the client side the server automatically invoke destroy() method.
+
+Java Servlet Class hierarchy:
+In servlet there are 2 classes
+1) generic servlet-- It is a protocol independent servlet.
+2) http servlet- It is protocol dependent servlet.
+
+The methods are used in servlets:
+1) doGet()      2) doPost()     3)doService()    4) doTrace()   5) doOption()
+6)doPut()    7) doHead()
+

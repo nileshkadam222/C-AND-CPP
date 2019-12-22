@@ -1,0 +1,566 @@
+Validation Server Controls
+
+A Validation server control is used to validate the data of an input control. If the data does not pass validation, it will display an error message to the user.
+
+The syntax for creating a Validation server control is:
+<asp:control_name id="some_id" runat="server" />
+
+Validation Server Control 	Description
+CompareValidator 	Compares the value of one input control to the value of another input control or to a fixed value
+CustomValidator 	Allows you to write a method to handle the validation of the value entered
+RangeValidator 	Checks that the user enters a value that falls between two values
+RegularExpressionValidator 	Ensures that the value of an input control matches a specified pattern
+RequiredFieldValidator 	Makes an input control a required field
+ValidationSummary 	Displays a report of all validation errors occurred in a Web page
+
+ASP.NET CompareValidator Control
+
+Definition and Usage
+
+The CompareValidator control is used to compare the value of one input control to the value of another input control or to a fixed value.
+Definition and Usage
+
+The CompareValidator control is used to compare the value of one input control to the value of another input control or to a fixed value.
+
+Note: If the input control is empty, the validation will succeed. Use the RequiredFieldValidator control to make the field required.
+Properties
+Property 	Description
+BackColor 	The background color of the CompareValidator control
+ControlToCompare 	The name of the control to compare with
+ControlToValidate 	The id of the control to validate
+Display 	The display behavior for the validation control. Legal values are:
+
+    * None (the control is not displayed. Used to show the error message only in the ValidationSummary control)
+    * Static (the control displays an error message if validation fails. Space is reserved on the page for the message even if the input passes validation.
+    * Dynamic (the control displays an error message if validation fails. Space is not reserved on the page for the message if the input passes validation
+
+EnableClientScript 	A Boolean value that specifies whether client-side validation is enabled or not
+Enabled 	A Boolean value that specifies whether the validation control is enabled or not
+ErrorMessage 	The text to display in the ValidationSummary control when validation fails. Note: This text will also be displayed in the validation control if the Text property is not set
+ForeColor 	The foreground color of the control
+id 	A unique id for the control
+IsValid 	A Boolean value that indicates whether the control specified by ControlToValidate is determined to be valid
+Operator 	The type of comparison to perform. The operators are:
+
+    * Equal
+    * GreaterThan
+    * GreaterThanEqual
+    * LessThan
+    * LessThanEqual
+    * NotEqual
+    * DataTypeCheck
+
+runat 	Specifies that the control is a server control. Must be set to "server"
+Text 	The message to display when validation fails
+Type 	Specifies the data type of the values to compare. The types are:
+
+    * Currency
+    * Date
+    * Double
+    * Integer
+    * String
+
+ValueToCompare 	A specified value to compare with
+
+
+<!DOCTYPE html>
+<html>
+<body>
+
+<form runat="server">
+<table border="0" bgcolor="#b0c4de">
+   <tr valign="top">
+     <td colspan="4"><h4>Compare two values</h4></td>
+   </tr>
+   <tr valign="top">
+     <td><asp:TextBox id="txt1" runat="server" /></td>
+     <td> = </td>
+     <td><asp:TextBox id="txt2" runat="server" /></td>
+     <td><asp:Button Text="Validate" runat="server" /></td>
+   </tr>
+</table>
+<br>
+<asp:CompareValidator
+id="compval"
+Display="dynamic"
+ControlToValidate="txt1"
+ControlToCompare="txt2"
+ForeColor="red"
+BackColor="yellow"
+Type="String"
+EnableClientScript="false"
+Text="Validation Failed!"
+runat="server" />
+</form>
+
+</body>
+</html>
+
+<script  runat="server">
+sub check_operator(sender As Object, e As EventArgs)
+   compval.Operator=CType(list.SelectedIndex,ValidationCompareOperator)
+   compval.Validate()
+end sub
+</script>
+
+<!DOCTYPE html>
+<html>
+<body>
+
+<form runat="server">
+<table border="0" bgcolor="#b0c4de">
+   <tr valign="top">
+     <td colspan="4"><h4>Compare two values</h4></td>
+   </tr>
+   <tr valign="top">
+     <td><asp:TextBox id="txt1" runat="server" /></td>
+     <td>
+     <asp:ListBox id="list" rows="2" OnSelectedIndexChanged="check_operator" runat="server">
+           <asp:ListItem value="Equal" selected>=</asp:ListItem>
+           <asp:ListItem value="NotEqual"><></asp:ListItem>
+     </asp:ListBox>
+     </td>
+     <td><asp:TextBox id="txt2" runat="server" /></td>
+     <td><asp:Button Text="Validate" runat="server" /></td>
+   </tr>
+</table>
+<br>
+<asp:CompareValidator
+id="compval"
+Display="dynamic"
+ControlToValidate="txt1"
+ControlToCompare="txt2"
+ForeColor="red"
+BackColor="yellow"
+Type="String"
+EnableClientScript="false"
+Text="Validation Failed!"
+runat="server" />
+</form>
+
+</body>
+</html>
+
+ASP.NET CustomValidator Control
+
+Definition and Usage
+
+The CustomValidator control allows you to write a method to handle the validation of the value entered.
+BackColor  	The background color of the CustomValidator control
+ClientValidationFunction 	Specifies the name of the client-side validation script function to be executed. Note: The script must be in a language that the browser supports, such as VBScript or JScript
+
+With VBScript, the function must be in the form:
+
+Sub FunctionName (source, arguments)
+
+With JScript, the function must be in the form:
+
+Function FunctionName (source, arguments)
+ControlToValidate 	The id of the control to validate
+Display 	The display behavior for the validation control. Legal values are:
+
+    * None (the control is not displayed. Used to show the error message only in the ValidationSummary control)
+    * Static (the control displays an error message if validation fails. Space is reserved on the page for the message even if the input passes validation.
+    * Dynamic (the control displays an error message if validation fails. Space is not reserved on the page for the message if the input passes validation
+
+EnableClientScript 	A Boolean value that specifies whether client-side validation is enabled or not
+Enabled 	A Boolean value that specifies whether the validation control is enabled or not
+ErrorMessage 	The text to display in the ValidationSummary control when validation fails. Note: This text will also be displayed in the validation control if the Text property is not set
+ForeColor 	The foreground color of the control
+id 	A unique id for the control
+IsValid 	A Boolean value that indicates whether the control specified by ControlToValidate is determined to be valid
+OnServerValidate 	Specifies the name of the server-side validation script function to be executed
+runat 	Specifies that the control is a server control. Must be set to "server"
+Text 	The message to display when validation fails
+
+<script  runat="server">
+Sub user(source As object,args As ServerValidateEventArgs)
+   if len(args.Value)<8 or len(args.Value)>16 then
+    args.IsValid=false
+   else
+    args.IsValid=true
+   end if
+End Sub
+</script>    
+
+<!DOCTYPE html>
+<html>
+<body>
+
+<form runat="server">
+<asp:Label runat="server" Text="Enter a username: " />
+<asp:TextBox id="txt1" runat="server" />
+<asp:Button Text="Submit" runat="server"/>
+<br>
+<asp:Label id="mess" runat="server"/>
+<br>
+<asp:CustomValidator
+ControlToValidate="txt1"
+OnServerValidate="user"
+Text="A username must be between 8 and 16 characters!"
+runat="server"/>
+</form>
+
+</body>
+</html>
+
+ASP.NET RegularExpressionValidator Control
+
+Definition and Usage
+
+The RegularExpressionValidator control is used to ensure that an input value matches a specified pattern.
+
+Note: Both server- and client-side validation are performed unless the browser does not support client-side validation or the EnableClientScript property is set to false.
+
+Note: The validation will not fail if the input control is empty. Use the RequiredFieldValidator control to make the field required.
+
+Properties
+Property 	Description
+BackColor 	The background color of the RegularExpressionValidator control
+ControlToValidate 	The id of the control to validate
+Display 	The display behavior for the validation control. Legal values are:
+
+    * None (the control is not displayed. Used to show the error message only in the ValidationSummary control)
+    * Static (the control displays an error message if validation fails. Space is reserved on the page for the message even if the input passes validation.
+    * Dynamic (the control displays an error message if validation fails. Space is not reserved on the page for the message if the input passes validation
+
+EnableClientScript 	A Boolean value that specifies whether client-side validation is enabled or not
+Enabled 	A Boolean value that specifies whether the validation control is enabled or not
+ErrorMessage 	The text to display in the ValidationSummary control when validation fails. Note: This text will also be displayed in the validation control if the Text property is not set
+ForeColor 	The foreground color of the control
+id 	A unique id for the control
+IsValid 	A Boolean value that indicates whether the control specified by ControlToValidate is determined to be valid
+runat 	Specifies that the control is a server control. Must be set to "server"
+BackColor 	The background color of the RegularExpressionValidator control
+Text 	The message to display when validation fails
+ValidationExpression 	Specifies the expression used to validate input control. The expression validation syntax is different on the client than on the server. JScript is used on the client. On the server, the language you have specified is used
+
+
+<script  runat="server">
+sub submit(sender As Object, e As EventArgs)
+if Page.IsValid then
+   lbl.Text="The page is valid!"
+else
+   lbl.Text="The page is not valid!"
+end if
+end sub
+</script>
+
+<!DOCTYPE html>
+<html>
+<body>
+
+<form runat="server">
+Enter a US zip code:
+<asp:TextBox id="txtbox1" runat="server" />
+<br><br>
+<asp:Button text="Submit" OnClick="submit" runat="server" />
+<br><br>
+<asp:Label id="lbl" runat="server" />
+<br>
+<asp:RegularExpressionValidator
+ControlToValidate="txtbox1"
+ValidationExpression="\d{5}"
+EnableClientScript="false"
+ErrorMessage="The zip code must be 5 numeric digits!"
+runat="server" />
+</form>
+
+</body>
+</html>
+
+ASP.NET RequiredFieldValidator Control
+
+Definition and Usage
+
+The RequiredFieldValidator control is used to make an input control a required field.
+
+With this control, the validation fails if the input value does not change from its initial value. By default, the initial value is an empty string ("").
+
+Note: Leading and trailing spaces of the input value are removed before validation.
+
+Note: The InitialValue property does not set the default value for the input control. It indicates the value that you do not want the user to enter in the input control.
+
+Properties
+Property 	Description
+BackColor 	The background color of the RequiredFieldValidator control
+ControlToValidate 	The id of the control to validate
+Display 	The display behavior for the validation control. Legal values are:
+
+    * None (the control is not displayed. Used to show the error message only in the ValidationSummary control)
+    * Static (the control displays an error message if validation fails. Space is reserved on the page for the message even if the input passes validation.
+    * Dynamic (the control displays an error message if validation fails. Space is not reserved on the page for the message if the input passes validation
+
+EnableClientScript 	A Boolean value that specifies whether client-side validation is enabled or not
+Enabled 	A Boolean value that specifies whether the validation control is enabled or not
+ErrorMessage 	The text to display in the ValidationSummary control when validation fails. Note: This text will also be displayed in the validation control if the Text property is not set
+ForeColor 	The foreground color of the control
+id 	A unique id for the control
+InitialValue 	Specifies the starting value of the input control. Default value is ""
+IsValid 	A Boolean value that indicates whether the control specified by ControlToValidate is determined to be valid
+runat 	Specifies that the control is a server control. Must be set to "server"
+Text 	The message to display when validation fails
+
+<!DOCTYPE html>
+<html>
+<body>
+
+<form runat="server">
+Name: <asp:TextBox id="name" runat="server" />
+<br>
+Age: <asp:TextBox id="age" runat="server" />
+<br><br>
+<asp:Button runat="server" Text="Submit" />
+<br><br>
+<asp:RequiredFieldValidator
+ControlToValidate="name"
+Text="The name field is required!"
+runat="server" />
+</form>
+
+</body>
+</html>
+
+ASP.NET ValidationSummary Control
+Definition and Usage
+
+The ValidationSummary control is used to display a summary of all validation errors occurred in a Web page.
+
+The error message displayed in this control is specified by the ErrorMessage property of each validation control. If the ErrorMessage property of the validation control is not set, no error message is displayed for that validation control.
+Properties
+Property 	Description
+DisplayMode 	How to display the summary. Legal values are:
+
+    * BulletList
+    * List
+    * SingleParagraph
+
+EnableClientScript 	A Boolean value that specifies whether client-side validation is enabled or not
+Enabled 	A Boolean value that specifies whether the validation control is enabled or not
+ForeColor 	The fore color of the control
+HeaderText 	A header in the ValidationSummary control
+id 	A unique id for the control
+runat 	Specifies that the control is a server control. Must be set to "server"
+ShowMessageBox 	A Boolean value that specifies whether the summary should be displayed in a message box or not
+ShowSummary 	A Boolean value that specifies whether the ValidationSummary control should be displayed or hidden
+
+<!DOCTYPE html>
+<html>
+<body>
+
+<form runat="server">
+<table>
+<tr>
+<td>
+<table bgcolor="#b0c4de" cellspacing="10">
+   <tr>
+     <td align="right">Name:</td>
+     <td><asp:TextBox id="txt_name" runat="server"/></td>
+     <td>
+     <asp:RequiredFieldValidator
+     ControlToValidate="txt_name"
+     ErrorMessage="Name"
+     Text="*"
+     runat="server"/>
+     </td>
+   </tr>
+   <tr>
+     <td align="right">Card Type:</td>
+     <td>
+     <asp:RadioButtonList id="rlist_type"
+     RepeatLayout="Flow"
+     runat="server">
+     <asp:ListItem>Diners</asp:ListItem>
+     <asp:ListItem>MasterCard</asp:ListItem>
+     <asp:ListItem>Visa</asp:ListItem>
+     </asp:RadioButtonList>
+     </td>
+     <td>
+     <asp:RequiredFieldValidator
+     ControlToValidate="rlist_type"
+     ErrorMessage="Card Type"
+     InitialValue=""
+     Text="*"
+     runat="server"/>
+     </td>
+   </tr>
+   <tr>
+     <td></td>
+     <td><asp:Button id="b1" Text="Submit" runat="server"/></td>
+     <td></td>
+   </tr>
+</table>
+</td>
+</tr>
+</table>
+<br>
+<asp:ValidationSummary
+HeaderText="You must enter a value in the following fields:"
+DisplayMode="BulletList"
+EnableClientScript="true"
+runat="server"/>
+</form>
+
+</body>
+</html>
+
+<!DOCTYPE html>
+<html>
+<body>
+
+<form runat="server">
+<table>
+<tr>
+<td>
+<table bgcolor="#b0c4de" cellspacing="10">
+   <tr>
+     <td align="right">Name:</td>
+     <td><asp:TextBox id="txt_name" runat="server"/></td>
+     <td>
+     <asp:RequiredFieldValidator
+     ControlToValidate="txt_name"
+     ErrorMessage="Name"
+     Text="*"
+     runat="server"/>
+     </td>
+   </tr>
+   <tr>
+     <td align="right">Card Type:</td>
+     <td>
+     <asp:RadioButtonList id="rlist_type"
+     RepeatLayout="Flow"
+     runat="server">
+     <asp:ListItem>Diners</asp:ListItem>
+     <asp:ListItem>MasterCard</asp:ListItem>
+     <asp:ListItem>Visa</asp:ListItem>
+     </asp:RadioButtonList>
+     </td>
+     <td>
+     <asp:RequiredFieldValidator
+     ControlToValidate="rlist_type"
+     ErrorMessage="Card Type"
+     InitialValue=""
+     Text="*"
+     runat="server"/>
+     </td>
+   </tr>
+   <tr>
+     <td></td>
+     <td><asp:Button id="b1" Text="Submit" runat="server"/></td>
+     <td></td>
+   </tr>
+</table>
+</td>
+</tr>
+</table>
+<asp:ValidationSummary
+ShowMessageBox="true"
+ShowSummary="false"
+HeaderText="You must enter a value in the following fields:"
+EnableClientScript="true"
+runat="server"/>
+</form>
+
+</body>
+</html>
+
+
+ASP.NET RangeValidator Control
+
+Definition and Usage
+
+The RangeValidator control is used to check that the user enters an input value that falls between two values. It is possible to check ranges within numbers, dates, and characters.
+
+Note: The validation will not fail if the input control is empty. Use the RequiredFieldValidator control to make the field required.
+
+Note: The validation will not fail if the input value cannot be converted to the data type specified. Use the CompareValidator control, with its Operator property set to ValidationCompareOperator.DataTypeCheck, to verify the data type of the input value.
+Properties
+Property 	Description
+BackColor 	The background color of the RangeValidator control
+ControlToValidate 	The id of the control to validate
+Display 	The display behavior for the validation control. Legal values are:
+
+    * None (the control is not displayed. Used to show the error message only in the ValidationSummary control)
+    * Static (the control displays an error message if validation fails. Space is reserved on the page for the message even if the input passes validation.
+    * Dynamic (the control displays an error message if validation fails. Space is not reserved on the page for the message if the input passes validation
+
+EnableClientScript 	A Boolean value that specifies whether client-side validation is enabled or not
+Enabled 	A Boolean value that specifies whether the validation control is enabled or not
+ErrorMessage 	The text to display in the ValidationSummary control when validation fails. Note: This text will also be displayed in the validation control if the Text property is not set
+ForeColor 	The foreground color of the control
+id 	A unique id for the control
+IsValid 	A Boolean value that indicates whether the control specified by ControlToValidate is determined to be valid
+MaximumValue 	Specifies the maximum value of the input control
+MinimumValue 	Specifies the minimum value of the input control
+runat 	Specifies that the control is a server control. Must be set to "server"
+Type 	Specifies the data type of the value to check. The types are:
+
+    * Currency
+    * Date
+    * Double
+    * Integer
+    * String
+
+Text 	The message to display when validation fails
+
+
+<script  runat="server">
+Sub submit(sender As Object, e As EventArgs)
+If Page.IsValid Then
+   lbl1.Text="Page is valid."
+Else
+   lbl1.Text="Page is not valid!!"
+End If
+End Sub
+</script>
+
+<!DOCTYPE html>
+<html>
+<body>
+
+<form runat="server">
+Enter a number from 1 to 100:
+<asp:TextBox id="tbox1" runat="server" />
+<br><br>
+<asp:Button Text="Submit" OnClick="submit" runat="server" />
+<br><br>
+<asp:Label id="lbl1" runat="server" />
+<br>
+<asp:RangeValidator
+ControlToValidate="tbox1"
+MinimumValue="1"
+MaximumValue="100"
+Type="Integer"
+EnableClientScript="false"
+Text="The value must be from 1 to 100!"
+runat="server" />
+</form>
+
+</body>
+</html>
+
+
+2.<!DOCTYPE html>
+<html>
+<body>
+
+<form runat="server">
+Enter a date between 2005-01-01 and 2005-12-31:
+<br>
+<asp:TextBox id="tbox1" runat="server" />
+<br><br>
+<asp:Button Text="Submit" runat="server" />
+<br><br>
+<asp:RangeValidator
+ControlToValidate="tbox1"
+MinimumValue="2005-01-01"
+MaximumValue="2005-12-31"
+Type="Date"
+EnableClientScript="false"
+Text="The date must be between 2005-01-01 and 2005-12-31!"
+runat="server" />
+</form>
+
+</body>
+</html>
+

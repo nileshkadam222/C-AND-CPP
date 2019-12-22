@@ -1,0 +1,11 @@
+begin
+ update emp set esal = &esal where eno = &eno;
+ if sql%found then
+   dbms_output.put_line('employee successfully transferred');
+ end if;
+ if sql%notfound then
+   dbms_output.put_line('employee number does not exist');
+ end if;
+
+end;
+/

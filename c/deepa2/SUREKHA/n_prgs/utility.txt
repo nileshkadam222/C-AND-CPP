@@ -1,0 +1,70 @@
+Util Package:
+It is define in java.util package. The utility classes provide functionality that can be used in a wide variety of programming context.
+
+Random class:
+This class allows you to generate random double, float, int or long numbers.
+The constructors are -
+Random()
+Random(long seed)
+where seed is a value to initialize the random number generator. The first form uses the current time as the seed.
+Methods:
+void nextByte(byte buffer[])    It fills buffer with random numbers.
+double nextDouble()   It returns a random double value.
+float nextFloat()
+double nextGaussian()      It returns a random double value. Numbers obtained 
+from repeated calls to this method hava a Gaussian distribution with a mean of 0 and a standard deviation of 1
+
+Date Class:
+The Date class encapsulates information about a specific date and time. The constructors are -
+Date()
+Date(long msec)
+The first form returns an object that represents the current date and time. The second form returns an object that represents the date and time msec milliseconds after the epoch. The epoch is defined as midnight 1, 1970 GMT.
+
+The Calendar and Gregorian Calendar Classes:
+
+The Calendar class is an abstract class which allows you to interpret date and time information. This class defines several int constants that are used when you get components of the calendar. The calendar class does not have public constructor.Instead you may use the static getInstance() method to obtain a calendar initialized to the current date and time.
+Calendar getInstance()
+
+GregorianCalendar: This is a concrete subclass of Calendar class which provides the logic to manage date and time information according to the rules of the Gregorian calendar. This is the calendar that numbers years starting at the birth of Christ.
+The constructors are:
+GregorianCalendar()
+GregorianCalendar(int year, int month, int date)
+GregorianCalendar(int year, int month, int date, int hour, int minute, int sec)
+GregorianCalendar(int year, int month, int date, int hour, int minute)
+
+The class provides all of the method defined by Calendar and add the isLeapYear() method.
+    boolean isLeapYear()
+This method returns true if the current year is a leap year otherwise false.
+
+
+Vector class:
+It is one of the most important class in java.util package because it creates a dynamic array objects in which you can add, delete and modify the element as and when you required. It supports to the legacy class in which you can look and feel.
+
+Constructor
+Vector()
+Vector(int n)
+Vector(int n, int delta)
+
+Methods:
+void addElement(Object obj)
+void copyInto(Object array[ ])  It copies the elements of the current object to array.
+boolean isEmpty()
+void removeAllElments()
+String toString()  It returns the string equivalent of the vector.
+
+Enumeration Interface: It allows you to iterate through a set of objects. It defines two methods -
+boolean hasMoreElements()
+Object nextElement()
+
+The first method returns true if more elements are available. Otherwise it returns false.
+The second method returns the next available elements. This interface is implemented by the Vector class.
+
+Stack class:
+The stack class extends Vector and provides a LIFO(Last in first out) stack. The vector class provides the functionality of a dynamic array. The stack class reuses this implementation and also provides methods to push, pop and otherwise manipulate the stack.
+Methods:
+boolean empty()  Returns true if the stack is empty otherwise returns false.
+Object push(Object obj)   Pushes obj onto the stack and returns obj.
+Object pop()throws EmptyStackException
+This returns the object at the top of the stack and removes it from the stack.
+
+                        

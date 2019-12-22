@@ -1,0 +1,256 @@
+
+ASP Procedures
+ASP Forms
+ASP Cookies
+ASP Session
+ASP Application
+ASP #include
+ASP Global.asa
+ASP Send e-mail
+
+ASP Objects
+ASP Response
+ASP Request
+ASP Application
+ASP Session
+ASP Server
+ASP Error
+ASP FileSystem
+ASP TextStream
+ASP Drive
+ASP File
+ASP Folder
+ASP Dictionary
+ASP ADO
+
+ASP Components
+ASP AdRotator
+ASP BrowserCap
+ASP Content Linking
+ASP Content Rotator
+
+ASP and AJAX
+AJAX Intro
+AJAX ASP
+AJAX Database
+
+ASP Summary
+ASP Quick Ref
+ASP Summary
+
+ASP Examples
+ASP Examples
+ASP Quiz
+ASP Certificate
+ASP Introduction
+
+« PreviousNext Chapter »
+An ASP file can contain text, HTML tags and scripts. Scripts in an ASP file are executed on the server.
+
+What you should already know
+
+Before you continue you should have some basic understanding of the following:
+
+HTML / XHTML
+A scripting language like JavaScript or VBScript
+If you want to study these subjects first, find the tutorials on our Home page.
+
+What is ASP?
+
+ASP stands for Active Server Pages
+ASP is a Microsoft Technology
+ASP is a program that runs inside IIS
+IIS stands for Internet Information Services
+IIS comes as a free component with Windows 2000
+IIS is also a part of the Windows NT 4.0 Option Pack
+The Option Pack can be downloaded from Microsoft
+PWS is a smaller - but fully functional - version of IIS
+PWS can be found on your Windows 95/98 CD
+ASP Compatibility
+
+To run IIS you must have Windows NT 4.0 or later
+To run PWS you must have Windows 95 or later
+ChiliASP is a technology that runs ASP without Windows OS
+InstantASP is another technology that runs ASP without Windows
+What is an ASP File?
+
+An ASP file is just the same as an HTML file
+An ASP file can contain text, HTML, XML, and scripts
+Scripts in an ASP file are executed on the server
+An ASP file has the file extension ".asp"
+How Does ASP Differ from HTML?
+
+When a browser requests an HTML file, the server returns the file
+When a browser requests an ASP file, IIS passes the request to the ASP engine. The ASP engine reads the ASP file, line by line, and executes the scripts in the file. Finally, the ASP file is returned to the browser as plain HTML
+What can ASP do for you?
+
+Dynamically edit, change, or add any content of a Web page
+Respond to user queries or data submitted from HTML forms
+Access any data or databases and return the results to a browser
+Customize a Web page to make it more useful for individual users
+The advantages of using ASP instead of CGI and Perl, are those of simplicity and speed
+Provide security - since ASP code cannot be viewed from the browser
+Clever ASP programming can minimize the network traffic
+ Note: Because ASP scripts are executed on the server, the browser that displays the ASP file does not need to support scripting at all!
+our Windows PC as a Web Server
+
+Your own PC can act as a web server if you install IIS or PWS
+IIS or PWS turns your computer into a web server
+Microsoft IIS and PWS are free web server components
+IIS - Internet Information Server
+
+IIS is a set of Internet-based services for servers created by Microsoft for use with Microsoft Windows.
+
+IIS comes with Windows 2000, XP, Vista, and Windows 7. It is also available for Windows NT.
+
+IIS is easy to install and ideal for developing and testing web applications.
+
+PWS - Personal Web Server
+
+PWS is for older Windows system like Windows 95, 98, and NT.
+
+PWS is easy to install and can be used for developing and testing web applications including ASP.
+
+We don't recommend running PWS for anything else than training. It is outdated and has security issues.
+
+Windows Web Server Versions
+
+Windows 7 (all editions) come with IIS 7.5
+Windows Vista Business, Enterprise and Ultimate come with IIS 7
+Windows Vista Home Premium comes with IIS 7
+Windows Vista Home Edition does not support PWS or IIS
+Windows XP Professional comes with IIS 5.1
+Windows XP Home Edition does not support IIS or PWS
+Windows 2000 Professional comes with IIS 5.0
+Windows NT Professional comes with IIS 3 and also supports IIS 4
+Windows NT Workstation supports PWS and IIS 3
+Windows ME does not support PWS or IIS
+Windows 98 comes with PWS
+Windows 95 supports PWS
+How to Install IIS on Windows 7 and Windows Vista
+
+Follow these steps to install IIS:
+
+Open the Control Panel from the Start menu
+Double-click Programs and Features
+Click "Turn Windows features on or off" (a link to the left)
+Select the check box for Internet Information Services (IIS), and click OK
+After you have installed IIS, make sure you install all patches for bugs and security problems. (Run Windows Update).
+
+How to Install IIS on Windows XP and Windows 2000
+
+Follow these steps to install IIS:
+
+On the Start menu, click Settings and select Control Panel
+Double-click Add or Remove Programs
+Click Add/Remove Windows Components
+Click Internet Information Services (IIS)
+Click Details
+Select the check box for World Wide Web Service, and click OK
+In Windows Component selection, click Next to install IIS
+After you have installed IIS, make sure you install all patches for bugs and security problems. (Run Windows Update).
+
+Test Your Web
+
+After you have installed IIS or PWS follow these steps:
+
+Look for a new folder called Inetpub on your hard drive
+Open the Inetpub folder, and find a folder named wwwroot
+Create a new folder, like "MyWeb", under wwwroot
+Write some ASP code and save the file as "test1.asp" in the new folder
+Make sure your Web server is running (see below)
+Open your browser and type "http://localhost/MyWeb/test1.asp", to view your first web page
+Note: Look for the IIS (or PWS) symbol in your start menu or task bar. The program has functions for starting and stopping the web server, disable and enable ASP, and much more.
+
+How to install PWS on Windows 95, 98, and Windows NT
+
+For Windows 98: Open the Add-ons folder on your Windows CD, find the PWS folder and run setup.exe to install PWS.
+
+For Windows 95 or Windows NT: Download "Windows NT 4.0 Option Pack" from Microsoft, and install PWS.
+
+Test your web as described above.
+
+How to install IIS on Windows Server 2003
+
+When you start the Windows Server 2003, you should see the Manage Your Server wizard
+If the wizard is not displayed, go to Administrative Tools, and select Manage Your Server
+In the wizard, click Add or Remove a Role, click Next
+Select Custom Configuration, click Next
+Select Application Server role, click Next
+Select Enable ASP.NET, click Next
+Now, the wizard may ask for the Server 2003 CD. Insert the CD and let it run until it is finished, then click the Finish button
+The wizard should now show the Application Server role installed
+Click on Manage This Application Server to bring up the Application Server Management Console (MMC)
+Expand the Internet Information Services (IIS) Manager, then expand your server, and then the Web Sites folder
+You should see the Default Web Site, and it should not say (Stopped)
+IIS is running!
+In the Internet Information Services (IIS) Manager click on the Web Service Extensions folder
+Here you will see that Active Server Pages are Prohibited (this is the default configuration of IIS 6)
+Highlight Active Server Pages and click the Allow button
+ASP is now active!
+
+
+Write Output to a Browser
+
+An ASP file normally contains HTML tags, just like an HTML file. However, an ASP file can also contain server scripts, surrounded by the delimiters <% and %>.
+
+Server scripts are executed on the server, and can contain any expressions, statements, procedures, or operators valid for the scripting language you prefer to use.
+
+The response.write Command
+
+The response.write command is used to write output to a browser. The following example sends the text "Hello World" to the browser:
+
+Example
+
+<html>
+<body>
+<%
+response.write("Hello World!")
+%>
+</body>
+</html>
+
+There is also a shorthand method for the response.write command. The following example also sends the text "Hello World" to the browser:
+
+Example
+
+<html>
+<body>
+<%
+="Hello World!"
+%>
+</body>
+</html>
+
+Show example »
+
+Using VBScript in ASP
+
+You can use several scripting languages in ASP. However, the default scripting language is VBScript:
+
+<html>
+<body>
+<%
+response.write("Hello World!")
+%>
+</body>
+</html>
+The example above writes "Hello World!" into the body of the document.
+
+Using JavaScript in ASP
+
+To set JavaScript as the default scripting language for a particular page you must insert a language specification at the top of the page:
+
+<%@ language="javascript"%>
+<html>
+<body>
+<%
+Response.Write("Hello World!")
+%>
+</body>
+</html>
+Note: JavaScript is case sensitive! You will have to write your ASP code with uppercase letters and lowercase letters when the language requires it.
+
+
+
+

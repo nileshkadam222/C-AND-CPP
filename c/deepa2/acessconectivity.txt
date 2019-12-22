@@ -1,0 +1,179 @@
+
+    Create a VB.NET 2005 Windows Project,
+    Place 3 Labels on form.
+    Place 3 TextBoxes, Rename them txtAu_ID, txtAuthor, txtSearchResult
+    Place 4 Buttons, Rename them btnInsert, btnUpdate, btnDelet, btnSearch
+    Create MS Access Database "TestDB.mdb"
+    Create a Table "Authors" with 2 fields "Au_ID" and "Author"
+
+Copy and Pate the following code:
+Collapse | Copy Code
+
+Imports System.Data
+
+Imports System.Data.OleDb 
+
+Public Class Form1 
+
+    Dim cnnOLEDB As New OleDbConnection
+
+    Dim cmdOLEDB As New OleDbCommand
+ 
+    Dim cmdInsert As New OleDbCommand
+
+    Dim cmdUpdate As New OleDbCommand
+
+    Dim cmdDelete As New OleDbCommand
+
+    Dim strConnectionString = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" & 
+        System.Environment.CurrentDirectory & "\TestDB.mdb" 
+
+    Private Sub Form1_Load(ByVal sender As System.Object,
+        ByVal e As System.EventArgs) Handles MyBase.Load 
+
+        cnnOLEDB.ConnectionString = strConnectionString
+
+        cnnOLEDB.Open()
+
+    End Sub 
+
+    Private Sub btnSearch_Click(ByVal sender As System.Object,
+        ByVal e As System.EventArgs) Handles btnSearch.Click 
+
+    txtAearchResult.Text = "" 
+
+    Dim vSearch As String = InputBox("Enter Integer number to search name:") 
+
+    If vSearch <> "" Then 
+
+        cmdOLEDB.CommandText = "SELECT Au_ID,
+            Author FROM Authors WHERE Au_ID=" & CInt(vSearch) 
+
+        cmdOLEDB.Connection = cnnOLEDB
+
+        Dim rdrOLEDB As OleDbDataReader = cmdOLEDB.ExecuteReader
+
+        If rdrOLEDB.Read = True Then
+        
+        txtAearchResult.Text &= rdrOLEDB.Item(0).ToString & " " & 
+            rdrOLEDB.Item(1).ToString
+
+        rdrOLEDB.Close()
+
+        Exit Sub
+
+        Else
+
+            MsgBox(rdrOLEDB.Close()
+
+            "Record not found")
+
+            Exit Sub 
+
+        End If
+
+    Else
+
+        MsgBox("Enter search value.") 
+
+        Exit Sub 
+
+    End If 
+
+    End Sub
+
+    Private Sub btnInsert_Click(ByVal sender As System.Object,
+        ByVal e As System.EventArgs) Handles btnInsert.Click 
+
+    If txtAu_ID.Text <> "" And txtAuthor.Text <> "" Then 
+
+        cmdInsert.CommandText = "INSERT INTO Authors (Au_ID, Author) VALUES (" & 
+            xtAu_ID.Text & ", '" & txtAuthor.Text & "');" 
+
+        'MsgBox(cmdInsert.CommandText)
+
+         cmdInsert.CommandType = CommandType.Text
+
+         cmdInsert.Connection = cnnOLEDB
+
+         cmdInsert.ExecuteNonQuery()
+
+         MsgBox(txtAu_ID.Text = "Record inserted.")"" 
+
+         txtAuthor.Text = "" 
+
+    Else 
+
+        MsgBox("Enter the required values:" & 
+            vbNewLine & "1. Au_ID" & vbNewLine & "2.Author")
+
+    End If 
+
+    cmdInsert.Dispose()
+
+    End Sub
+
+    Private Sub btnUpdate_Click(ByVal sender As System.Object,
+        ByVal e As System.EventArgs) Handles btnUpdate.Click
+
+    If txtAu_ID.Text <> "" And txtAuthor.Text <> "" Then
+
+        cmdUpdate.CommandText = "UPDATE Authors SET Author = '" & txtAuthor.Text & "' 
+        WHERE Au_ID = " & txtAu_ID.Text & ";" 
+
+        'MsgBox(cmdUpdate.CommandText)
+
+        cmdUpdate.CommandType = CommandType.Text
+
+        cmdUpdate.Connection = cnnOLEDB
+
+        cmdUpdate.ExecuteNonQuery()
+
+        MsgBox(txtAu_ID.Text = "Record updated.")"" 
+
+        txtAuthor.Text = "" 
+
+    Else
+
+        MsgBox("Enter the required values:" & vbNewLine & "1. Au_ID" & vbNewLine & 
+            "2.Author")
+
+    End If
+
+    cmdUpdate.Dispose()
+
+    End Sub
+
+    Private Sub btnDelete_Click(ByVal sender As System.Object,
+        ByVal e As System.EventArgs) Handles btnDelete.Click 
+
+    If txtAu_ID.Text <> "" Then 
+
+        cmdDelete.CommandText = "DELETE FROM Authors WHERE Au_ID = " &
+            txtAu_ID.Text  & ";" 
+
+        'MsgBox(cmdDelete.CommandText)
+
+        cmdDelete.CommandType = CommandType.Text
+
+        cmdDelete.Connection = cnnOLEDB
+
+        cmdDelete.ExecuteNonQuery()
+
+        MsgBox(txtAu_ID.Text = "Record deleted.")"" 
+
+        txtAuthor.Text = "" 
+
+        cmdDelete.Dispose()
+
+    Else
+
+        MsgBox("Enter the required values:" & vbNewLine & "1. Au_ID") 
+
+    End If
+
+    cmdUpdate.Dispose()
+
+    End Sub
+
+End Class

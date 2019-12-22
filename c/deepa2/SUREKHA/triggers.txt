@@ -1,0 +1,86 @@
+What is a Trigger?
+
+A trigger is a pl/sql block structure which is fired when a DML statements like Insert, Delete, Update is executed on a database table. A trigger is triggered automatically when an associated DML statement is executed.
+
+Syntax of Triggers
+
+The Syntax for creating a trigger is:
+
+ CREATE [OR REPLACE ] TRIGGER trigger_name 
+
+ {BEFORE | AFTER | INSTEAD OF } 
+
+ {INSERT [OR] | UPDATE [OR] | DELETE} 
+
+ [OF col_name] 
+
+ ON table_name 
+
+ [REFERENCING OLD AS o NEW AS n] 
+
+ [FOR EACH ROW] 
+
+ WHEN (condition)  
+
+ BEGIN 
+
+   --- sql statements  
+
+ END; 
+
+    CREATE [OR REPLACE ] TRIGGER trigger_name - This clause creates a trigger with the given name or overwrites an existing trigger with the same name.
+    {BEFORE | AFTER | INSTEAD OF } - This clause indicates at what time should the trigger get fired. i.e for example: before or after updating a table. INSTEAD OF is used to create a trigger on a view. before and after cannot be used to create a trigger on a view.
+    {INSERT [OR] | UPDATE [OR] | DELETE} - This clause determines the triggering event. More than one triggering events can be used together separated by OR keyword. The trigger gets fired at all the specified triggering event.
+    [OF col_name] - This clause is used with update triggers. This clause is used when you want to trigger an event only when a specific column is updated.
+    CREATE [OR REPLACE ] TRIGGER trigger_name - This clause creates a trigger with the given name or overwrites an existing trigger with the same name.
+    [ON table_name] - This clause identifies the name of the table or view to which the trigger is associated.
+    [REFERENCING OLD AS o NEW AS n] - This clause is used to reference the old and new values of the data being changed. By default, you reference the values as :old.column_name or :new.column_name. The reference names can also be changed from old (or new) to any other user-defined name. You cannot reference old values when inserting a record, or new values when deleting a record, because they do not exist.
+    [FOR EACH ROW] - This clause is used to determine whether a trigger must fire when each row gets affected ( i.e. a Row Level Trigger) or just once when the entire sql statement is executed(i.e.statement level Trigger).
+    WHEN (condition) - This clause is valid only for row level triggers. The trigger is fired only for rows that satisfy the condition specified.
+
+
+      
+examples::
+
+1.What is a Trigger?
+
+A trigger is a pl/sql block structure which is fired when a DML statements like Insert, Delete, Update is executed on a database table. A trigger is triggered automatically when an associated DML statement is executed.
+
+Syntax of Triggers
+
+The Syntax for creating a trigger is:
+
+ CREATE [OR REPLACE ] TRIGGER trigger_name 
+
+ {BEFORE | AFTER | INSTEAD OF } 
+
+ {INSERT [OR] | UPDATE [OR] | DELETE} 
+
+ [OF col_name] 
+
+ ON table_name 
+
+ [REFERENCING OLD AS o NEW AS n] 
+
+ [FOR EACH ROW] 
+
+ WHEN (condition)  
+
+ BEGIN 
+
+   --- sql statements  
+
+ END; 
+
+    CREATE [OR REPLACE ] TRIGGER trigger_name - This clause creates a trigger with the given name or overwrites an existing trigger with the same name.
+    {BEFORE | AFTER | INSTEAD OF } - This clause indicates at what time should the trigger get fired. i.e for example: before or after updating a table. INSTEAD OF is used to create a trigger on a view. before and after cannot be used to create a trigger on a view.
+    {INSERT [OR] | UPDATE [OR] | DELETE} - This clause determines the triggering event. More than one triggering events can be used together separated by OR keyword. The trigger gets fired at all the specified triggering event.
+    [OF col_name] - This clause is used with update triggers. This clause is used when you want to trigger an event only when a specific column is updated.
+    CREATE [OR REPLACE ] TRIGGER trigger_name - This clause creates a trigger with the given name or overwrites an existing trigger with the same name.
+    [ON table_name] - This clause identifies the name of the table or view to which the trigger is associated.
+    [REFERENCING OLD AS o NEW AS n] - This clause is used to reference the old and new values of the data being changed. By default, you reference the values as :old.column_name or :new.column_name. The reference names can also be changed from old (or new) to any other user-defined name. You cannot reference old values when inserting a record, or new values when deleting a record, because they do not exist.
+    [FOR EACH ROW] - This clause is used to determine whether a trigger must fire when each row gets affected ( i.e. a Row Level Trigger) or just once when the entire sql statement is executed(i.e.statement level Trigger).
+    WHEN (condition) - This clause is valid only for row level triggers. The trigger is fired only for rows that satisfy the condition specified.
+
+
+      

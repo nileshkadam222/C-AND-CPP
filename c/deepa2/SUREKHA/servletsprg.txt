@@ -1,0 +1,821 @@
+##NewServlet.java
+
+import java.io.*;
+import javax.servlet.*;
+import javax.servlet.http.*;
+
+public class NewServlet extends HttpServlet
+{ 
+  public void doGet(HttpServletRequest request, 
+  HttpServletResponse response)
+  throws ServletException,IOException{
+   
+  //response.setContentType("text/html");
+  PrintWriter pw = response.getWriter();
+  pw.println("<html>");
+  pw.println("<head><title>Hello World</title></title>");
+  pw.println("<body>");
+  pw.println("<h1>Hello World</h1>");
+  pw.println("</body></html>");
+  }
+}
+
+##servlet2.java
+
+import java.io.*;
+import javax.servlet.*;
+import javax.servlet.http.*;
+
+public class test extends HttpServlet{ 
+  public void doGet(HttpServletRequest request, 
+  HttpServletResponse response)
+  throws ServletException,IOException{
+   
+  //response.setContentType("text/html");
+  PrintWriter pw = response.getWriter();
+  pw.println("<html>");
+  pw.println("<head><title>Hello World</title></title>");
+  pw.println("<body>");
+  pw.println("<h1>Hello World</h1>");
+  pw.println("</body></html>");
+  }
+}
+
+##servlet3.java
+
+import java.io.*;
+import javax.servlet.*;
+import javax.servlet.http.*;
+
+public class HelloWorld extends HttpServlet{ 
+  public void doGet(HttpServletRequest request, 
+  HttpServletResponse response)
+  throws ServletException,IOException{
+  response.setContentType("text/html");
+  PrintWriter pw = response.getWriter();
+  pw.println("<html>");
+  pw.println("<head><title>Hello World</title></title>");
+  pw.println("<body>");
+  pw.println("<h1>Hello World</h1>");
+  pw.println("</body></html>");
+  }
+}
+
+
+Simple Counter in Servlet
+
+ 1:      
+
+In this example we are going to know how we can make a program on counter which will keep track how many times the servlet has been accessed. 
+
+To make this program firstly we have to make one class SimpleCounterInServlet. The name of the class should follow the  naming convention. Remember to keep the name of the class in such a way that it becomes easy to understand what the program is going to do just by seeing the class name. After making a class define one variable counter which will keep record for how many times the servlet has been accessed. Now use method either doGet() or doPost() to write a logic of the program. Our program logic is simple. We have to just increment the value of the counter by 1. To display the output use the method getWriter() method of the response object which will in turn return the object  of the PrintWriter class. Now display the value of the counter. 
+
+The code of the program is given below:
+
+import java.io.*;
+import javax.servlet.*;
+import javax.servlet.http.*;
+
+public class SimpleCounter extends HttpServlet{
+  int counter = 0;
+  public void doGet(HttpServletRequest request, HttpServletResponse
+    response)throws ServletException, IOException {
+  response.setContentType("text/html");
+  PrintWriter pw = response.getWriter();
+  counter++;
+  pw.println("At present the value of the counter is " + counter);
+  }
+}
+
+2:
+In this program we are going to make a such a servlet which will count the number it has been accessed and the number of threads created by the server.
+
+In this example firstly we are going to create one class named as HolisticCounterInServlet. Now declare a variable counter of int with initial value 0, the value of this counter will be different for each servlet and create a Hashtable object. This object will be shared by all the threads in the container. Inside the doGet() method use the method getWriter() method of the response object which will return the PrintWriter object. 
+
+The code of the program is given below:
+
+import java.io.*;
+import java.io.IOException;
+import java.util.*;
+import javax.servlet.*;
+import javax.servlet.http.*;
+
+public class HolisticCounter extends HttpServlet{
+int counter = 0; //separate For Each Servlet
+static Hashtable hashTable = new Hashtable(); //Shared by all the threads 
+
+public void doGet(HttpServletRequest request, HttpServletResponse response)
+     throws ServletException, IOException {
+  response.setContentType("text/html");
+  PrintWriter pw = response.getWriter();
+  counter++;
+  pw.println("This servlet has been accessed" + counter + "times<br>");
+  hashTable.put(this,this);
+  pw.println("There are currently" + hashTable.size() + "threads<br>");
+  }
+}
+
+3:
+
+In this program we are going to make a such a servlet which will count and displays the number of times it has been accessed and by reading the init parameter to know from where the counting will begin.
+
+In this program we are going to make use of the init method of the Servlet interface which takes one argument of ServletConfig. Firstly declare a variable counter which will have the initial value of the counter. The init() method accepts an object which implements ServletConfig interface. It uses the method getInitParameter() method of  the ServletConfig interface to the value of the init parameter initial which we have defined in the deployment descriptor file. You need to parse the String value which you will get from the getInitParameter() method to a Integer. 
+
+The code of the program is given below: 
+
+import java.io.*;
+import javax.servlet.*;
+import javax.servlet.http.*;
+
+public class CounterInInit extends HttpServlet {
+  int counter;
+  public void init(ServletConfig config)
+  throws ServletException{
+  super.init(config);
+    String initValue = 
+  config.getInitParameter("initial");
+  try{
+  counter = Integer.parseInt(initValue);
+  }
+  catch(NumberFormatException e){
+  counter = 0;
+  }
+  }
+  protected void doGet(HttpServletRequest request,
+   HttpServletResponse response)
+   throws ServletException, IOException {
+   response.setContentType("text/html");
+   PrintWriter pw = response.getWriter();
+   counter++;
+   pw.println("Since loading this servlet"+
+   "has been accessed" + counter + "times");
+  }
+}
+4:
+
+In this program we are going to tell you how can a use servlet to display information about its server. 
+
+Firstly we will create a class in which there will be doGet() method which takes two objects as arguments, first is request object and the second one is of response. 
+
+To display the name of the server you are using use the method getServerName() of the ServletRequest interface. To display the server port number use the method getServerPort(). You can also use other methods of the ServletRequest interface like getProtocol() to display the protocol you are using and many more methods depending on your needs. 
+
+The code of the program is given below: 
+
+import java.io.*;
+import javax.servlet.*;
+import javax.servlet.http.*;
+
+public class SnoopingServerServlet extends HttpServlet{
+  protected void doGet(HttpServletRequest request, HttpServletResponse
+    response) throws ServletException, IOException {
+  PrintWriter pw = response.getWriter();
+  pw.println("The server name is " + request.getServerName()+"<br>");
+  pw.println("The server port number is " + request.getServerPort()+
+    "<br>");
+  pw.println("The protocol is " + request.getProtocol()+ "<br>");
+  pw.println("The scheme used is " + request.getScheme());
+  }
+}
+
+5.
+
+In this program we are going to going to make a servlet which will retrieve all the Http request header. 
+
+To make a program over this firstly we need to make one class named GettingSnoopingHeader. In HttpRequest there are too many headers. To retrieve all the headers firstly we need to call the getWriter() which returns PrintWriter object and helps us to display all the headers. To get a header names call the method getHeaderNames() of the request object which will return the Enumeration of the headers. Now to retrieve all the headers from the Enumeration use the method hasMoreElements(). This method checks whether there are more headers or not. To display the output on your browser use the PrintWriter object.
+
+The code of the program is given below:
+
+import java.io.*;
+import java.util.*;
+import javax.servlet.*;
+import javax.servlet.http.*;
+
+
+public class HeaderSnoopServlet extends HttpServlet{
+  protected void doGet(HttpServletRequest request, HttpServletResponse
+    response)throws ServletException, IOException {
+  PrintWriter pw = response.getWriter();
+  pw.println("Request Headers are");
+  Enumeration enumeration = request.getHeaderNames();
+  while(enumeration.hasMoreElements()){
+  String headerName = (String)enumeration.nextElement();
+  Enumeration headerValues = request.getHeaders(headerName);
+  if (headerValues != null){
+  while (headerValues.hasMoreElements()){
+  String values = (String) headerValues.nextElement();
+  pw.println(headerName + ": " + values);
+  }
+  }
+  }
+  }
+}
+
+6:
+
+In this example we are going to retreive the init paramater values which we have given in the web.xml file.
+
+Whenever the container makes a servlet it always reads it deployment descriptor file i.e. web.xml. Container creates name/value pairs for the ServletConfig object.  Once the parameters are in ServletConfig they will never be read again by the Container.
+
+The main job of the ServletConfig object is to give the init parameters.
+
+To retrieve the init parameters in the program firstly we have made one class named GettingInitParameterNames. The container calls the servlet's service() method then depending on the type of request, the service method calls either the doGet() or the doPost(). By default it will be doGet() method. Now inside the doGet() method use getWriter() method of the response object which will return a object of the PrintWriter class which helps us to print the content on the browser.
+
+To retrieve all the values of the init parameter use method getInitParameterNames() which will return the Enumeration of the init parameters.
+
+The code of the program is given below: 
+
+import java.io.*;
+import javax.servlet.*;
+import javax.servlet.http.*;
+import java.util.*;
+
+public class InitServlet extends HttpServlet {
+  public void doGet(HttpServletRequest request, 
+   HttpServletResponse response)
+  throws ServletException, IOException {
+  PrintWriter pw = response.getWriter();
+  pw.print("Init Parameters are : ");
+  Enumeration enumeration = getServletConfig().getInitParameterNames();
+  while(enumeration.hasMoreElements()){
+  pw.print(enumeration.nextElement() + " ");
+  }
+  pw.println("\nThe email address is " + 
+  getServletConfig().getInitParameter("AdminEmail"));
+  pw.println("The address is " + 
+  getServletConfig().getInitParameter("Address"));
+  pw.println("The phone no is " + 
+  getServletConfig().getInitParameter("PhoneNo"));
+  }
+}
+
+7:
+
+This is a very simple example in which we are going to display the name on the browser which we have entered from the Html page. 
+
+To get the desired result firstly we have to make one html form which will have only one field named as name in which we will enter the name. And we will also have one submit button, on pressing the submit button the request will go to the server and the result will be displayed to us. 
+
+In the servlet which will work as a controller here picks the value from the html page by using the method getParameter().  The output will be displayed to you by the object of the PrintWriter class. 
+
+The code of the program is given below: 
+
+<html>
+
+<head>
+<title>New Page 1</title>
+</head>
+
+<body>
+
+<h2>Login</h2>
+<p>Please enter your username and password</p>
+<form method="GET" action="htmlform/LoginServlet">
+  <p> Username  <input type="text" name="username" size="20"></p>
+  <p> Password  <input type="text" name="password" size="20"></p>
+  <p><input type="submit" value="Submit" name="B1"></p>
+</form>
+<p>&nbsp;</p>
+
+</body>
+
+</html>
+LoginServlet.java
+
+import java.io.*;
+import javax.servlet.*;
+import javax.servlet.http.*;
+
+public class LoginServlet extends HttpServlet{
+  public void doGet(HttpServletRequest request,
+  HttpServletResponse response)
+  throws ServletException, IOException {
+  response.setContentType("text/html");
+  PrintWriter out = response.getWriter();
+  String name = request.getParameter("username");
+  String pass = request.getParameter("password");
+  out.println("<html>");
+  out.println("<body>");
+  out.println("Thanks  Mr." + "  " + name + "  " 
+  + "for visiting roseindia<br>" );
+  out.println("Now you can see your password : " 
+  + "  " + pass + "<br>");
+  out.println("</body></html>");
+  }
+}
+
+8:
+
+In our program it may be that we may have multiples values for a single parameter like in checkboxes. We are going to make one program over it.
+To make such a servlet which we have made one html form from where the values will be passed to the controller. In this program we have used the checkbox which will have the same name but with different values. We have one more button submit, on pressing this button the request will be forwarded. 
+
+Now in the servlet that is working like a controller will retrieve the values we have entered in the html form by the method getParameterValues() which returns the array of String.  At last to retrieve all the values from the array use the for loop. The output will be displayed to you by the PrintWriter object. 
+
+The code of the program is given below: 
+
+Index.html
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+<head>
+<title>Insert title here</title>
+</head>
+<body>
+<form method = "post" action = "/GetParameterServlet/GetParameterValues">
+<p>Which of the whisky you like most</p>
+<input type = "checkbox" name ="whisky" value = "RoyalChallenge">
+  RoyalChallenge.<br>
+<input type = "checkbox" name ="whisky" value = "RoyalStag">RoyalStag.<br>
+<input type = "checkbox" name ="whisky" value = "Bagpiper">Bagpiper.<br>
+<input type ="submit" name= "submit">
+</form>
+</body>
+</html>
+ GetParameterValues.java
+
+import java.io.*;
+import javax.servlet.*;
+import javax.servlet.http.*;
+
+public class GetParameterValues extends HttpServlet{
+  protected void doPost(HttpServletRequest request, 
+   HttpServletResponse response)
+ throws ServletException, IOException {
+  response.setContentType("text/html");
+  PrintWriter pw = response.getWriter();
+  String[] whisky = request.getParameterValues("whisky");
+  for(int i=0; i<whisky.length; i++){
+  pw.println("<br>whisky : " + whisky[i]);
+  }
+  }
+}
+
+9:
+
+In this program we are going to make one program on servlet which will keep on updating the time in every second and the result will be displayed to you. 
+
+To make this servlet firstly we need to make a class named TimeUpdater.  The name of the class should be such that it becomes easy to understand what the program is going to do. Call the method getWriter() method of the response object which will return a PrintWriter object. Use the method getHeader() of the response object to add a new header. We can also use setHeader() in place of getHeader(). The setHeader() method overrides the previous set header. Now by using the PrintWriter object display the result on the browser.
+
+The code of the program is given below:
+
+ 
+
+import java.io.*;
+import java.util.*;
+import javax.servlet.*;
+import javax.servlet.http.*;
+
+public class TimeUpdater extends HttpServlet {
+
+public void doGet(HttpServletRequest request, HttpServletResponse response)
+throws ServletException, IOException {
+PrintWriter pw = response.getWriter();
+
+response.addHeader("Refresh", "1");
+pw.println(new Date().toString());
+}
+}
+
+10:
+
+Send Redirect in Servlet
+
+       
+
+When we want that someone else should handle the response of our servlet, then there we should use sendRedirect() method. 
+
+In send Redirect whenever the client makes any request it goes to the container, there the container decides whether the concerned servlet can handle the request or not.   If not then the servlet decides that the request can be handle by other servlet or jsp. Then the servlet calls the sendRedirect() method of the response object and sends back the response to the browser along with the status code. Then the browser sees the status code and look for that servlet which can now handle the request.   Again the browser makes a new request, but with the name of that servlet which can now handle the request and the result will be displayed to you by the browser. In all this process the client is unaware of the processing. 
+
+In this example we are going to make one html in which we will submit the user name and his password. The controller will check if the password entered by the user is correct or not. If the password entered by the user is correct then the servlet will redirect the request to the other servlet which will handle the request. If the password entered by the user is wrong then the request will be forwarded to the html form.
+
+The code of the example is given below:
+
+ html file for this program:
+
+<html>
+
+<head>
+<title>New Page 1</title>
+</head>
+
+<body>
+
+<form method="POST" action="/SendRedirect/SendRedirectServlet">
+  <p>Enter your name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+   <input type="text" name="username" size="20"></p>
+  <p>Enter your password&nbsp; <input type="text" name="password"
+   size="20"></p>
+  <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  &nbsp;&nbsp;
+  <input type="submit" value="Submit" name="B1"></p>
+</form>
+
+</body>
+
+</html>
+ 
+
+import java.io.*;
+import javax.servlet.*;
+import javax.servlet.http.*;
+
+public class SendRedirectServlet extends HttpServlet{
+  protected void doPost(HttpServletRequest request, HttpServletResponse
+    response)throws ServletException, IOException {
+  response.setContentType("text/html");
+  PrintWriter pw = response.getWriter();
+  String name = request.getParameter("username");
+  String password = request.getParameter("password");
+  if(name.equals("James")&& password.equals("abc")){
+  response.sendRedirect("/SendRedirect/ValidUserServlet");
+  }
+  else{
+  pw.println("u r not a valid user");
+  }
+  }
+}
+
+ 
+ 
+
+import java.io.*;
+import javax.servlet.*;
+import javax.servlet.http.*;
+
+public class ValidUserServlet extends HttpServlet{
+protected void doGet(HttpServletRequest request, HttpServletResponse
+  response)throws ServletException, IOException {
+  PrintWriter pw = response.getWriter();
+  pw.println("Welcome to roseindia.net " + " ");
+  pw.println("how are you");
+}
+}
+
+11.
+
+To Determine whether the Session is New or Old
+
+       
+
+In this program we are going to make one servlet on session in which we will check whether the session is new or old. 
+
+To make this program firstly we need to make one class named CheckingTheSession.  Inside the doGet() method, which takes two objects one of request and second of response. Inside this  method call the method getWriter() of the response object. Use getSession() of the request object, which returns the HttpSession object. Now by using the HttpSession we can find out whether the session is new or old. 
+
+The code of the program is given below:
+
+import java.io.*;
+import javax.servlet.*;
+import javax.servlet.http.*;
+
+public class CheckingTheSession extends HttpServlet{
+  protected void doGet(HttpServletRequest request, HttpServletResponse 
+  response)throws ServletException, IOException {
+  response.setContentType("text/html");
+  PrintWriter pw = response.getWriter();
+  pw.println("Checking whether the session is new or old<br>");
+  HttpSession session = request.getSession();
+  if(session.isNew()){
+  pw.println("You have created a new session");
+  }
+  else{
+  pw.println("Session already exists");
+  }
+  }
+}
+
+
+12.Pre- Existing Session
+
+       
+
+In this example we are going to find out whether the session is pre-existing or not. 
+
+Consider a situation where servlet want to use only a existing session. It is not always a good idea to create a new session. To perform this work we have one overloaded method getSession(boolean) of the request object. If we don't want to create a new session then we should use getSession(false). 
+
+In the example below we have used the method getSession(false) which will test whether the session is null or not. If there will be no session then the new session will be created by the method getSession().
+
+The code of the program is given below:
+
+PreExistingSessionServlet.java
+
+import java.io.*;
+import javax.servlet.*;
+import javax.servlet.http.*;
+
+public class PreExistingSessionServlet extends HttpServlet{
+  protected void doGet(HttpServletRequest request, HttpServletResponse
+    response)throws ServletException, IOException {
+  response.setContentType("text/html");
+  PrintWriter pw = response.getWriter();
+  pw.println("Testing The Session : ");
+  HttpSession session = request.getSession(false);
+  if(session==null){
+  pw.println("There is no session");
+  pw.println("Can we create a session for you. Creating.........");
+  session = request.getSession();
+  }
+  else{
+  pw.println("Session already exists");
+  }
+  }
+}
+
+13.
+
+Get Session Id
+
+       
+
+In this example we are going to make a program in which we will find the session id which was generated by the container. 
+
+HttpSession session = request.getSession(); Inside the service method we ask for the session and every thing gets automatically, like the creation of the HttpSession object. There is no need to generate the unique session id. There is  no need to make a new Cookie object. Everything happens automatically behind the scenes. 
+
+As soon as call the method getSession() of the request object a new object of the session gets created by the container and a unique session id generated to maintain the session. This session id is transmitted back to the response object so that whenever the client makes any request then it should also attach the session id with the requsest object so that the container can identify the session. 
+
+The code of the program is given below:
+
+import java.io.*;
+import javax.servlet.*;
+import javax.servlet.http.*;
+
+public class SessionIdServlet extends HttpServlet{
+  protected void doGet(HttpServletRequest request, HttpServletResponse
+    response)throws ServletException, IOException{
+  response.setContentType("text/html");
+  PrintWriter pw = response.getWriter();
+  HttpSession session = request.getSession();
+  String id = session.getId();
+  pw.println("Session Id is : " + id);
+  }
+}
+
+13:
+
+Display session value Using Servlet
+
+       
+
+Sometime while developing web application it is necessary to interact with the different values of the Session object. In this example we will explore the different values of the Session object and then learn how to use it in our programming code.
+
+You will learn how to find all the session related information like:
+
+getId. This method is used to find the identifier of the session which is unique.
+isNew. This method is used when find, whether session is newly created or preexisted. If session has never seen by user then this method return "true" but if session is preexisted then it return "false".
+getCreationTime. This method is used to find the creation time of session. To use of this method we can find the following details about session i.e. day, month, date, time, GMT(Greenwich Mean Time) and year will be displayed.
+getLastAccessedTime. This method is used to find the last accessed time of session. It returns the time, in milliseconds.
+getMaxInactiveInterval. This method returns the total time, in seconds, during which session remains active if user does not accesses the session for this maximum time interval. After this time the session will be invalidated automatically. A negative value indicates that the session should never timeout.
+Here is the sample code for HttpSessionDisplay.java:
+
+import java.io.*;
+import javax.servlet.*;
+import javax.servlet.http.*;
+import java.net.*;
+import java.util.*;
+import javax.servlet.ServletConfig;
+import javax.servlet.ServletException;
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpSession;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+public class HttpSessionDisplay extends HttpServlet {
+  String head;
+  public void doGet(HttpServletRequest request,
+  HttpServletResponse response)
+  throws ServletException, IOException {
+  HttpSession session = request.getSession(true);
+  response.setContentType("text/html");
+  PrintWriter out = response.getWriter();
+  Integer count = new Integer(0);
+  if (session.isNew()) {
+  head = "New Session Value";
+  } else {
+  head = "Old Session value";
+  Integer oldcount =(Integer)session.getValue("count"); 
+  if (oldcount != null) {
+  count = new Integer(oldcount.intValue() + 1);
+  }
+  }
+session.putValue("count", count); 
+out.println("<HTML><BODY BGCOLOR=\"pink\">\n" +
+  "<H2 ALIGN=\"CENTER\">" + head + "</H2>\n" +  
+  "<H3 ALIGN=\"CENTER\">Description about Session:</H3>\n" +
+  "<TABLE BORDER=1 ALIGN=CENTER>\n" + 
+  "<TR BGCOLOR=\"voilet\">\n" +
+  "<TH>Information Type<TH>Session Value\n"+
+  "<TR>\n" + "<TD>ID\n" +"<TD>" + 
+   session.getId() + "\n" +"<TR>\n" + 
+   " <TD>Session Creation Time\n" +" <TD>" + 
+   new Date(session.getCreationTime()) + "\n" +
+  "<TR>\n" +"  <TD>Last Session Access Time\n" +"  <TD>" +
+  new Date(session.getLastAccessedTime()) + "\n" +
+  "<TR>\n" +"  <TD>Number of Previous Session Accesses\n" +
+  "<TD>" + count + "\n" +"</TABLE>\n" +"</BODY></HTML>");
+  }
+  public void doPost(HttpServletRequest request,
+  HttpServletResponse response)throws ServletException, 
+  IOException {
+  doGet(request, response);
+  }
+}
+
+14:
+Hit Counter Servlet Example
+
+       
+
+This example illustrates about counting how many times the servlet is accessed. When first time servlet (CounterServlet) runs then session is created and value of the counter will be zero and after again accessing of servlet  the counter value will be increased by one. In this program isNew() method is used whether session is new or old and getValue() method is used to get the value of counter.
+
+Here is the source code of CounterServlet.java:
+
+import java.io.*;
+import javax.servlet.*;
+import javax.servlet.http.*;
+
+public class CounterServlet extends HttpServlet{
+  public void doGet(HttpServletRequest request, 
+  HttpServletResponse response)
+  throws ServletException, IOException {
+  HttpSession session = request.getSession(true);
+  response.setContentType("text/html");
+  PrintWriter out = response.getWriter();
+  Integer count = new Integer(0);
+  String head;
+  if (session.isNew()) {
+  head = "This is the New Session";
+  } else {
+  head = "This is the old Session";
+  Integer oldcount =(Integer)session.getValue("count"); 
+  if (oldcount != null) {
+  count = new Integer(oldcount.intValue() + 1);
+  }
+  }
+  session.putValue("count", count);
+  out.println("<HTML><BODY BGCOLOR=\"#FDF5E6\">\n" +
+  "<H2 ALIGN=\"CENTER\">" + head + "</H2>\n" + 
+  "<TABLE BORDER=1 ALIGN=CENTER>\n"
+  + "<TR BGCOLOR=\"#FFAD00\">\n" 
+  +"  <TH>Information Type<TH>Session Count\n" 
+  +"<TR>\n" +" <TD>Total Session Accesses\n" +
+  "<TD>" + count + "\n" +
+  "</TABLE>\n" 
+  +"</BODY></HTML>" );
+  }
+}
+
+
+15.
+import java.io.*;
+import javax.servlet.*;
+import javax.servlet.http.*;
+
+public class LogDemo extends HttpServlet
+{
+    public void doGet(HttpServletRequest request,HttpServletResponse response) throws ServletException,IOException
+    {
+  ServletContext sc=getServletContext();
+  PrintWriter pw=response.getWriter();
+  pw.println("<B>Writing an exception to the server log file....</B>");
+  try
+  {
+      int x=9;
+      int y=x/0;
+  }
+  catch(ArithmeticException ae)
+  {
+      sc.log("Dividing an integer by zero will not give the result",ae);
+      
+  }
+    }
+}
+
+
+16.
+<html>
+    <head>
+        <title>ONLINE SHOPPING PORTAL</title>
+       
+    </head>
+    <body>
+        <form action="/servletprogram/CookieServlet" method="POST" align="center">
+            
+            Username:<input type="text" name="user" align="center"><br>
+            password:<input type="text" name="password" align="center"><br>
+            <input type="submit" value="Login" align="center">
+                        
+        </form>
+        
+       </body>
+</html>
+
+
+import java.io.*;
+import javax.servlet.*;
+import javax.servlet.http.*;
+
+ public class CookieServlet extends HttpServlet
+{
+    PrintWriter pw=null;
+    public void doGet(HttpServletRequest request,HttpServletResponse response) throws ServletException,IOException
+    {
+        doPost(request,response);
+   
+    }
+   public void doPost(HttpServletRequest request,HttpServletResponse response) throws ServletException,IOException
+    {
+     pw=response.getWriter();
+     String username=request.getParameter("user");
+     String password=request.getParameter("password");
+     Cookie ck=new Cookie("user",username);
+     response.addCookie(ck);
+     pw.println("Cookie containing user name is stored in your browser.");
+   
+  }
+}
+
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.util.*;
+import java.io.*;
+import javax.servlet.*;
+import javax.servlet.http.*;
+
+public class RetrieveCookie extends HttpServlet 
+{
+PrintWriter pw=null;
+public void doGet(HttpServletRequest request,HttpServletResponse response) throws ServletException,IOException
+{
+doPost(request,response)    ;
+}
+public void doPost(HttpServletRequest request,HttpServletResponse response) throws ServletException,IOException
+{
+pw=response.getWriter();
+String username=null;
+Cookie ck[]=request.getCookies();
+if(ck!=null)
+{
+    for(int i=0;i<ck.length;i++)
+    {
+        if(ck[i].getName().equals("user"))
+        {
+            username=ck[i].getValue();
+        }
+        pw.println("Hello!&nbsp;&nbsp;"+username);
+        
+    }
+}
+    else
+    pw.println("No cookies found");
+    
+}
+}
+
+
+import java.io.*;
+import javax.servlet.*;
+
+
+public class SettingCntx extends GenericServlet
+{
+    ServletContext ctx;
+    public void init(ServletConfig cfig)
+    {
+        ctx=cfig.getServletContext();
+    }
+    public void service(ServletRequest request,ServletResponse response) throws ServletException,IOException
+    {
+ctx.setAttribute("URL", "jdbc:odbc:EmployeesDB");        ;
+PrintWriter pw=response.getWriter();
+response.setContentType("text/html");
+pw.println("<B> The JDBC URL has been set as a context attribute</B> ");
+    }
+}
+
+import java.io.*;
+import javax.servlet.*;
+
+public class RetrievingCntx extends GenericServlet
+{
+    ServletContext ctx;
+    String url;
+    public void init(ServletConfig cfig)
+    {
+        ctx=cfig.getServletContext();
+    }
+     public void service(ServletRequest request,ServletResponse response) throws ServletException,IOException
+    {
+        url=(String)ctx.getAttribute("URL");
+        PrintWriter pw=response.getWriter();
+        response.setContentType("text/html");
+        pw.println("<B> The  URL value is </B> "+url+"<br>");
+    }
+}
+    
+
+

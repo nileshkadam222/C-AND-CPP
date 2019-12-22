@@ -1,0 +1,138 @@
+main()
+{
+    cout<<volume(10);
+    cout<<volume(2.5,8);
+    cout<<volume(100,75,15);
+}
+ 
+// volume of a cube
+int volume(int s)
+{
+    return(s*s*s);
+}
+ 
+// volume of a cylinder
+double volume(double r,int h)
+{
+    return(3.14*r*r*h);
+}
+ 
+// volume of a cuboid
+long volume(long l,int b,int h)
+{
+    return(l*b*h);
+}
+===================================
+
+include <iostream>
+ 
+using namespace std;
+ 
+/* Function arguments are of different data type */
+ 
+long add(long, long);
+float add(float, float);
+ 
+int main()
+{
+   long a, b, x;
+   float c, d, y;
+ 
+   cout << "Enter two integers\n";
+   cin >> a >> b;
+ 
+   x = add(a, b);
+ 
+   cout << "Sum of integers: " << x << endl;
+ 
+   cout << "Enter two floating point numbers\n";
+   cin >> c >> d;
+ 
+   y = add(c, d);
+ 
+   cout << "Sum of floats: " << y << endl;
+ 
+   return 0;
+}
+ 
+long add(long x, long y)
+{
+   long sum;
+ 
+   sum = x + y;
+ 
+   return sum;
+}
+ 
+float add(float x, float y)
+{
+   float sum;
+ 
+   sum = x + y;
+ 
+   return sum;
+}
+
+C++ programming code for function overloading
+
+#include <iostream>
+ 
+using namespace std;
+ 
+/* Number of arguments are different */
+ 
+void display(char []);  // print the string passed as argument
+void display(char [], char []);
+ 
+int main()
+{
+   char first[] = "C programming";
+   char second[] = "C++ programming";
+ 
+   display(first);
+   display(first, second);
+ 
+   return 0;
+}
+ 
+void display(char s[])
+{
+   cout << s << endl;
+}
+ 
+void display(char s[], char t[])
+{
+   cout << s << endl << t << endl;
+}
+
+Output of program:
+C programming
+C programming
+C++ programming
+=============================================
+#include <iostream>
+using namespace std;
+
+void print(int i) {
+  cout << " Here is int " << i << endl;
+}
+void print(double  f) {
+  cout << " Here is float " << f << endl;
+}
+
+void print(char* c) {
+  cout << " Here is char* " << c << endl;
+}
+
+int main() {
+  print(10);
+  print(10.10);
+  print("ten");
+}
+
+The following is the output of the above example:
+
+ Here is int 10
+ Here is float 10.1
+ Here is char* ten
+=================================================

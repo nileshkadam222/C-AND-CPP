@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+</head>
+
+<body bgcolor="#FF99CC">
+<font size="2" face="Arial Black, Gadget, sans-serif" color="#000000">
+To Add a New Data Source, click on the link. When you do, you'll see a screen welcoming you to the Data Source Configuration Wizard, Just click Next, to get to the screen below:
+ 
+You want to connect to a Database. So select this option, and click Next. In version 2010 and 2012 of VB NET, you'll see this screen appear (you won't see it if you have version 2008):
+ 
+Select DataSet and click Next. You'll then see this screen:
+ 
+Click the New Connection button and another dialogue box pops up in VB NET 2008:
+ 
+Click the Change button, because we want to connect to an Access database. (The default is for a SQL Server database.) When you click Change, you'll see this (VB NET versions 2010 and 2012 will see this instead of the dialogu box above when clicking the New Connection button):
+ 
+Select Microsoft Access Database File, then click OK. The previous dialogue box will then look like this:
+ 
+Click the Browse button and navigate to where on your computer you downloaded our Access Database called AddressBook.mdb. Click Test Connection to see if everything is OK, and you'll hopefully see this:
+ 
+Click the OK button, then click the OK button on the Add Connection dialogue box as well. You will be returned to the Data Source Configuration Wizard, which should now look like this:
+ 
+Click Next to move to the next step of the Wizard. You may see a message box appear, however. Click No on the message box to stop VB copying the database each time it runs. You should then see this:
+ 
+Make sure there's a tick in the box for "Save the connection", and then click Next:
+ 
+Here, you can select which tables and fields you want. Tick the Tables box to include them all. You can give your DataSet a name, if you prefer. Click Finish and you're done.
+When you are returned to your form, you should notice your new Data Source has been added:
+ 
+The Data Sources area of the Solution Explorer (or Data Sources tab on the left) now displays information about your database. Click the plus symbol (arrow symbol in version 2012) next totblContacts:
+ 
+All the Fields in the Address Book database are now showing.
+To add a Field to your Form, click on one in the list. Hold down your left mouse button, and drag it over to your form:
+ 
+In the image above, the FName field is being dragged on the Form. Your mouse cursor will change shape.
+When your Field is over the Form, let go of your left mouse button. A textbox and a label will be added. There are two other things to notice: a navigation bar appears at the top of the form, and a lot of strange objects have appeared in the object area at the bottom:
+ 
+We'll explore the Objects in a later section. But notice the Navigation bar in blue. Run your programme by hitting the F5 key on your keyboard. You should see this:
+ 
+Click the Navigation arrows to scroll through the database. When you've played around with the controls, stop the form from running, and return to Design View.
+Drag and Drop more Fields to your form. But don't align them yet. We'll see an easy way to do this. But once you've dragged the fields to your form, it might look like this:
+ 
+
+<br /> <br /> <br />
+<a href="home.html" target="_parent"> Home </a>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="concept.html" target="_parent"> Concepts </a>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="history.html" target="_parent"> History </a>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="setting.html" target="_parent"> Setting </a>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="contact.html" target="_parent">  Contact </a>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="MAIN.html" target="_parent"> Main </a>
+
+</body>
+</html>

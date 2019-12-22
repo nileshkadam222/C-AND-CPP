@@ -1,0 +1,191 @@
+package javaapplication2;
+
+public class JavaApplication2 {
+
+    
+    public static void main(String[] args) {
+   int i,j;
+   for(i=1;i<=10;i++)
+   {
+       System.out.println();
+       for(j=2;j<=5;j++)
+       {
+           System.out.print(i*j);
+       }
+       }
+    }
+}
+================================================
+package javaapplication5;
+
+import java.util.*;
+public class JavaApplication5 
+{
+    int r;
+    double pi=3.14;
+    int vol;
+    static Scanner sc=new Scanner(System.in);
+    
+  void area(int r)
+  {
+          //System.out.println("enter radius=");
+      //r=sc.nextInt();
+       double ar=pi*r*r;
+       System.out.println("area of circle="+ar);
+       
+  }
+  void sphere(int r)
+  {
+    //  System.out.println("enter radius:");
+     // r=sc.nextInt();
+    
+      double s=(1.333)*pi*r*r*r;
+    System.out.println("volume of sphere="+s);  
+  }
+  public static void main(String[] args) 
+ {
+  JavaApplication5 t=new JavaApplication5();
+  System.out.println("1.area");
+  System.out.println("2.volume");
+  System.out.println("3.exit");
+  int c;
+    System.out.println("enter radius:");
+    int r=sc.nextInt();
+  System.out.println("Enter ur choice:");
+  c=sc.nextInt();
+  switch(c)
+  {
+      case 1:
+      {
+          t.area(r);break;
+      }
+      case 2:
+      {
+          t.sphere(r);break;
+      }
+       
+ }
+ }
+}
+==========================================================
+package measons;
+import java.util.*;
+public class Measons
+{
+public static void main(String[] args) 
+{
+int[] a=new int[5];
+int i;
+Scanner sc=new Scanner(System.in);
+System.out.println("Your Arrays numbers are:::::");
+for(i=0;i<=4;i++)
+{
+a[i]=sc.nextInt();
+}
+System.out.println("Your given Array values are:::::");
+for(i=0;i<5;i++)
+{
+System.out.println(+a[i]);
+}
+}
+}
+======================================================
+package newton;
+
+
+import java.util.*;
+public class Newton {
+
+   
+     
+
+    public static void main(String[] args) {
+      int[] a=new int[5];
+      int i,s=0;
+      Scanner sc=new Scanner(System.in);
+      System.out.println("enter nos:");
+      for(i=0;i<5;i++)
+      {
+          a[i]=sc.nextInt();
+      }
+      System.out.println("values present in array are :");
+      for(i=0;i<=4;i++)
+      {
+          s=s+a[i];
+      }
+               System.out.println("Tot="+s);
+    }
+
+ 
+}
+===========================================================
+package javaapplication6;
+
+/**
+ *
+ * @author Admin
+ */
+public class test {
+int a,b,c;
+    test()
+{
+        c=0;
+}
+    void addr(int a,int b)
+    {
+        c=a+b;
+        System.out.println("c="+c);
+    }
+   
+    public static void main(String[] args) {
+        test t=new test();
+        t.addr(10,20);
+    }
+}
+==============================================
+package test;
+
+/**
+ *
+ * @author Admin
+ */
+import java.util.*;
+public class Test {
+
+  
+    public static void main(String[] args) {
+      int[] a=new int[5];
+      int i,s=0;
+      Scanner sc=new Scanner(System.in);
+      System.out.println("enter nos:");
+      for(i=0;i<5;i++)
+      {
+          a[i]=sc.nextInt();
+      }
+      System.out.println("values present in array are :");
+      for(i=0;i<=4;i++)
+      {
+          s=s+a[i];
+      }
+       System.out.println("sum="+s);
+      for(i=0;i<=4;i++)
+      {
+         if(a[i]%2==0)
+         {
+             System.out.println("even no="+a[i]);
+             
+         }
+         else
+         {  System.out.println("odd no="+a[i]);
+           
+         }
+      }
+          
+     
+    }
+}
+============================================================
+
+
+
+

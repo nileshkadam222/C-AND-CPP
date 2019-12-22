@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Alumni</title>
+</head>
+
+<script language="javascript">
+function cde()
+{
+	if((form2.text1.value=="karishma") && (form2.text2.value=="advani"))
+	{
+		alert("matched");
+		window.open("java51.html");	
+	}
+	else
+	{
+		alert("not matched");
+	}
+	
+	
+}
+</script>
+
+<body bgcolor="#FFFFFF">
+
+<br /><br /><br /><br /><br /><br /><br /><br />
+<center>
+<form name="form2">
+
+Username: <input type="text" name="text1"> <br> <br>
+Password : <input type="text" name="text2"> <br> <br>
+&nbsp;
+<input type="button" name="b1" value ="Login" onClick="cde()">
+&nbsp;&nbsp;
+<input type="button" name="b2" value ="Reset">
+</form>
+</center>
+</body>
+</html>

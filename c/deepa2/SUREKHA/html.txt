@@ -1,0 +1,970 @@
+HTML is a language for describing web pages.
+
+    HTML stands for Hyper Text Markup Language
+    HTML is a markup language
+    A markup language is a set of markup tags
+    The tags describes document content
+    HTML documents contain HTML tags and plain text-
+    HTML documents are also called web pages
+HTML Tags
+
+HTML markup tags are usually called HTML tags
+
+    HTML tags are keywords (tag names) surrounded by angle brackets like <html>
+    HTML tags normally come in pairs like <b> and </b>
+    The first tag in a pair is the start tag, the second tag is the end tag
+    The end tag is written like the start tag, with a forward slash before the tag name
+    Start and end tags are also called opening tags and closing tags
+
+<tagname>content</tagname>
+HTML Elements
+
+"HTML tags" and "HTML elements" are often used to describe the same thing.
+
+But strictly speaking, an HTML element is everything between the start tag and the end tag, including the tags:
+
+HTML Example
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>My First Heading</h1>
+
+<p>My first paragraph.</p>
+
+</body>
+</html> 
+
+Example Explained
+
+    The DOCTYPE declaration defines the document type
+    The text between <html> and </html> describes the web page
+    The text between <body> and </body> is the visible page content
+    The text between <h1> and </h1> is displayed as a heading
+    The text between <p> and </p> is displayed as a paragraph
+
+ 	The <!DOCTYPE html> declaration is the doctype for HTML5.
+
+The <!DOCTYPE> Declaration
+
+The <!DOCTYPE> declaration helps the browser to display a web page correctly.
+
+There are many different documents on the web, and a browser can only display an HTML page 100% correctly if it knows the HTML type and version used.HTML Headings
+
+HTML headings are defined with the <h1> to <h6> tags.
+Example
+<h1>This is a heading</h1>
+<h2>This is a heading</h2>
+<h3>This is a heading</h3> 
+
+
+HTML Paragraphs
+
+HTML paragraphs are defined with the <p> tag.
+Example
+<p>This is a paragraph.</p>
+<p>This is another paragraph.</p> 
+
+HTML Links
+
+HTML links are defined with the <a> tag.
+Example
+<a href="http://www.w3schools.com">This is a link</a>
+
+
+HTML Images
+
+HTML images are defined with the <img> tag.
+Example
+<img src="w3schools.jpg" width="104" height="142"> 
+
+HTML Elements
+« Previous
+Next Chapter »
+
+HTML documents are defined by HTML elements.
+HTML Elements
+
+An HTML element is everything from the start tag to the end tag:
+Start tag * 	Element content 	End tag *
+<p> 	This is a paragraph 	</p>
+<a href="default.htm"> 	This is a link 	</a>
+<br> 	  	 
+
+* The start tag is often called the opening tag. The end tag is often called the closing tag.
+
+HTML Element Syntax
+
+    An HTML element starts with a start tag / opening tag
+    An HTML element ends with an end tag / closing tag
+    The element content is everything between the start and the end tag
+    Some HTML elements have empty content
+    Empty elements are closed in the start tag
+    Most HTML elements can have attributes
+
+Tip: You will learn about attributes in the next chapter of this tutorial.
+Nested HTML Elements
+
+Most HTML elements can be nested (can contain other HTML elements).
+
+HTML documents consist of nested HTML elements.
+HTML Document Example
+<!DOCTYPE html>
+<html>
+
+<body>
+<p>This is my first paragraph.</p>
+</body>
+
+</html>
+
+The example above contains 3 HTML elements.
+HTML Example Explained
+
+The <p> element:
+<p>This is my first paragraph.</p>
+
+The <p> element defines a paragraph in the HTML document.
+The element has a start tag <p> and an end tag </p>.
+The element content is: This is my first paragraph.
+
+The <body> element:
+<body>
+<p>This is my first paragraph.</p>
+</body>
+
+The <body> element defines the body of the HTML document.
+The element has a start tag <body> and an end tag </body>.
+The element content is another HTML element (a p element).
+
+The <html> element:
+<html>
+
+<body>
+<p>This is my first paragraph.</p>
+</body>
+
+</html>
+
+The <html> element defines the whole HTML document.
+The element has a start tag <html> and an end tag </html>.
+The element content is another HTML element (the body element).
+Don't Forget the End Tag
+
+Some HTML elements might display correctly even if you forget the end tag:
+<p>This is a paragraph
+<p>This is a paragraph
+
+The example above works in most browsers, because the closing tag is considered optional.
+
+Never rely on this. Many HTML elements will produce unexpected results and/or errors if you forget the end tag .
+Empty HTML Elements
+
+HTML elements with no content are called empty elements.
+
+<br> is an empty element without a closing tag (the <br> tag defines a line break).
+
+Tip: In XHTML, all elements must be closed. Adding a slash inside the start tag, like <br />, is the proper way of closing empty elements in XHTML (and XML).
+HTML Tip: Use Lowercase Tags
+
+HTML tags are not case sensitive: <P> means the same as <p>. Many web sites use uppercase HTML tags.
+
+HTML Attributes
+« Previous
+Next Chapter »
+
+Attributes provide additional information about HTML elements.
+HTML Attributes
+
+    HTML elements can have attributes
+    Attributes provide additional information about an element
+    Attributes are always specified in the start tag
+    Attributes come in name/value pairs like: name="value"
+
+Attribute Example
+
+HTML links are defined with the <a> tag. The link address is specified in the href attribute:
+Example
+<a href="http://www.w3schools.com">This is a link</a>
+
+Try it yourself »
+
+Always Quote Attribute Values
+
+Attribute values should always be enclosed in quotes.
+
+Double style quotes are the most common, but single style quotes are also allowed.
+
+RemarkTip: In some rare situations, when the attribute value itself contains quotes, it is necessary to use single quotes: name='John "ShotGun" Nelson'
+HTML Tip: Use Lowercase Attributes
+
+Attribute names and attribute values are case-insensitive.
+
+However, the World Wide Web Consortium (W3C) recommends lowercase attributes/attribute values in their HTML 4 recommendation.
+
+Newer versions of (X)HTML will demand lowercase attributes.
+HTML Attributes Reference
+
+A complete list of legal attributes for each HTML element is listed in our: HTML Tag Reference.
+
+Below is a list of some attributes that can be used on any HTML element:
+Attribute 	Description
+class 	Specifies one or more classnames for an element (refers to a class in a style sheet)
+id 	Specifies a unique id for an element
+style 	Specifies an inline CSS style for an element
+title 	Specifies extra information about an element (displayed as a tool tip)
+
+HTML Headings
+« Previous
+Next Chapter »
+
+Headings are important in HTML documents.
+HTML Headings
+
+Headings are defined with the <h1> to <h6> tags.
+
+<h1> defines the most important heading. <h6> defines the least important heading.
+Example
+<h1>This is a heading</h1>
+<h2>This is a heading</h2>
+<h3>This is a heading</h3> 
+
+Headings Are Important
+
+Use HTML headings for headings only. Don't use headings to make text BIG or bold.
+
+Search engines use your headings to index the structure and content of your web pages.
+
+Since users may skim your pages by its headings, it is important to use headings to show the document structure.
+
+H1 headings should be used as main headings, followed by H2 headings, then the less important H3 headings, and so on.
+HTML Lines
+
+The <hr>tag creates a horizontal line in an HTML page.
+
+The hr element can be used to separate content:
+Example
+<p>This is a paragraph</p>
+<hr><p>This is a paragraph</p>
+<hr><p>This is a paragraph</p> 
+
+HTML Comments
+
+Comments can be inserted into the HTML code to make it more readable and understandable. Comments are ignored by the browser and are not displayed.
+
+Comments are written like this:
+Example
+<!-- This is a comment --> 
+
+HTML Line Breaks
+
+Use the <br> tag if you want a line break (a new line) without starting a new paragraph:
+Example
+<p>This is<br>a para<br>graph with line breaks</p> 
+HTML Text Formatting
+« Previous
+Next Chapter »
+
+HTML Text Formatting
+This text is bold
+
+This text is italic
+
+This is computer output
+
+This is subscript and superscript
+HTML Formatting Tags
+
+HTML uses tags like <b> and <i> for formatting output, like bold or italic text.
+
+These HTML tags are called formatting tags (look at the bottom of this pHTML Hyperlinks (Links)
+
+The HTML <a> tag defines a hyperlink.
+
+A hyperlink (or link) is a word, group of words, or image that you can click on to jump to another document.
+
+When you move the cursor over a link in a Web page, the arrow will turn into a little hand.
+
+The most important attribute of the <a> element is the href attribute, which indicates the link’s destination.
+
+By default, links will appear as follows in all browsers:
+
+    An unvisited link is underlined and blue
+    A visited link is underlined and purple
+    An active link is underlined and red
+
+HTML Link Syntax
+
+The HTML code for a link is simple. It looks like this:
+<a href="url">Link text</a>
+
+The href attribute specifies the destination of a link.
+Example
+<a href="http://www.w3schools.com/">Visit W3Schools</a>
+
+which will display like this: Visit W3Schools
+
+Clicking on this hyperlink will send the user to W3Schools' homepage.
+
+Tip: The "Link text" doesn't have to be text. It can be an image or any other HTML element.
+HTML Links - The target Attribute
+
+The target attribute specifies where to open the linked document.
+
+The example below will open the linked document in a new browser window or a new tab:
+Example
+<a href="http://www.w3schools.com/" target="_blank">Visit W3Schools!</a>
+
+Try it yourself »
+
+HTML Links - The id Attribute
+
+The id attribute can be used to create a bookmark inside an HTML document.
+
+Tip: Bookmarks are not displayed in any special way. They are invisible to the reader.
+Example
+
+An anchor with an id inside an HTML document:
+<a id="tips">Useful Tips Section</a>
+
+Create a link to the "Useful Tips Section" inside the same document:
+<a href="#tips">Visit the Useful Tips Section</a>
+
+Or, create a link to the "Useful Tips Section" from another page:
+<a href="http://www.w3schools.com/html_links.htm#tips">
+HTML <head>
+
+The HTML <head> Element
+
+The <head> element is a container for all the head elements. Elements inside <head> can include scripts, instruct the browser where to find style sheets, provide meta information, and more.
+
+The following tags can be added to the head section: <title>, <style>, <meta>, <link>, <script>, <noscript>, and <base>.
+The HTML <title> Element
+
+The <title> tag defines the title of the document.
+
+The <title> element is required in all HTML/XHTML documents.
+
+The <title> element:
+
+    defines a title in the browser toolbar
+    provides a title for the page when it is added to favorites
+    displays a title for the page in search-engine results
+
+A simplified HTML document:
+<!DOCTYPE html>
+<html>
+<head>
+<title>Title of the document</title>
+</head>
+
+<body>
+The content of the document......
+</body>
+
+</html>
+
+The HTML <base> Element
+
+The <base> tag specifies a default address or a default target for all links on a page:
+<head>
+<base href="http://www.w3schools.com/images/"><base target="_blank">
+</head>
+
+The HTML <link> Element
+
+The <link> tag defines the relationship between a document and an external resource.
+
+The <link> tag is most used to link to style sheets:
+<head>
+<link rel="stylesheet" type="text/css" href="mystyle.css">
+</head>
+
+The HTML <style> Element
+
+The <style> tag is used to define style information for an HTML document.
+
+Inside the <style> element you specify how HTML elements should render in a browser:
+<head>
+<style type="text/css">
+body {background-color:yellow}
+p {color:blue}
+</style>
+</head>
+
+The HTML <meta> Element
+
+Metadata is data (information) about data.
+
+The <meta> tag provides metadata about the HTML document. Metadata will not be displayed on the page, but will be machine parsable.
+
+Meta elements are typically used to specify page description, keywords, author of the document, last modified, and other metadata.
+
+The metadata can be used by browsers (how to display content or reload page), search engines (keywords), or other web services.
+
+<meta> tags always goes inside the <head> element.
+<meta> Tags - Examples of Use
+
+Define keywords for search engines:
+<meta name="keywords" content="HTML, CSS, XML, XHTML, JavaScript">
+
+Define a description of your web page:
+<meta name="description" content="Free Web tutorials on HTML and CSS">
+
+Define the author of a page:
+<meta name="author" content="Hege Refsnes">
+
+Refresh document every 30 seconds:
+<meta http-equiv="refresh" content="30">
+
+The HTML <script> Element
+
+The <script> tag is used to define a client-side script, such as a JavaScript.
+
+The <script> element will be explained in a later chapter.
+HTML head Elements
+Tag 	Description
+<head> 	Defines information about the document
+<title> 	Defines the title of a document
+<base> 	Defines a default address or a default target for all links on a page
+<link> 	Defines the relationship between a document and an external resource
+<meta> 	Defines metadata about an HTML document
+<script> 	Defines a client-side script
+<style> 	Defines style information for a document
+
+HTML Lists
+
+The most common HTML lists are ordered and unordered lists:
+HTML Lists
+An ordered list:
+
+    The first list item
+    The second list item
+    The third list item
+
+	
+An unordered list:
+
+    List item
+    List item
+    List item
+
+HTML Unordered Lists
+
+An unordered list starts with the <ul> tag. Each list item starts with the <li> tag.
+
+The list items are marked with bullets (typically small black circles).
+<ul>
+<li>Coffee</li>
+<li>Milk</li>
+</ul> 
+
+HTML Ordered Lists
+
+An ordered list starts with the <ol> tag. Each list item starts with the <li> tag.
+
+The list items are marked with numbers.
+<ol>
+<li>Coffee</li>
+<li>Milk</li>
+</ol> 
+Syntax
+<ul type="disc|circle|square">
+Attribute Values
+Value 	Description
+disc 	Default. A filled circle
+circle 	An unfilled circle
+square 	A filled square
+
+<html>
+<body>
+<ul type="disc">
+  <li>Coffee</li>
+  <li>Tea</li>
+  <li>Milk</li>
+</ul> 
+</body>
+</html>
+
+2.
+<html>
+<body>
+
+<h4>A list inside a list:</h4>
+<ul>
+  <li>Coffee</li>
+  <li>Tea
+    <ul>
+      <li>Black tea</li>
+      <li>Green tea</li>
+    </ul>
+  </li>
+  <li>Milk</li>
+</ul>
+
+</body>
+</html>
+
+3.
+<html>
+<body>
+
+<h4>Lists inside a list:</h4>
+<ul>
+  <li>Coffee</li>
+  <li>Tea
+    <ul>
+      <li>Black tea</li>
+      <li>Green tea
+        <ul>
+          <li>China</li>
+          <li>Africa</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Milk</li>
+</ul>
+
+</body>
+</html>
+
+
+
+HTML Definition Lists
+
+A definition list is a list of items, with a description of each item.
+
+The <dl> tag defines a definition list.
+
+The <dl> tag is used in conjunction with <dt> (defines the item in the list) and <dd> (describes the item in the list):
+<dl>
+<dt>Coffee</dt>
+<dd>- black hot drink</dd>
+<dt>Milk</dt>
+<dd>- white cold drink</dd>
+</dl> 
+
+HTML Tables
+HTML Tables
+
+Tables are defined with the <table> tag.
+
+A table is divided into rows (with the <tr> tag), and each row is divided into data cells (with the <td> tag). td stands for "table data," and holds the content of a data cell. A <td> tag can contain text, links, images, lists, forms, other tables, etc.
+Table Example
+<table border="1">
+<tr>
+<td>row 1, cell 1</td>
+<td>row 1, cell 2</td>
+</tr>
+<tr>
+<td>row 2, cell 1</td>
+<td>row 2, cell 2</td>
+</tr>
+</table>
+
+How the HTML code above looks in a browser:
+row 1, cell 1 	row 1, cell 2
+row 2, cell 1 	row 2, cell 2
+
+HTML Tables and the Border Attribute
+
+If you do not specify a border attribute, the table will be displayed without borders. Sometimes this can be useful, but most of the time, we want the borders to show.
+
+To display a table with borders, specify the border attribute:
+<table border="1">
+<tr>
+<td>Row 1, cell 1</td>
+<td>Row 1, cell 2</td>
+</tr>
+</table>
+
+HTML Table Headers
+
+Header information in a table are defined with the <th> tag.
+
+All major browsers display the text in the <th> element as bold and centered.
+<table border="1">
+<tr>
+<th>Header 1</th>
+<th>Header 2</th>
+</tr>
+<tr>
+<td>row 1, cell 1</td>
+<td>row 1, cell 2</td>
+</tr>
+<tr>
+<td>row 2, cell 1</td>
+<td>row 2, cell 2</td>
+</tr>
+</table>
+
+
+##
+<html>
+<head>
+<body>
+<table  border=10>
+<tr>
+<th>actress</th>
+<th>actor</th>
+</tr>
+<tr>
+<td>kajol</td>
+<td>salman</td>
+</tr>
+<tr>
+<td>madhuri</td>
+<td>shahrukh</td>
+</tr>
+</table>
+</body>
+</html>
+
+How the HTML code above looks in your browser:
+Header 1 	Header 2
+row 1, cell 1 	row 1, cell 2
+row 2, cell 1 	row 2, cell 2
+
+<HTML>
+<HEAD>
+<TITLE>
+DISHA
+</TITLE>
+</HEAD>
+<BODY >
+<body bgcolor="yellow">
+<Marquee bgcolor="red"direction="right">DISHA COMPUTER'S SEC 17, VASHI NAVI MUMBAI</Marquee> 
+<table cellpadding="5"cellspacing="2"border="5">
+<th colspan="5">DISHA COMPUTER'S</Th>
+<tr>
+<td>Name of the student</td>
+<td>Course</td>
+<td>Fculty</td>
+<td>Duration</td>
+<td>Course fees</td>
+</tr>
+<tr>
+<td>vaishali</td>
+<td>web designing</td>
+<td>Ankita Mam</td>
+<td>3 Months</td>
+<td>Rs.6,ooo/-</td>
+</tr>
+<tr>
+<td>shubhangi</td>
+<td>Graphic Designing</td>
+<td>Aniruddha Sir</td>
+<td>3 Months</td>
+<td>Rs.4,ooo/-</td>
+</tr>
+<tr>
+<td>virendra</td>
+<td>Animation</td>
+<td>Sapna Mam</td>
+<td>1 year</td>
+<td>Rs.1,20,000/-</td>
+</tr>
+<tr>
+<td>sonal</td>
+<td>MS-CIT</td>
+<td>Samruddhi Mam</td>
+<td>3 Months</td>
+<td>Rs.3000/-</td>
+</tr>
+</table>
+</BODY>
+</HTML>
+
+
+HTML Forms and Input
+
+HTML Forms are used to select different kinds of user input.
+HTML Forms
+
+HTML forms are used to pass data to a server.
+
+An HTML form can contain input elements like text fields, checkboxes, radio-buttons, submit buttons and more. A form can also contain select lists, textarea, fieldset, legend, and label elements.
+
+The <form> tag is used to create an HTML form:
+<form>
+.
+input elements
+.
+</form>
+
+HTML Forms - The Input Element
+
+The most important form element is the <input> element.
+
+The <input> element is used to select user information.
+
+An <input> element can vary in many ways, depending on the type attribute. An <input> element can be of type text field, checkbox, password, radio button, submit button, and more.
+
+The most common input types are described below.
+Text Fields
+
+<input type="text"> defines a one-line input field that a user can enter text into:
+<form>
+First name: <input type="text" name="firstname"><br>
+Last name: <input type="text" name="lastname">
+</form>
+
+How the HTML code above looks in a browser:
+First name:
+Last name:
+
+Note: The form itself is not visible. Also note that the default width of a text field is 20 characters. 
+Password Field
+
+<input type="password"> defines a password field:
+<form>
+Password: <input type="password" name="pwd">
+</form>
+
+How the HTML code above looks in a browser:
+Password:
+
+Note: The characters in a password field are masked (shown as asterisks or circles). 
+Radio Buttons
+
+<input type="radio"> defines a radio button. Radio buttons let a user select ONLY ONE of a limited number of choices:
+<form>
+<input type="radio" name="sex" value="male">Male<br>
+<input type="radio" name="sex" value="female">Female
+</form>
+
+How the HTML code above looks in a browser:
+Male
+Female
+Checkboxes
+
+<input type="checkbox"> defines a checkbox. Checkboxes let a user select ZERO or MORE options of a limited number of choices.
+<form>
+<input type="checkbox" name="vehicle" value="Bike">I have a bike<br>
+<input type="checkbox" name="vehicle" value="Car">I have a car
+</form>
+
+How the HTML code above looks in a browser:
+I have a bike
+I have a car
+Submit Button
+
+<input type="submit"> defines a submit button.
+
+A submit button is used to send form data to a server. The data is sent to the page specified in the form's action attribute. The file defined in the action attribute usually does something with the received input:
+<form name="input" action="html_form_action.asp" method="get">
+Username: <input type="text" name="user">
+<input type="submit" value="Submit">
+</form>
+
+How the HTML code above looks in a browser:
+Username:
+
+If you type some characters in the text field above, and click the "Submit" button, the browser will send your input to a page called "html_form_action.asp". The page will show you the received input
+
+
+HTML Color Names
+« Previous
+Next Chapter »
+Color Names Supported by All Browsers
+
+147 color names are defined in the HTML and CSS color specification (16 basic color names plus 130 more). The table below lists them all, along with their hexadecimal values.
+
+RemarkTip: The 16 basic color names are: aqua, black, blue, fuchsia, gray, green, lime, maroon, navy, olive, purple, red, silver, teal, white, and yellow.
+
+Click on a color name (or a hex value) to view the color as the background-color along with different text colors:
+Sorted by Color Name
+
+Same list sorted by hex values
+Color Name 	HEX 	Color 	Shades 	Mix
+AliceBlue  	#F0F8FF 	  	Shades 	Mix
+AntiqueWhite  	#FAEBD7 	  	Shades 	Mix
+Aqua  	#00FFFF 	  	Shades 	Mix
+Aquamarine  	#7FFFD4 	  	Shades 	Mix
+Azure  	#F0FFFF 	  	Shades 	Mix
+Beige  	#F5F5DC 	  	Shades 	Mix
+Bisque  	#FFE4C4 	  	Shades 	Mix
+Black  	#000000 	  	Shades 	Mix
+BlanchedAlmond  	#FFEBCD 	  	Shades 	Mix
+Blue  	#0000FF 	  	Shades 	Mix
+BlueViolet  	#8A2BE2 	  	Shades 	Mix
+Brown  	#A52A2A 	  	Shades 	Mix
+BurlyWood  	#DEB887 	  	Shades 	Mix
+CadetBlue  	#5F9EA0 	  	Shades 	Mix
+Chartreuse  	#7FFF00 	  	Shades 	Mix
+Chocolate  	#D2691E 	  	Shades 	Mix
+Coral  	#FF7F50 	  	Shades 	Mix
+CornflowerBlue  	#6495ED 	  	Shades 	Mix
+Cornsilk  	#FFF8DC 	  	Shades 	Mix
+Crimson  	#DC143C 	  	Shades 	Mix
+Cyan  	#00FFFF 	  	Shades 	Mix
+DarkBlue  	#00008B 	  	Shades 	Mix
+DarkCyan  	#008B8B 	  	Shades 	Mix
+DarkGoldenRod  	#B8860B 	  	Shades 	Mix
+DarkGray  	#A9A9A9 	  	Shades 	Mix
+DarkGrey  	#A9A9A9 	  	Shades 	Mix
+DarkGreen  	#006400 	  	Shades 	Mix
+DarkKhaki  	#BDB76B 	  	Shades 	Mix
+DarkMagenta  	#8B008B 	  	Shades 	Mix
+DarkOliveGreen  	#556B2F 	  	Shades 	Mix
+Darkorange  	#FF8C00 	  	Shades 	Mix
+DarkOrchid  	#9932CC 	  	Shades 	Mix
+DarkRed  	#8B0000 	  	Shades 	Mix
+DarkSalmon  	#E9967A 	  	Shades 	Mix
+DarkSeaGreen  	#8FBC8F 	  	Shades 	Mix
+DarkSlateBlue  	#483D8B 	  	Shades 	Mix
+DarkSlateGray  	#2F4F4F 	  	Shades 	Mix
+DarkSlateGrey  	#2F4F4F 	  	Shades 	Mix
+DarkTurquoise  	#00CED1 	  	Shades 	Mix
+DarkViolet  	#9400D3 	  	Shades 	Mix
+DeepPink  	#FF1493 	  	Shades 	Mix
+DeepSkyBlue  	#00BFFF 	  	Shades 	Mix
+DimGray  	#696969 	  	Shades 	Mix
+DimGrey  	#696969 	  	Shades 	Mix
+DodgerBlue  	#1E90FF 	  	Shades 	Mix
+FireBrick  	#B22222 	  	Shades 	Mix
+FloralWhite  	#FFFAF0 	  	Shades 	Mix
+ForestGreen  	#228B22 	  	Shades 	Mix
+Fuchsia  	#FF00FF 	  	Shades 	Mix
+Gainsboro  	#DCDCDC 	  	Shades 	Mix
+GhostWhite  	#F8F8FF 	  	Shades 	Mix
+Gold  	#FFD700 	  	Shades 	Mix
+GoldenRod  	#DAA520 	  	Shades 	Mix
+Gray  	#808080 	  	Shades 	Mix
+Grey  	#808080 	  	Shades 	Mix
+Green  	#008000 	  	Shades 	Mix
+GreenYellow  	#ADFF2F 	  	Shades 	Mix
+HoneyDew  	#F0FFF0 	  	Shades 	Mix
+HotPink  	#FF69B4 	  	Shades 	Mix
+IndianRed   	#CD5C5C 	  	Shades 	Mix
+Indigo   	#4B0082 	  	Shades 	Mix
+Ivory  	#FFFFF0 	  	Shades 	Mix
+Khaki  	#F0E68C 	  	Shades 	Mix
+Lavender  	#E6E6FA 	  	Shades 	Mix
+LavenderBlush  	#FFF0F5 	  	Shades 	Mix
+LawnGreen  	#7CFC00 	  	Shades 	Mix
+LemonChiffon  	#FFFACD 	  	Shades 	Mix
+LightBlue  	#ADD8E6 	  	Shades 	Mix
+LightCoral  	#F08080 	  	Shades 	Mix
+LightCyan  	#E0FFFF 	  	Shades 	Mix
+LightGoldenRodYellow  	#FAFAD2 	  	Shades 	Mix
+LightGray  	#D3D3D3 	  	Shades 	Mix
+LightGrey  	#D3D3D3 	  	Shades 	Mix
+LightGreen  	#90EE90 	  	Shades 	Mix
+LightPink  	#FFB6C1 	  	Shades 	Mix
+LightSalmon  	#FFA07A 	  	Shades 	Mix
+LightSeaGreen  	#20B2AA 	  	Shades 	Mix
+LightSkyBlue  	#87CEFA 	  	Shades 	Mix
+LightSlateGray  	#778899 	  	Shades 	Mix
+LightSlateGrey  	#778899 	  	Shades 	Mix
+LightSteelBlue  	#B0C4DE 	  	Shades 	Mix
+LightYellow  	#FFFFE0 	  	Shades 	Mix
+Lime  	#00FF00 	  	Shades 	Mix
+LimeGreen  	#32CD32 	  	Shades 	Mix
+Linen  	#FAF0E6 	  	Shades 	Mix
+Magenta  	#FF00FF 	  	Shades 	Mix
+Maroon  	#800000 	  	Shades 	Mix
+MediumAquaMarine  	#66CDAA 	  	Shades 	Mix
+MediumBlue  	#0000CD 	  	Shades 	Mix
+MediumOrchid  	#BA55D3 	  	Shades 	Mix
+MediumPurple  	#9370DB 	  	Shades 	Mix
+MediumSeaGreen  	#3CB371 	  	Shades 	Mix
+MediumSlateBlue  	#7B68EE 	  	Shades 	Mix
+MediumSpringGreen  	#00FA9A 	  	Shades 	Mix
+MediumTurquoise  	#48D1CC 	  	Shades 	Mix
+MediumVioletRed  	#C71585 	  	Shades 	Mix
+MidnightBlue  	#191970 	  	Shades 	Mix
+MintCream  	#F5FFFA 	  	Shades 	Mix
+MistyRose  	#FFE4E1 	  	Shades 	Mix
+Moccasin  	#FFE4B5 	  	Shades 	Mix
+NavajoWhite  	#FFDEAD 	  	Shades 	Mix
+Navy  	#000080 	  	Shades 	Mix
+OldLace  	#FDF5E6 	  	Shades 	Mix
+Olive  	#808000 	  	Shades 	Mix
+OliveDrab  	#6B8E23 	  	Shades 	Mix
+Orange  	#FFA500 	  	Shades 	Mix
+OrangeRed  	#FF4500 	  	Shades 	Mix
+Orchid  	#DA70D6 	  	Shades 	Mix
+PaleGoldenRod  	#EEE8AA 	  	Shades 	Mix
+PaleGreen  	#98FB98 	  	Shades 	Mix
+PaleTurquoise  	#AFEEEE 	  	Shades 	Mix
+PaleVioletRed  	#DB7093 	  	Shades 	Mix
+PapayaWhip  	#FFEFD5 	  	Shades 	Mix
+PeachPuff  	#FFDAB9 	  	Shades 	Mix
+Peru  	#CD853F 	  	Shades 	Mix
+Pink  	#FFC0CB 	  	Shades 	Mix
+Plum  	#DDA0DD 	  	Shades 	Mix
+PowderBlue  	#B0E0E6 	  	Shades 	Mix
+Purple  	#800080 	  	Shades 	Mix
+Red  	#FF0000 	  	Shades 	Mix
+RosyBrown  	#BC8F8F 	  	Shades 	Mix
+RoyalBlue  	#4169E1 	  	Shades 	Mix
+SaddleBrown  	#8B4513 	  	Shades 	Mix
+Salmon  	#FA8072 	  	Shades 	Mix
+SandyBrown  	#F4A460 	  	Shades 	Mix
+SeaGreen  	#2E8B57 	  	Shades 	Mix
+SeaShell  	#FFF5EE 	  	Shades 	Mix
+Sienna  	#A0522D 	  	Shades 	Mix
+Silver  	#C0C0C0 	  	Shades 	Mix
+SkyBlue  	#87CEEB 	  	Shades 	Mix
+SlateBlue  	#6A5ACD 	  	Shades 	Mix
+SlateGray  	#708090 	  	Shades 	Mix
+SlateGrey  	#708090 	  	Shades 	Mix
+Snow  	#FFFAFA 	  	Shades 	Mix
+SpringGreen  	#00FF7F 	  	Shades 	Mix
+SteelBlue  	#4682B4 	  	Shades 	Mix
+Tan  	#D2B48C 	  	Shades 	Mix
+Teal  	#008080 	  	Shades 	Mix
+Thistle  	#D8BFD8 	  	Shades 	Mix
+Tomato  	#FF6347 	  	Shades 	Mix
+Turquoise  	#40E0D0 	  	Shades 	Mix
+Violet  	#EE82EE 	  	Shades 	Mix
+Wheat  	#F5DEB3 	  	Shades 	Mix
+White  	#FFFFFF 	  	Shades 	Mix
+WhiteSmoke  	#F5F5F5 	  	Shades 	Mix
+Yellow  	#FFFF00 	  	Shades 	Mix
+YellowGreen  	#9ACD32 	  	Shades 	Mix
+
+« Previous
+Next Chapter »
+w3schools.com
+on Facebook
+WEB HOSTING
+Best Web Hosting
+PHP MySQL Hosting
+UK Reseller Hosting
+Cloud Hosting
+Top Web Hosting
+$3.98 Unlimited Hosting
+250+ Hosting Apps
+WEB BUILDING
+XML Editor - Free Trial!
+FREE Website BUILDER
+FREE Website Creator
+Easy Form Builder
+W3SCHOOLS EXAMS
+Get Certified in:
+HTML, CSS, JavaScript, jQuery, XML, PHP, ASP
+W3SCHOOLS BOOKS
+New Books:
+HTML, CSS
+JavaScript, and Asjax
+STATISTICS
+Browser Statistics
+Browser OS
+Browser Display
+SHARE THIS PAGE
+
+
+ 
+
+
+
+
+HTML Element:
+<p>This is a paragraph.</p>
+
+Web Browsers
+
+The purpose of a web browser (such as Google Chrome, Internet Explorer, Firefox, Safari) is to read HTML documents and display them as web pages. The browser does not display the HTML tags, but uses the tags to interpret the content of the page:

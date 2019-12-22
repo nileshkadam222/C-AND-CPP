@@ -1,0 +1,42 @@
+package swati_n;
+
+import javax.servlet.jsp.tagext.*;
+import javax.servlet.jsp.*;
+import java.io.*;
+
+public class CopyrightTag extends SimpleTagSupport {
+
+  public void doTag() throws JspException, IOException {
+    JspWriter out = getJspContext().getOut();
+    out.println("Copyright 1994-2004   New Tech books inc.<B>!");
+    
+  }
+}
+
+
+2.custom.tld
+<taglib>
+  <tlib-version>1.0</tlib-version>
+  <jsp-version>2.0</jsp-version>
+  <short-name>Example TLD</short-name>
+  <tag>
+    <name>copyright</name>
+    <tag-class>swati_n.CopyrightTag</tag-class>
+    <body-content>empty</body-content>
+  </tag>
+</taglib>
+
+3.custom.jsp
+
+<html>
+
+  <head>
+    <title>new tech books</title>
+  </head>
+  <body>
+  <center> <b> new Tech Books </center></br>
+  <center> <b> welcome to our Website </center></br>
+      <%@ taglib prefix="chrt" uri="WEB-INF/tlds/custom.tld"%>
+       <chrt:copyright/>
+  </body>
+</html>

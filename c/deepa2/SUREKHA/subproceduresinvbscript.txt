@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<script type="text/vbscript">
+Function myfunction()
+myfunction=Date()
+End Function
+document.write("Today's date: ")
+document.write(myfunction())
+</script> 
+
+<p>A Function procedure can return a result.</p>
+
+</body>
+</html>
+
+<html>
+<body>
+
+<script type="text/vbscript">
+Sub mysub()
+  document.write("I was written by a sub procedure")
+End Sub
+document.write("I was written by the script<br>")
+Call mysub()
+</script>
+
+</body>
+</html>
+
+ Procedures Fundamentals
+ 
+
+Introduction
+
+A procedure is an assignment you ask VBScript to perform besides, or to complete, the normal flow of the program. A procedure is created to work in conjunction with the controls events of a script.
+
+There are two kinds of procedures in VBScript: A sub procedure and a function. The difference lies on their behaviors but their coding (programming) depends of your goal.
+
+A procedure can be included in the body of an HTML but to separate the script behavior from the rest of the file, it is usually a good idea to include the procedures in the head section of the file. So far, we were not using all parts of a regular HTML file because there was no need for such a structure. From now on, we will respect the normal listing of an HTML file as follows:
+
+<html>
+<head>
+
+<title>VBScript Tutorial</title>
+
+</head>
+<body>
+This is the body of our HTML file.
+</body>
+
+Everything you know about HTML files, their contents and sections, is completely valid here, whether you include a script or not. When adding a script, you can use the head section to "hide" the script (actually, you are not strictly hiding it). As you may know already, there can be various things (such as the <title> or the <meta> tags) in the head section of the HTML file. Where do you position the script? It doesn't matter. You can write your script before or after the <title> tag, before or after the other <meta> tags.
+
+The advantage of including a script in the head section is that it is more likely to be interpreted before the section it refers to is reached. If you have done any type of programming before, you may know that interpreters (and compilers) read a program in a top-down approach. Therefore, if the browser (actually the VBScript interpreter) finds a thing in the body section but doesn't know what that thing is because it is in the bottom part of the body section, it may not interpret your script accurately. But if the script is in the head section, the interpreter will have "seen" it before reaching the body section.
+
+Based on this, from now on, many of our files will look this:
+
+<html>
+<head>
+<script language="VBScript">
+<!--
+Whatever!!!
+-->
+</script>
+<title>VBScript Tutorial</title>
+
+</head>
+<body>
+This is the body of our HTML file.
+</body>
+
+  	
+ 
+
+Sub Procedures
+
+A sub procedure is a section of code that carries an assignment but doesn't give back a result. To create a sub procedure, start the section of code with the Sub keyword followed by a name for the sub procedure. To differentiate the name of the sub procedure with any other regular name, it must be followed by an opening and closing parentheses. The section of the sub procedure code closes with End Sub as follows:
+
+Sub ShowMeTheDough()
+
+End Sub
+
+The name of a sub procedure should follow the same rules we reviewed for the the variables, omitting the prefix:
+
+    If the sub procedure performs an action that can be represented with a verb, you can use that verb to name it. Here are examples: show, display
+    To make the name of a sub procedure stand, you should start it in uppercase. Examples are Show, Play, Dispose, Close
+    You should use explicit names that identify the purpose of the sub procedure. If a procedure would be used as a result of another procedure or a control's event, reflect it on the name of the sub procedure. Examples would be: afterupdate, longbefore.
+    If the name of a procedure is a combination of words, start each word in uppercase. Examples are: AfterUpdate, SayItLoud
+
+In the following example, a sub procedure named DisplayFullName is created. It retrieves fields of two text boxes (first name and last name) on a form and displays a full name as a result of combining them:
+
+Sub DisplayFullName()
+    FullName = FirstName & " " & LastName
+End Sub
+
+As mentioned already, you can declare variables for use in your program. In the same way, you can declare variables in the procedure if you need to. These variables are declared and dealt with in the same way we learned in the regular script sections. Using declared variables, the above procedure can be written as follows:
+
+Sub DisplayFullName()
+    Dim FirstName, LastName
+    Dim FullName
+
+    FullName = FirstName & " " & LastName
+End Sub
+
+ 
+
+Calling a Procedure
+
+After creating a procedure, you can call it from another procedure, function, or control's event in the body section of an HTML file. To call a simple procedure such as the earlier DisplayFullName, you can just write the name of the sub procedure.
+
+In the following example, the above DisplayFullName sub procedure is called when the user clicks the Detail section of the form:
+
+Sub Detailer()
+    DisplayFullName
+End Sub
+
+If you want the procedure to be accessed immediately as soon as the page displays, you can assign its name to the onLoad() event of the body tag.
+ 
+
+Arguments
+ 
+
+Passing an Argument
+
+To carry an assignment, sometimes a procedure needs one or more values to work on. If a procedure needs a variable, such a variable is called an argument. Another procedure might need more that one argument, thus many arguments. The number and types of arguments of a procedure depends on various factors.
+
+If you are writing your own procedure, then you will decide how many arguments your procedure would need. You also decide on the type of the argument(s). For a procedure that is taking one argument, in the parentheses of the procedure, write a name for the argument. Here is an example:
+
+Sub CalculateArea(Radius)
+  Dim dblPI
+  Dim dblArea
+    
+  dblPI = 3.14159
+  dblArea = Radius * Radius * dblPI
+End Sub
+
+A procedure can take more than one argument. If you are creating such a procedure, between the parentheses of the procedure, write the name of the first argument followed by a comma; add the second argument and subsequent arguments and close the parentheses. There is no relationship between the arguments; for example, they can be of the same type:
+
+Sub CalculatePerimeter(Length, Height)
+    Dim dblPerimeter
+    
+    dblPerimeter = 2 * (Length + Height)
+End Sub
+
+The arguments of your procedure can also be as varied as you need them to be. Here is an example:
+
+Sub DisplayGreetings(strFullName, intAge)
+    Dim Sentence
+    Sentence = "Hi, " & strFullName & ". You are " & intAge & " years old"
+End Sub
+
+ 
+
+Calling an Argumentative Procedure
+
+We saw already how to call a procedure that doesn't take any argument. Actually, there are various ways you can call a sub procedure. As we saw already, if a sub procedure doesn't take an argument, to call it, you can just write its name. If a sub procedure is taking an argument, to call it, type the name of the sub procedure followed by the name of the argument. If the sub procedure is taking more than one argument, to call it, type the name of the procedure followed by the name of the argument, in the exact order they are passed to the sub procedure, separated by a comma. Here is an example:
+
+Sub Result()
+    Dim dblHours, dblSalary
+    
+    CalcAndShowSalary dblHours, dblSalary
+End Sub
+Sub CalcAndShowSalary(Hours, Salary)
+    Dim dblResult
+    
+    dblResult = Hours * Salary
+    txtResult = dblResult
+End Sub
+
+Alternatively, you can use the keyword Call to call a sub procedure. In this case, when calling a procedure using Call, you must include the argument(s) between the parentheses. using Call, the above procedure could call the CalcAndShowSalary as follows:
+
+Sub Result()
+    Dim dblHours As Double
+    Dim dblSalary As Double
+    
+    dblHours = txtHours
+    dblSalary = txtSalary
+    
+    Call CalcAndShowSalary(dblHours, dblSalary)
+End Sub
+
+Functions
+ 
+
+Creating a Function
+
+A function is an assignment that a piece of code can take care for the functionality of a database. The main difference between a sub procedure and a function procedure is that a function can return a value.
+
+A function is created like a sub procedure with a few more rules. The creation of function starts with the Function keyword and closes with End Function. Here is an example:
+
+Function FindFullName()
+
+End Function
+
+The name of the function follows the same rules and suggestions we have reviewed for the sub procedures.
+
+To implement a function, remember that it is supposed to return a value. In the body of the function, describe what it is supposed to do. to return the right value, assign the desired value to the name of the function. Here is an example:
+
+Function CalculateArea(Radius)
+    CalculateArea = Radius * Radius * 3.14159
+End Function
+
+A function can also be as complex as performing many and various expressions in order to get a value that can be assigned to the name of the function.
+
+Calling a Function
+
+To call a function, you have two main alternatives. If you want to use the return value of a function in an event or another function, assign the name of the function to the appropriate local variable. Make sure you include the argument(s) of the function between parentheses.
+ 

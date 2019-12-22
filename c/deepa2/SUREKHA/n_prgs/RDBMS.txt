@@ -1,0 +1,14 @@
+Relational DataBase Management System:
+It represents the data and their relationship by a collection of tables. The tables are called Relations. The rows in the tables are called as tuples and columns are referred as attributes. A domain is set of values from which actual values appearing in a given column are drawn. 
+
+In relation database is that the relationships between tables are not hard-coded in the structure of data. There are no pointers in the data to relate one table to another. The relationships between two or more sets of data improves the flexibility of the database management system. It allows many to many relationships. Data redundancy is controlled to a greater extent in this mode.
+
+Normalization: The splitting or bifurcation of data according to the basis of repeatitive and non-repeatitive data.
+Disadvantage; The performance is decrease and time consumes more.
+
+De-Normalization: In this you can get the data retrival is very fast.
+
+Normal Form:
+1) All the tables should be depending upon repeatitive and non repeatitive data.
+2) All the columns should be independent.
+3)All the columns should be dependent on each other.

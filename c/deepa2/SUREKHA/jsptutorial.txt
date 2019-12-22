@@ -1,0 +1,295 @@
+1.<html>
+<body>
+<p>&nbsp;</p>
+<div align="center">
+<center>
+<table border="0" cellpadding="0" cellspacing
+="0" width="460" bgcolor="#EEFFCA">
+
+<tr>
+<td width="100%"><font size="6" color
+="#008000">&nbsp;Date Example</font></td>
+
+</tr>
+<tr>
+<td width="100%"><b>&nbsp;Current Date 
+and time is:&nbsp; <font color="#FF0000">
+
+
+<%= new java.util.Date() %>
+</font></b></td>
+</tr>
+</table>
+</center>
+</div>
+</body>
+</html>
+
+2.
+<html>
+
+<body>
+
+<p><font size="5" color="#800000">Request Information:</font></p>
+
+<div align="left">
+
+<table border="0" cellpadding="0" cellspacing="0" width="70%" bgcolor="#EEFFCA">
+
+<tr>
+
+<td width="33%"><b><font color="#800000">Request Method:</font></b></td>
+
+<td width="67%"><font color="#FF0000"><%=request.getMethod()%></font></td>
+
+</tr>
+
+<tr>
+
+<td width="33%"><b><font color="#800000">Request URI:</font></b></td>
+
+<td width="67%"><font color="#FF0000"><%=request.getRequestURI()%></font></td>
+
+</tr>
+
+<tr>
+
+<td width="33%"><b><font color="#800000">Request Protocol:</font></b></td>
+
+<td width="67%"><font color="#FF0000"><%=request.getProtocol()%></font></td>
+
+</tr>
+
+<tr>
+
+<td width="33%"><b><font color="#800000">Path Info:</font></b></td>
+
+<td width="67%"><font color="#FF0000"><%=request.getPathInfo()%></font></td>
+
+</tr>
+
+<tr>
+
+<td width="33%"><b><font color="#800000">Path translated:</font></b></td>
+
+<td width="67%"><font color="#FF0000"><%=request.getPathTranslated()%></font></td>
+
+</tr>
+
+<tr>
+
+<td width="33%"><b><font color="#800000">Query String:</font></b></td>
+
+<td width="67%"><font color="#FF0000"><%=request.getQueryString()%></font></td>
+
+</tr>
+
+<tr>
+
+<td width="33%"><b><font color="#800000">Content length:</font></b></td>
+
+<td width="67%"><font color="#FF0000"><%=request.getContentLength()%></font></td>
+
+</tr>
+
+<tr>
+
+<td width="33%"><b><font color="#800000">Content type:</font></b></td>
+
+<td width="67%"><font color="#FF0000"><%=request.getContentType()%></font></td>
+
+</tr>
+
+<tr>
+
+<td width="33%"><b><font color="#800000">Server name:</font></b></td>
+
+<td width="67%"><font color="#FF0000"><%=request.getServerName()%></font></td>
+
+</tr>
+
+<tr>
+
+<td width="33%"><b><font color="#800000">Server port:</font></b></td>
+
+<td width="67%"><font color="#FF0000"><%=request.getServerPort()%></font></td>
+
+</tr>
+
+<tr>
+
+<td width="33%"><b><font color="#800000">Remote user:</font></b></td>
+
+<td width="67%"><font color="#FF0000"><%=request.getRemoteUser()%></font></td>
+
+</tr>
+
+<tr>
+
+<td width="33%"><b><font color="#800000">Remote address:</font></b></td>
+
+<td width="67%"><font color="#FF0000"><%=request.getRemoteAddr()%></font></td>
+
+</tr>
+
+<tr>
+
+<td width="33%"><b><font color="#800000">Remote host:</font></b></td>
+
+<td width="67%"><font color="#FF0000"><%=request.getRemoteHost()%></font></td>
+
+</tr>
+
+<tr>
+
+<td width="33%"><b><font color="#800000">Authorization scheme:</font></b></td>
+
+<td width="67%"><font color="#FF0000"><%=request.getAuthType()%></font></td>
+
+</tr>
+
+</table>
+
+</div>
+
+</body>
+
+</html>
+
+3.
+<html>
+<head>
+<title>Enter your name</title>
+</head>
+<body>
+<p>&nbsp;</p>
+<form method="POST" action="showname.jsp">
+
+<p><font color="#800000" size="5">Enter your name:</font><input type
+="text" name="username" size="20"></p>
+
+<p><input type="submit" value="Submit" name="B1"></p>
+</form>
+</body>
+</html>
+
+##showname.jsp
+
+ <%@page contentType="text/html" %>
+
+<!--
+
+http://www.roseindia.net/jsp
+
+-->
+
+<html>
+
+<body>
+
+<p><font size="6">Welcome :&nbsp; <%=request.getParam
+eter("username")%></font></p>
+
+</body>
+
+</html>
+
+4.
+
+<%@ page language="java" %>
+<html>
+<head>
+<title>Name Input Form</title>
+</head>
+<body>
+<form method="post" action="savenametosession.jsp">
+<p><b>Enter Your Name: </b><input type="text" name="username"><br>
+<input type="submit" value="Submit">
+
+</form>
+
+</body>
+
+
+##savenametosession.jsp
+
+<%@ page language="java" %>
+<%
+String username=request.getParameter("username");
+if(username==null) username="";
+
+session.setAttribute("username",username);
+%>
+
+<html>
+<head>
+<title>Name Saved</title>
+</head>
+<body>
+<p><a href="showsessionvalue.jsp">Next Page to view the session value</a><p>
+
+</body>
+
+
+###showsessionvalue.jsp
+<%@ page language="java" %>
+<%
+String username=(String) session.getAttribute("username");
+if(username==null) username="";
+%>
+<html>
+<head>
+<title>Show Saved Name</title>
+</head>
+<body>
+<p>Welcome: <%=username%><p>
+
+</body>
+
+
+##
+
+Define a class that displays information about a file URL like its type, encoding, length, dates of creation, last modification and expiry. Additionally the class should display the request method, response message and the response code for a Web URL.
+
+import java.net.*;
+import java.util.*;
+class URLDemo 
+{	
+	long d;
+	public static void main(String args[])throws Exception
+	{
+		URL u=new URL("http://localhost:8080/Radha/ShowTime.jsp");
+		URLConnection uc=u.openConnection();
+		HttpURLConnection huc=(HttpURLConnection)uc;
+		Date d=new Date(uc.getDate());
+		System.out.println("File Name ="+u.getFile());
+		System.out.println("Host Name="+u.getHost());
+		System.out.println("Path Name="+u.getPath());
+		System.out.println("Port Name="+u.getPort());
+		System.out.println("Protocol Name="+u.getProtocol());
+		System.out.println("Reference Name="+u.getRef());
+		System.out.println("User Info="+u.getUserInfo());
+		System.out.println("Content Name="+u.getContent());
+		System.out.println("Authority Name="+u.getAuthority());
+		System.out.println("Content Type="+uc.getContentType());
+		System.out.println("Length="+uc.getContentLength());
+		System.out.println("Expiration Date= "+uc.getExpiration());
+		System.out.println("Encoding Type=  "+uc.getContentEncoding());
+		System.out.println("Last Modified Date=  "+uc.getLastModified());
+		System.out.println("Date="+d.toString());
+		System.out.println("Request Method=  "+huc.getRequestMethod());
+		System.out.println("Response Message=  "+huc.getResponseMessage());
+		System.out.println("Response Code=  "+huc.getResponseCode());
+	}
+}	
+
+
+
+
+
+
+
+
+
+
+

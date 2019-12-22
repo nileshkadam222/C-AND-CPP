@@ -1,0 +1,60 @@
+
+EJB:
+An enterprise Java bean is a server side software component that can be deployed in  a distributed multi-tier environment. It can comprise one or more java objects. In ejb the clients of the bean deal with a single exposed component interface. 
+
+Types of Beans:
+1) Session Beans 2) Entity beans
+1) Session Beans: A session bean represents work being performed for client code that is calling it. Session beans are business process objects. They implement business logic, its rules and workflow. For ex. a session bean would perform price quoting, order entry, video compression, banking transaction, stock trades, database operations and complex calculations.
+
+Types of session beans:
+1) Stateful session bean
+2) Stateless session bean
+
+1) Stateful session beans:
+It is a bean designed to service business processes that span multiple method requests or transactions. The stateful session beans retain state on behalf of an individual client. If a stateful session bean's state is changed during a method invocation, that same state will be available to same client.
+
+2)Stateless Session Beans:
+Stateless Session beans are components that can accommodate single request business processes. They  are anonymous method providers because they are not aware of any client history. A stateless session bean could be a high performance engine that solves complex mathematical operations on a given input such as compression of audio or video data. 
+
+Entity Beans:
+An entity bean is a component that represents persistent data. Entity beans model bank accounts, orders, orderline items, stock portfolios and so on. Entity beans represent real data objects such as customers products or employees. It does not contain business process logic.
+
+Types of Entit beans:
+1)Bean managed persistent entity beans
+2)Container managed persistent entity beans
+
+1)Bean Managed Persistent Entity Beans:
+Entity beans are persistent components because their state is saved in relational database. By using object relational mapping technology, you can take in memory object and map that object into a persistent series of relational database records. You can retrieve those records at a later time to re-construct the object in memory and use it again. A bean managed persistent entity bean is an entity bean that must be persisted.
+
+2)Container Managed Persistent Entity Beans:
+The container/sever peforms every function of your component's data access layer including saving loading and finding component data, donot hard code to a relational database API or an object database. API saving much coding time rather simply describe what you want persisted upfront to the container and it persist it for you, using whatever storage it happens to have.
+
+EJB object: The ejb container is a layer of indirection between the client code and the bean. This layer of indirection manifests itself as a single network object called Ejb object. This object knows about networking, transactions, security and more. It is an intelligent object that knows how to perform intermediate logic that the ejb container requires before a method call is serviced by bean class instance.
+
+Difference between stateless session bean and stateful session bean?
+The stateless session bean holds conversation that span a single method call. They are stateless because they donot hold multimethod conversations with their clients. Stateless session beans store no conversational state from method to method.
+The stateful session beans are the component that hold conversations with clients that can method calls. During conversation, the bean hold a conversational state for client and that client alone. Thus stateful session beans are more functional than stateless beans because they retain conversational state.
+
+Message Driven Bean:
+MDB exist for the purporse of receiving and processing asynchronous messages. These messages could be from external systems or from components of the same applications. They are called asynchronous because they can arrive at any tme.Similar to UI event handling works, MDB listen for a synchronous messages that have been sent to it.
+
+MDB are enabled not only by the EJB container, but also by Java Message Service(JMS).
+
+JMS API: It is located in javax.jms package, which provide an interface for application that require the services of a messaging system. This contains text, obj and other message types to be sent and received asynchronously. This is in constrast with RPC model  for EJB where interactions between components occur synchronously.
+In the above fig TimeIt session bean sends asynchronous messages to the MessageWriter MDB. These TimeIt and MessageWriter beans are known as JMS clients because they are clients of the underlying messaging system. Messaging systems enable asynchronous communication by providing a destination for messages to be hed until they can be delivered to the recepient. The LogWriterQueue holds messages from the TimeIt session bean, which are bound for MessageWriter message driven bean. They are of 2 types.
+1)Queue: It is used to hold messages that are sent from one JMS client to be delivered to another.It is known as point to point.
+2)Topic: Used to hold messages that are sent from potentially many JMS clients to be delivered to, potentially multiple, JMS clients. It is known as publish/subscribe. In the figure a JMS message producer and a JMS message consumer are a classes in a JMS provider that work on behalf of JMS clients to send and receive messages.
+
+What makes Message Driven Beans different from Session & Entity Beans?
+
+The most visible difference between message driven beans and session and entity beans is that client do not access message driven beans through interfaces. Unlike a session or entity bean, message driven bean has only a bean class.
+Like a stateless session bean, a message driven bean is never passivated and it has only 2 states.
+1)nonexistent and 
+2) ready to receive messages. 
+At the end of the life cycle container calls the ejbRemove() method. The bean's instance is then ready for garbage collection.
+
+When to use MDB:
+Session beans and entity beans allow you to send JMS message and to receive them synchronously, but not asynchronously. To avoid tying up server resources, you may prefer not to use blocking synchronous receives in a server side component. To reeive messages asynchronously, use MDB
+
+MDB Characteristics:
+They execute upon receipt of a single client message. They are relatively short lived.They donot represent directly shared data in a database but they can access and update this data.They can be transaction aware and stateless.

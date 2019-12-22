@@ -1,0 +1,62 @@
+A jagged array is uneven in shape. It is an array of arrays. For example, it one array element should be four elements long. Another should be 400 elements long. In this situation a jagged array is extremely efficient.
+Example
+Note
+
+First, this program uses the ()() syntax after the jagged array identifier to signify that the array contains other arrays. The New Integer syntax is used to create integer arrays.
+
+Also, temporary arrays are created in the standard way in VB.NET and then assigned to elements in the jagged array. Finally, two nested For loops are used to loop through the top-level array and all the subarrays.
+
+Program that uses jagged array [VB.NET]
+
+Module Module1
+    Sub Main()
+	' Create jagged array with maximum index of 2.
+	Dim jagged()() As Integer = New Integer(2)() {}
+
+	' Create temporary array and place in index 0.
+	Dim temp(2) As Integer
+	temp(0) = 1
+	temp(1) = 2
+	temp(2) = 3
+	jagged(0) = temp
+
+	' Create small temporary array and place in index 1.
+	Dim temp2(0) As Integer
+	jagged(1) = temp2
+
+	' Use array constructor and place result in index 2.
+	jagged(2) = New Integer() {3, 4, 5, 6}
+
+	' Loop through top-level arrays.
+	For i As Integer = 0 To jagged.Length - 1
+
+	    ' Loop through elements in subarrays.
+	    Dim inner As Integer() = jagged(i)
+	    For a As Integer = 0 To inner.Length - 1
+		Console.Write(inner(a))
+		Console.Write(" "c)
+	    Next
+	    Console.WriteLine()
+	Next
+    End Sub
+End Module
+
+Output
+
+1 2 3
+0
+3 4 5 6
+
+Array lengths. You can see that this example program has one jagged array of length 3. The first subarray also has length 3. The second subarray was declared with a maximum index of zero, which means it has length one and the element has the default value of 0. The third subarray has four elements.
+Syntax tricks
+Programming tip
+
+There are some important syntactic tricks here. In VB.NET, when you create an array declaration, you specify the maximum index of the array, not the number of elements it can store. The New Integer() syntax is an array initializer syntax and it can make your programs simpler to read and shorter, but not faster.
+
+Tip: It is important when declaring your jagged array that you use two empty parenthesis ()(). This indicates an array of arrays.
+Summary
+The VB.NET programming language
+
+Jagged arrays can use less memory and be faster than two-dimensional arrays in the VB.NET language. If the shape of your data is uneven, they can save a lot of memory because some arrays can be small and others big. But they can be slower to allocate and construct than 2D arrays.
+
+For performance: They can use some optimizations meant for single-dimensional arrays that 2D arrays don't use. This can optimize lookups of elements.

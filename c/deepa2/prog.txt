@@ -1,0 +1,512 @@
+
+/* inheritance:
+when one class acquires the properties of another class then it is called  inheritance.
+Types:
+1.singlelevel
+2.multilevel
+3.hiearchical
+
+
+//multilevel:
+class test
+{
+void show()
+{
+System.out.println("show called");
+}
+
+}
+class test1 extends test
+{
+void disp()
+{
+System.out.println("disp called");
+}
+}
+class test2 extends test1
+{
+public static void main(String args[])
+{
+ test2 t=new test2();
+t.show();
+t.disp();
+}
+}
+*/
+
+//hiearchical:
+
+class test
+{
+void show()
+{
+System.out.println("show called");
+}
+
+}
+class test1 extends test
+{
+void disp()
+{
+System.out.println("disp called");
+}
+}
+class test2 extends test
+{
+public static void main(String args[])
+{
+ test2 t=new test2();
+t.show();
+//t.disp();
+}
+}
+/* inheritance:
+when one class acquires the properties of another class then it is called  inheritance.
+Types:
+1.singlelevel
+2.multilevel
+3.hiearchical
+
+
+//multilevel:
+class test
+{
+void show()
+{
+System.out.println("show called");
+}
+
+}
+class test1 extends test
+{
+void disp()
+{
+System.out.println("disp called");
+}
+}
+class test2 extends test1
+{
+public static void main(String args[])
+{
+ test2 t=new test2();
+t.show();
+t.disp();
+}
+}
+*/
+
+//hiearchical:
+
+class test
+{
+void show()
+{
+System.out.println("show called");
+}
+
+}
+class test1 extends test
+{
+void disp()
+{
+System.out.println("disp called");
+}
+}
+class test2 extends test
+{
+public static void main(String args[])
+{
+ test2 t=new test2();
+t.show();
+//t.disp();
+}
+}
+/* inheritance:
+when one class acquires the properties of another class then it is called  inheritance.
+Types:
+1.singlelevel
+2.multilevel
+3.hiearchical
+
+
+//multilevel:
+class test
+{
+void show()
+{
+System.out.println("show called");
+}
+
+}
+class test1 extends test
+{
+void disp()
+{
+System.out.println("disp called");
+}
+}
+class test2 extends test1
+{
+public static void main(String args[])
+{
+ test2 t=new test2();
+t.show();
+t.disp();
+}
+}
+*/
+
+//hiearchical:
+
+class test
+{
+void show()
+{
+System.out.println("show called");
+}
+
+}
+class test1 extends test
+{
+void disp()
+{
+System.out.println("disp called");
+}
+}
+class test2 extends test
+{
+public static void main(String args[])
+{
+ test2 t=new test2();
+t.show();
+//t.disp();
+}
+}
+=========================================================
+/*
+
+import java.util.Scanner;
+class test
+{
+public static void main(String ar[])
+{
+int a,b;
+int c = 0;
+try
+{
+Scanner sc = new Scanner(System.in);
+System.out.println("Enter first number:");
+a = sc.nextInt();
+System.out.println("Enter second number:");
+b = sc.nextInt();
+c=a/b;
+}
+catch(Exception e)
+{
+System.out.println("cannot be divide.,plz check "+e);
+}
+System.out.println("c="+c);
+}
+}
+
+*/
+
+import java.util.*;
+class test
+{
+public static void main(String ar[])
+{
+int a,b;
+String str;
+Scanner sc = new Scanner(System.in);
+System.out.println("Enter a STRING:");
+str = sc.next();
+StringTokenizer st = new StringTokenizer(str);
+a = str.countTokens();
+System.out.println("no. of words ="+a);
+}
+}
+==========================================
+/*
+
+import java.util.Scanner;
+class test
+{
+public static void main(String ar[])
+{
+int a,b;
+int c = 0;
+try
+{
+Scanner sc = new Scanner(System.in);
+System.out.println("Enter first number:");
+a = sc.nextInt();
+System.out.println("Enter second number:");
+b = sc.nextInt();
+c=a/b;
+}
+catch(Exception e)
+{
+System.out.println("cannot be divide.,plz check "+e);
+}
+System.out.println("c="+c);
+}
+}
+
+*/
+
+import java.util.*;
+class test
+{
+public static void main(String ar[])
+{
+int a,b;
+String str;
+Scanner sc = new Scanner(System.in);
+System.out.println("Enter a STRING:");
+str = sc.next();
+StringTokenizer st = new StringTokenizer(str);
+a = str.countTokens();
+System.out.println("no. of words ="+a);
+}
+}
+=============================================
+/*
+//constructor:
+//method overloading:
+class cont
+{
+int a;
+cont()
+{
+a=90;
+}
+void show()
+{
+System.out.println("a="+a);
+}
+void show(int b)
+{
+System.out.println("add="+(a+b));
+}
+public static void main(String ar[])
+{
+cont t=new cont();
+t.show();
+t.show(50);
+
+
+}
+}
+
+
+
+
+class cont
+{
+int a;
+cont()
+{
+a=90;
+}
+cont(int r,int b)
+{
+System.out.println("para. addition="+(r+b));
+}
+void show()
+{
+System.out.println("a="+a);
+}
+void show(int b)
+{
+System.out.println("add="+(a+b));
+}
+public static void main(String ar[])
+{
+cont t=new cont();
+cont t1=new cont(5,6);
+t.show();
+t.show(50);
+
+
+}
+}
+
+
+
+//array:  Two dimensional
+import java.util.*;
+class cont
+{
+public static void main(String ar[])
+{
+int a[][]=new int[2][2];
+int i,j;
+Scanner sc=new Scanner(System.in);
+System.out.println("enter nos:");
+for(i=0;i<2;i++)
+{
+	for(j=0;j<2;j++)
+	{
+		a[i][j]=sc.nextInt();
+	}
+}
+System.out.println("matrix is given ---");
+for(i=0;i<2;i++)
+{
+		System.out.println();
+	for(j=0;j<2;j++)
+	{
+		System.out.print((a[i][j]*a[i][j])+"\t");
+	}
+}
+}
+}
+
+
+
+//armstrong no:
+import java.util.*;
+class cont
+{
+public static void main(String ar[])
+{
+int r,t,s=0,n;
+Scanner sc=new Scanner(System.in);
+n=sc.nextInt();
+t=n;
+while(n!=0)
+{
+r=n%10;
+s=s+r*r*r;
+n=n/10;
+}
+if(s==t)
+System.out.println("it is armstrong no");
+else
+System.out.println("not armstrong no");
+}
+}
+
+
+
+
+//palindrome no:
+import java.util.*;
+class cont
+{
+public static void main(String ar[])
+{
+int r,t,s=0,n;
+Scanner sc=new Scanner(System.in);
+n=sc.nextInt();
+t=n;
+while(n!=0)
+{
+r=n%10;
+s=s*10+r;
+n=n/10;
+}
+if(s==t)
+System.out.println("it is palindrome no");
+else
+System.out.println("not palindrome no");
+}
+}
+
+*/
+===========================================
+import java.util.*;
+class arrays
+{
+public static void main(String ar[])
+{
+int s=0;
+ArrayList t=new ArrayList();
+t.add(new Integer(1));
+t.add(new Integer(2));
+System.out.println(t);
+Object a[]=t.toArray();
+for(int i=0;i<a.length;i++)
+{
+s+=((Integer)a[i]).intValue();
+}
+System.out.println("total="+s);
+}
+}
+=============================================
+import java.util.*;
+class ak
+{
+public static void main(String ar[])
+{
+int n,t,r,s=0;
+Scanner sc=new Scanner(System.in);
+System.out.println("Enter Number:");
+n=sc.nextInt();
+t=n;
+while(n!=0)
+{
+r=n%10;
+s=s*10+r;
+n=n/10;
+}
+if(s==t)
+System.out.println("Its a palindrome no:");
+else
+System.out.println("Not a palindrome no:");
+}
+}
+==============================================
+mport java.awt.*;
+import java.applet.*;
+public class st extends Applet
+{
+public void init()
+{
+repaint();
+}
+public void paint(Graphics g)
+{
+
+g.setColor(Color.blue);
+g.drawString("vishal",50,70);
+g.setColor(Color.red);
+g.drawOval(120,120,200,200);
+}
+}
+================================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

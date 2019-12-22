@@ -1,0 +1,81 @@
+Inline Styles
+
+An inline style can be used if a unique style is to be applied to one single occurrence of an element.
+
+To use inline styles, use the style attribute in the relevant tag. The style attribute can contain any CSS property. The example below shows how to change the text color and the left margin of a paragraph:
+<p style="color:blue;margin-left:20px;">This is a paragraph.</p>
+
+To learn more about style sheets, visit our CSS tutorial.
+HTML Style Example - Background Color
+
+The background-color property defines the background color for an element:
+Example
+<!DOCTYPE html>
+<html>
+
+<body style="background-color:yellow;">
+<h2 style="background-color:red;">This is a heading</h2>
+<p style="background-color:green;">This is a paragraph.</p>
+</body>
+
+</html>
+
+Try it yourself »
+
+The background-color property makes the "old" bgcolor attribute obsolete.
+
+Try it yourself: Background color the old way
+HTML Style Example - Font, Color and Size
+
+The font-family, color, and font-size properties defines the font, color, and size of the text in an element:
+Example
+<!DOCTYPE html>
+<html>
+
+<body>
+<h1 style="font-family:verdana;">A heading</h1>
+<p style="font-family:arial;color:red;font-size:20px;">A paragraph.</p>
+</body>
+
+</html>
+
+Try it yourself »
+
+The font-family, color, and font-size properties make the old <font> tag obsolete.
+HTML Style Example - Text Alignment
+
+The text-align property specifies the horizontal alignment of text in an element:
+Example
+<!DOCTYPE html>
+<html>
+
+<body>
+<h1 style="text-align:center;">Center-aligned heading</h1>
+<p>This is a paragraph.</p>
+</body>
+
+</html>
+
+Try it yourself »
+
+The text-align property makes the old <center> tag obsolete.
+
+Try it yourself: Centered heading the old way
+-------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------
+Internal Style Sheet
+
+An internal style sheet can be used if one single document has a unique style. Internal styles are defined in the <head> section of an HTML page, by using the <style> tag, like this:
+<head>
+<style type="text/css">
+body {background-color:yellow;}
+p {color:blue;}
+</style>
+</head>
+
+External Style Sheet
+
+An external style sheet is ideal when the style is applied to many pages. With an external style sheet, you can change the look of an entire Web site by changing one file. Each page must link to the style sheet using the <link> tag. The <link> tag goes inside the <head> section:
+<head>
+<link rel="stylesheet" type="text/css" href="mystyle.css">
+</head>

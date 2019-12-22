@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+</head>
+
+<body bgcolor="#CCFFCC">
+<font size="2"	face="Lucida Sans Unicode, Lucida Grande, sans-serif" color="#006600">
+Click the Navigation icons to move backwards and forwards through your database.
+ 
+In the next part, you'll move away from the Wizards and learn how to add your own programming code to open up and manipulate databases.
+In this next section, we'll take a look at the objects that you can use to open and read data from a Database. We'll stick with our Access database, the AddressBook.mdb one, and recreate what the Wizard has done. That way, you'll see for yourself just what is going on behind the scenes.
+So close any open projects, and create a new one. Give it whatever name you like, and let's begin.
+If you haven't yet downloaded the Address Book database, you can get it here:
+Download the Address Book Database
+ 
+The Connection Object
+The Connection Object is what you need if you want to connect to a database. There are a number of different connection objects, and the one you use depends largely on the type of database you're connecting to. Because we're connecting to an Access database, we'll need something called the OLE DB connection object.
+OLE stands for Object Linking and Embedding, and its basically a lot of objects (COM objects) bundled together that allow you to connect to data sources in general, and not just databases. You can use it, for example, to connect to text files, SQL Server, email, and a whole lot more.
+There are a number of different OLE DB objects (called data providers), but the one we'll use is called "Jet". Others are SQL Server and Oracle.
+So place a button on your form. Change the Name property to btnLoad. Double click your button to open up the code window. Add the following line:
+Dim con As New OleDb.OleDbConnection
+The variable con will now hold the Connection Object. Notice that there is a full stop after the OleDB part. You'll then get a pop up box from where you can select OleDbConnection. We're also creating aNew object on this line.This is the object that you use to connect to an Access database.
+ 
+No more reading these lessons online - get the eBook here!
+ 
+Setting a Connection String
+There are Properties and Methods associated with the Connection Object, of course. We want to start with the ConnectionString property. This can take MANY parameters . Fortunately, we only need a few of these.
+ 
+
+</font>
+<br /><br /><br />
+<a href="home.html" target="_parent"> Home </a>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="about.html" target="_parent"> About </a>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="history.html" target="_parent"> History </a>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="setting.html" target="_parent"> Setting </a>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="contact.html" target="_parent"> Contact </a>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="MAIN.html" target="_parent"> Main </a>
+
+</body>
+</html>

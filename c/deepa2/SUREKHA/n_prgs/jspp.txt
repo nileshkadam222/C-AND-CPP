@@ -1,0 +1,61 @@
+Scriptlet tags in JSP:
+The scriptlet are nothing but a java source code fragments and embeded in HTML page.
+
+Types of scriptlet tags:
+1) Declaration
+2) Expression
+3) Scriptlets
+
+1) Declaration:
+You can declare variables and methods in scriptling language used in a jsp page. It is a declarative statement. JSP declarations are initialized when the page is initialized.
+
+<%! declaration %>
+<%! String name; %>
+
+<%! public void getData(); %>
+
+
+2) Expression:
+It is a element in a scripting language that are evaluated with the result being converted to a java.lang.String.
+It is denoted by <%= expression %>
+for ex: <%@ page language = "java" %>
+
+3) Scriptlets:
+Scriptlets and embeded in java expression. They are a regular java code between <% and  %>. It is a block of code known as scriptlets.
+scriptlet  contains java code that is executed everytime a jsp is invoked.
+
+Directives:
+They are mainly 3 types
+1) page directive
+2) include directive
+3) taglib directive
+
+1) Page directive:  It is denoted by
+<%@ page import = "java.io.*" %>
+
+2) include directive: It is denoted by 
+<%@ include file = "Hello.jsp" %>
+
+3) Taglig directive. It declares that the page uses the customs tags, uniquely names the tag library. It is denoted by
+<%@ taglib uri = "taglibraryURI" prefix="tagPrefix" %>
+
+Uri: It set the name of custom tags
+Prefix: This attribute defines the prefix string used for custom tag instances.
+
+Comments in JSP
+<%--comments  --%>
+
+
+Implicit Objects in JSP:
+
+There are 8 implicit objects in JSP.
+
+1) Request
+2)Response
+3)out
+4)Application
+5) page
+6) pageContext
+7)Session
+8)scope
+9)exception

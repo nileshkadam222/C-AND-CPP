@@ -1,0 +1,14 @@
+declare
+dn varchar(20);
+dc varchar(20);
+cursor e_r is select ename, eadd from emp;
+begin
+open e_r;
+loop
+fetch e_r into dn,dc;
+dbms_output.put_line(dn||' '||dc);
+exit when e_r % notfound;
+end loop;
+dbms_output.put_line('no. of records=$' || tochar(e_r % rowcount));
+close e_r;
+end;

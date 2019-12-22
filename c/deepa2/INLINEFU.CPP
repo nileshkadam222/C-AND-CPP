@@ -1,0 +1,71 @@
+/*
+#include <iostream.h>
+#include<conio.h>
+
+
+inline int Max(int x, int y)
+{
+   return (x > y)? x : y;
+}
+
+// Main function for the program
+int main( )
+{
+
+   cout << "Max (20,10): " << Max(20,10) << endl;
+   cout << "Max (0,200): " << Max(0,200) << endl;
+   cout << "Max (100,1010): " << Max(100,1010) << endl;
+   return 0;
+}
+*/
+
+#include <iostream.h>
+#include<conio.h>
+int exforsys(int x1);
+void main( )
+{
+		int x;
+		cout <<"Enter the Input Value: "<<endl;
+		cin>>x;
+		cout <<"The Output is: " << exforsys(x);
+}
+
+inline int exforsys(int x1)
+{
+		return (5*x)1;
+} /*
+===================================================
+
+#include <iostream>
+using namespace std;
+int exforsys(int);
+void main( )
+{
+		int x;
+		cout << "n Enter the Input Value: ";
+		cin>>x;
+		cout << "n The Output is: " << exforsys(x); //The exforsys(x) gets replaced with code return 5*x1;
+
+}
+
+inline int exforsys(int x1)
+{
+		return 5*x1;
+}   /*
+==================================================
+#include <iostream>
+using namespace std;
+int exforsys(int);
+void main( )
+{
+		int x;
+		cout << "n Enter the Input Value: ";
+		cin>>x;
+		cout << "n The Output is: " << exforsys(x); //Call is made to the function exforsys
+}
+
+inline int exforsys(int x1)
+{
+		return 5*x1;
+}
+*/

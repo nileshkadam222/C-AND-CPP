@@ -1,0 +1,5 @@
+Introduction of C Language:
+The C language is based on procedure level language. In this, you have to do some manipulation of regular progrms like addition, substraction, multiplication and sructured levels. The structure level supports to object programming. The object invoke the function.
+
+C Language provides functions and pointers. We are using pointers for memory  object reference. So, The structured level language is very much used in real world like, animation, defense, Ofiice equipments and science and technology.
+Each level is based on program and how to navigate the program by using the appropriate logic. So C language is very important for the usage of system programming. It is also called as a structural level based language.

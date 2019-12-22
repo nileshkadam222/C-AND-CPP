@@ -1,0 +1,175 @@
+Applet:
+
+It is defined in java.applet package. It is a simple java program which runs on client browser. Applet never stored in a hard disk and not implementing Native methods. It is a heavy weight component. It supports to graphical user interface(GUI).
+
+It has the following life cycle methods
+init()
+start()
+stop()
+destroy()
+
+Colors:
+The java.awt.Color class is used to work with color.
+The constructor is:
+Color(int red, int green, int blue)
+
+Methods:
+static int HSBtoRGB(float h, float s, float b)
+static float[ ] RGBtoHSB(int r, int g, int b, float hsb[ ])
+which returns an array of float elements with the hue, saturation and brightness values for the color whose red green and blue components are specified by r,g and b. hsb is the array which stores the values.
+ 
+Event Handling:
+Event Delegation model:
+It provides a standard mechanism for a source to generate an event and sent it to a set of listeners.. An event is an object that describes some state change in a source. It can be generated when a person interacts with an element in a graphical user interface.
+A source generates events. It has three main responsibilities. Firtst it must provide methods that allow listeners to register and unregister for notifications about a specific type of  event. Second, it must generate the event. Finally it must sent the event to all registered listeners.
+
+Adapter Classes:
+An adapter class provides empty implementations of all methods in a particular listener interface. It can be useful if you want to override only some of the method defined by that interface.
+
+Inner Classes:
+It is defined within the scope of an expression or another class. Therefore it has access to the variables and methods in that scope. 
+
+Anonymous Inner classes:
+An anonymous inner class is an inner class that does not have a name.It will make it easier to build adapter classes.
+
+Applet components:
+================ 
+
+Labels:
+It is a string that appears on a graphical user interface. It can be changed by the program and not by the user.
+Constructor:
+Label()
+Label(String str)
+Label(String str, int align)
+
+Button: It is a component that simulates the appearance of a push button on an electronic instrument.
+Constructor:
+Button()
+Button(String str)
+where str is the text for the button
+An action event is generated each time a button is pressed.
+void addActionListener(ActionListener al)
+void removeActionListener(ActionListener al)
+
+Canvas:
+It provides a rectangular area on which you can draw. This is a valuable because you can create graphs and other diagrams on the canvas by using methods of the Graphics class.
+The Canvas class extends Component and provides the constructor
+Canvas()
+
+CheckBoxes:
+A check box is a component that combines a label and small box.
+constructor:
+Checkbox()
+Checkbox(String str)
+Checkbox(String str, boolean state)
+Checkbox(String str, CheckboxGroup grp, boolean state)
+
+In this an item event is generated when the state of a check box changes.
+void addItemListener(ItemListener il)
+void removeItemListener(ItemListener il)
+
+Check box groups
+A check box group is a set of check boxes. Only one of these may be set at any time. If user clicks on one element in a check box group, that check box is set. Other members of the same group are automatically cleared.
+Constructor
+CheckboxGroup()
+
+Choices:
+A choice is a component that provides a type of menu. When a user clicks on a choice, it displays all of the allowed selections. When the  user selects one of those items, the choice returns to its normal state in which it displays only the current selection.
+constructor:
+Choice()
+
+Text Fields and Text Areas:
+A text field allows a user to enter one line of text. A text area allows a user to enter multiple lines of text. 
+They generate the text events when a character is entered by a user. A text field generates an action event when a user presses the ENTER key
+Constructor:
+TextField()
+TextField(String str)
+TextField(int cols)
+TextField(String str, int cols)
+
+Lists:
+A list is a component that allows a user to select one or more items. If the list is not large enough to display all of the allowed selections, scroll bars are automatically provided so a user may scan through the entire list. An action event is generated when a user selects or deselects one of the entries.
+Constructor:
+List()
+List(int rows)
+List(int rows, boolean multiple)
+
+Scrollbars:
+A scrollbar is a component that allows a user to select any int value within a range defined by a minimum and maximum. A scroll bar contains a slider that may be dragged to continuously vary its value. When the user click on one of the buttons at either end of the scroll bar or in the area between the slider and the buttons.
+Constructor:
+Scrollbar()
+Scrollbar(int orientation)
+Scrollbar(int orientation, int value, int width, int min, int max)
+
+
+Layout Manager:
+In applet the default layout manager is flow layout. The layout managers provide significant benefits because you need not have to calculate the co-ordinates at which an element should be placed. The layoutmanager dynamically adjusts the placement of the elements. It is associated with each Container object. The method is
+LayoutManager getLayout();
+void setLayout(LayoutManager lm)
+where lm is a reference to an object that implements the LayoutManager interface.
+The FlowLayout class has the constructors
+FlowLayout()
+FlowLayout(int align)
+FlowLayout(int align, int hgap, int vgap)
+where align indicates how the components are alignd in a row. The horizontal and vertical gap in pixels between components may be set to hgap and vgap. It defines 3 constants. LEFT,CENTER & RIGHT
+
+Border Layout:
+The BorderLayout class allows  to specify the placement of a component. By using geographic term it set the component like North, South, East, West and center.  It has the constructor
+BorderLayout()
+BorderLayout(int hgap, int vgap)
+
+Grid Layout and Insets:
+The GridLayout class automatically arranges components in a grid. The constructors are:
+GridLayout()
+GridLayout(int rows, int cols)
+GridLayout(int rows, int cols, int hgap, int vgap)
+Here rows  and cols determine the number of rows and columns in the grid. The horizontal and vertical gap in pixels between components may be set by hgap and vgap.
+
+The Insets class encapsulates information about the top, left, bottom and right margins around the boundary of a container. It provides the constructor:
+Insets(int top, int left, int bottom, int right)
+
+Panels:
+This class extends Container. It appears as a rectangular area in which other components are aranged. A layout manager is associated with a panel and determines the placement of those components. It is possible to nest panels within other panels.
+
+Windows and Frames:
+The Window class extends Container and provides a separate window without a title or menu bar. We cannot instantiate this class. It has two subclasses: Frame and Dialog. The constructor is
+Window(Frame parent) where parent is the owner of the window.
+Objects may register and unregister to receive window events via these methods:
+void addWindowListener(WindowListener wl)
+void removeWindowListener(Windowlistener wl) where wl is the window listener. The pack() method is called to layout the components in a window and set its initial size by void pack()  For visibility appearance we invoke show() method.
+
+The WindowListener inteface is implemented by object that receive window events. It has a 7 methods.
+void windowActivated(WindowEvent ae)
+void windowClosed(WindowEvent ae)
+void windowClosing(WindowEvent ae)
+void windowDeactivated(WindowEvent ae)
+void windowDeiconified(WindowEvent ae)
+void windowIconified(WindowEvent ae)
+void windowOpened(WindowEvent ae)
+
+Menus and Menu Bars:
+A frame may contain a menu bar. This presents a set of options for the user. When a mouse is clicked on an option, a drop down list of suboptions appears. Each of these suboptions may also have suboptions associated with it.
+The MenuComponent class is the superclass of all other clases.
+The font used for a menu related string may be set via setFont() method.
+
+The MenuBar class encapsulates the functionality of a menu bar. It has the constructor
+MenuBar()
+The Menu class encapsulates the functionality of a drop down set of menu items. The constructor is
+Menu(String str)
+
+The hierarchy of MenuComponent class:
+
+Object-->MenuComponent--|
+		----------------------
+                                        |                          |
+                                  MenuBar             MenuItem
+                                                                      |
+                                                           -------------------
+                                                        |                          |
+                                                 Menu                 CheckboxMenuItem
+
+
+Java Swing:
+----------------
+
+java swing is defined in javax.swing package. It is a lightweight component. The main difference of applet and swing is that the applets are heavy weight components and they can run only on client browser. Swing can use in a stand alone application program which supports to Graphical User Interface too. Secondly, java swing is user friendly and you can observe look and feel and it gives the location transparency. But it does not supports to Native methods.

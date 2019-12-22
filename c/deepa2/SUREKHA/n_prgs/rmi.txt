@@ -1,0 +1,72 @@
+Remote Method Invocation:
+=======================  
+It is distributed object oriented system. It allows object to object communication between different Java Virtual Machine. This enables the application to call object method located remotely, sharing resources and processing load across the system.
+
+The Architecture of RMI
+
+The rmi architecture is based on 7 layers.
+1) Application layer
+2)Presentation layer
+3) physical layer
+4)Data link layer
+5)Network layer
+6)Session layer
+7)Transport layer
+
+Stub and skeleton: This layer intercepts method calls by client to the interface reference and redirects these calls to a remote object. The stub is a proxy client side object while skeleton is from server side. The task performed by the stubs are-
+
+1)initiate a connection with  the remote virtual machine.
+2)Marshals the request.
+3)Return the value to caller.
+
+Skeleton: The task performed by skeleton(server) :
+1)Unmarshals(reads the data in char format) the parameter for r. mehod.
+2)Invoke the method on the actual remote object implementation.
+3)Marshals the result to the caller.
+
+The Remote Reference Layer:
+This layer provides a JRMP(java remote method protocol) specific object that represents a handle to the remote object. A RemoteStub uses a remote reference to carry out a remote method invocation to a remote object.
+
+Transport Layer: This layer makes a stream based network connection over TCP/IP between the JVM and is responsible for setting and managing those connection.
+
+How to locate the remote object:
+
+In this a remote object is associated with a name in this registry. When the client wants to invoke method on remote object, it obtains a reference to it by looking the name. The lookup returns a remote reference , a stub to the object.
+
+When a client invokes a lookup for a particular URL-
+1) A socket connection  is opened. 2)The registry implementation on the host is a remote object, a stub to that remote registry is return from the host.
+3)Registry.lookup() method is performed on stub and returns another stub for the remote object that was registered with the server.
+4) Once the client has the stub to the requested object, it interacts directly with the object on the port to which it was exported.
+
+RMI Exceptions:
+AlreadyBoundExcepiton: If a object is bind in the registry to a name that already associated with binding.
+NotBoundException: No associated with binding
+RemoteException: It occurs during execution of a remote method call.
+ServerException: If the execution of a remote method on the server machine throws a RemoteException
+UnknownHostException: Thrown if a java.net.UnknownHostException occurs while creating a connection to the remote host for a remote method call.
+
+Developing Applications in RMI:
+1)Define a remote interface
+2) Implement the remote interface
+3)Write the client uses the remote objects
+4)Generate stubs and skeletons
+5)start the rmi registry
+6)Run server 
+7)Run client.
+======================
+
+Remote call back
+A client can be a remote object. In many situations, a server may need to make a remore call to  a client. A good ex is a chat application where all clients are remote objects. There is no special about callbacks between remore objects. All that happens is a remote reference is passed around and methods are invoked on that referenc.
+
+======================
+RMI Firewalls and HTTP:
+
+The RMI transport layer opens dynamic socket connections between the client and the sever, the JRMP traffic is typically blocked by most firewall implementations. The firewalls block all network traffic with the exception of those intended for a certain ports.
+
+The RMI transport layer opens dynamic socket connections between the client and the server to facilitate communication, the JRMP traffic is typically blocked by most firewall implementations. To get across firewalls, RMI makes use of HTTP tunneling by encapsulating the RMI calls with an HTTP post request. In the figure RMI client is located behind the firewall and communicates with an external server. When the tranasport layer tries to establish a connection with the server, it is blocked by the firewall. RMI transport layer automatically retries by encapsulating the JRMP call data within an Http request.The http post header for the call is http://hostname:port
+==================================================
+RMI suffers a significant performance degradation imposed by Http tunneling. The other disadvantages to using http tunneling for your rmi application will no longer be able to multiplex JRMP calls on a single connection, since it would follow a discrete request/response protocol. Consequently a client detect a firewall, it can always disable the default http tunneling feature by setting the property:
+java.rmi.server.disableHttp = true
+
+
+

@@ -1,0 +1,197 @@
+/*
+#include<iostream.h>
+#include<conio.h>
+class crect
+{
+int w,h;
+public:
+void set_values(int,int);
+int area(void)
+{
+return(w*h);
+}
+};
+void crect::set_values(int a,int b)
+{
+w=a;
+h=b;
+}
+int main()
+{
+crect a,*b,*c;
+crect*d=new crect[2];
+b=new crect;
+c=&a;
+a.set_values(1,2);
+b->set_values(3,4);
+d->set_values(5,6);
+d[1].set_values(7,8);
+cout<<"a area"<<a.area()<<endl;
+cout<<"*b area"<<b->area()<<endl;
+cout<<"*c area"<<c->area()<<endl;
+cout<<"d[0] area "<<d[0].area()<<endl;
+cout<<"d[1] area"<<d[1].area()<<endl;
+getch();
+return 0;
+}
+
+
+#include<iostream.h>
+#include<conio.h>
+class base
+{
+int w,h;
+public:
+void set_values(int,int);
+
+int area()
+{
+return(w+h);
+}
+};
+void base::set_values(int a,int b)
+{
+w=a;
+h=b;
+}
+
+void main()
+{
+	base a,*b;
+	base *d=new base[2];
+	b=new base();
+  //	c=&a;
+	a.set_values(5,6);
+	b->set_values(7,8);
+	d[0].set_values(9,10);
+	d[1].set_values(11,12);
+	clrscr();
+cout<<"area1"<<a.area()<<endl;
+cout<<"area2"<<b->area()<<endl;
+//cout<<"area3"<<c->area()<<endl;
+cout<<"d[0] area "<<d[0].area()<<endl;
+cout<<"d[1] area"<<d[1].area()<<endl;
+	 getch();
+}
+
+
+#include<iostream.h>
+#include<conio.h>
+class base
+{
+   public:
+   int l1,b1;
+   void assign(int l,int b)
+   {
+	  l1=l;
+	  b1=b;
+   }
+   int calc()
+   {
+	  return(l1*b1);
+   }
+};
+
+void main()
+{
+  base *d=new base[4];
+  clrscr();
+  d[0].assign(5,5);
+  d[1].assign(6,6);
+  d[2].assign(7,7);
+  d[3].assign(8,8);
+  cout<<"Array Pointer1 :"<<d[0].calc()<<endl;
+  cout<<"Array Pointer2 :"<<d[1].calc()<<endl;
+  cout<<"Array Pointer3 :"<<d[2].calc()<<endl;
+  cout<<"Array Pointer4 :"<<d[3].calc()<<endl;
+  getch();
+}*/
+
+
+#include<iostream.h>
+#include<conio.h>
+void f1();
+
+void f1()
+{
+   int a[5],i,*j,n;
+   clrscr();
+   cout<<"Enter the array elements"<<endl;
+   for(i=0;i<=4;i++)
+   {
+	  cin>>a[i];
+   }
+   cout<<"Enter number you want to check"<<endl;
+   cin>>n;
+   for(i=0;i<=4;i++)
+   {
+	  j=&a[i];
+	  if(*j==n)
+	  {
+		 cout<<"Present"<<endl;
+		 break;
+	  }
+	 else
+	  {
+		cout<<"---:  NOT PRESENT  :---"<<endl;
+		break;
+	  }
+  }
+  getch();
+}/*
+void main()
+{
+  int n;
+  clrscr();
+  f1();
+  cout<<"u want to choose again (0-yes/1-no)  ";
+  cin>>n;
+  if(n==0)
+  {
+   f1();
+  }
+  else
+  {
+   cout<<"Enter";
+  }
+
+  getch();
+}
+
+
+#include<iostream.h>
+#include<conio.h>
+void main()
+{
+int a[5],i,*j,n,f=0;
+   clrscr();
+   cout<<"Enter the array elements"<<endl;
+   for(i=0;i<=4;i++)
+   {
+	  cin>>a[i];
+   }
+   cout<<"Enter number you want to check"<<endl;
+   cin>>n;
+   for(i=0;i<=4;i++)
+   {
+	  j=&a[i];
+	  if(*j==n)
+	  {
+		 f=1;
+
+		 break;
+	  }
+ }
+
+ if(f==1)
+ {
+   cout<<"Present"<<endl;
+ }
+ else
+ {
+   cout<<"Not Present"<<endl;
+ }
+  getch();
+}  */
+
+

@@ -1,0 +1,453 @@
+SQL Joins
+
+SQL joins are used to query data from two or more tables, based on a relationship between certain columns in these tables.
+
+SQL JOIN
+
+The JOIN keyword is used in an SQL statement to query data from two or more tables, based on a relationship between certain columns in these tables.
+
+Tables in a database are often related to each other with keys.
+
+A primary key is a column (or a combination of columns) with a unique value for each row. Each primary key value must be unique within the table. The purpose is to bind data together, across tables, without repeating all of the data in every table.
+
+Look at the "Persons" table:
+
+P_Id	LastName	FirstName	Address	City
+1	Hansen	Ola	Timoteivn 10	Sandnes
+2	Svendson	Tove	Borgvn 23	Sandnes
+3	Pettersen	Kari	Storgt 20	Stavanger
+Note that the "P_Id" column is the primary key in the "Persons" table. This means that no two rows can have the same P_Id. The P_Id distinguishes two persons even if they have the same name.
+
+Next, we have the "Orders" table:
+
+O_Id	OrderNo	P_Id
+1	77895	3
+2	44678	3
+3	22456	1
+4	24562	1
+5	34764	15
+Note that the "O_Id" column is the primary key in the "Orders" table and that the "P_Id" column refers to the persons in the "Persons" table without using their names.
+
+Notice that the relationship between the two tables above is the "P_Id" column.
+
+Different SQL JOINs
+
+Before we continue with examples, we will list the types of JOIN you can use, and the differences between them.
+
+JOIN: Return rows when there is at least one match in both tables
+LEFT JOIN: Return all rows from the left table, even if there are no matches in the right table
+RIGHT JOIN: Return all rows from the right table, even if there are no matches in the left table
+FULL JOIN: Return rows when there is a match in one of the tables
+
+
+SQL INNER JOIN Keyword
+
+The INNER JOIN keyword returns rows when there is at least one match in both tables.
+
+SQL INNER JOIN Syntax
+
+SELECT column_name(s)
+FROM table_name1
+INNER JOIN table_name2
+ON table_name1.column_name=table_name2.column_name
+PS: INNER JOIN is the same as JOIN.
+
+SQL INNER JOIN Example
+
+The "Persons" table:
+
+P_Id	LastName	FirstName	Address	City
+1	Hansen	Ola	Timoteivn 10	Sandnes
+2	Svendson	Tove	Borgvn 23	Sandnes
+3	Pettersen	Kari	Storgt 20	Stavanger
+The "Orders" table:
+
+O_Id	OrderNo	P_Id
+1	77895	3
+2	44678	3
+3	22456	1
+4	24562	1
+5	34764	15
+Now we want to list all the persons with any orders.
+
+We use the following SELECT statement:
+
+SELECT Persons.LastName, Persons.FirstName, Orders.OrderNo
+FROM Persons
+INNER JOIN Orders
+ON Persons.P_Id=Orders.P_Id
+ORDER BY Persons.LastName
+The result-set will look like this:
+
+LastName	FirstName	OrderNo
+Hansen	Ola	22456
+Hansen	Ola	24562
+Pettersen	Kari	77895
+Pettersen	Kari	44678
+The INNER JOIN keyword returns rows when there is at least one match in both tables. If there are rows in "Persons" that do not have matches in "Orders", those rows will NOT be listed.
+
+SQL LEFT JOIN Keyword
+
+« PreviousNext Chapter »
+SQL LEFT JOIN Keyword
+
+The LEFT JOIN keyword returns all rows from the left table (table_name1), even if there are no matches in the right table (table_name2).
+
+SQL LEFT JOIN Syntax
+
+SELECT column_name(s)
+FROM table_name1
+LEFT JOIN table_name2
+ON table_name1.column_name=table_name2.column_name
+PS: In some databases LEFT JOIN is called LEFT OUTER JOIN.
+
+SQL LEFT JOIN Example
+
+The "Persons" table:
+
+P_Id	LastName	FirstName	Address	City
+1	Hansen	Ola	Timoteivn 10	Sandnes
+2	Svendson	Tove	Borgvn 23	Sandnes
+3	Pettersen	Kari	Storgt 20	Stavanger
+The "Orders" table:
+
+O_Id	OrderNo	P_Id
+1	77895	3
+2	44678	3
+3	22456	1
+4	24562	1
+5	34764	15
+Now we want to list all the persons and their orders - if any, from the tables above.
+
+We use the following SELECT statement:
+
+SELECT Persons.LastName, Persons.FirstName, Orders.OrderNo
+FROM Persons
+LEFT JOIN Orders
+ON Persons.P_Id=Orders.P_Id
+ORDER BY Persons.LastName
+The result-set will look like this:
+
+LastName	FirstName	OrderNo
+Hansen	Ola	22456
+Hansen	Ola	24562
+Pettersen	Kari	77895
+Pettersen	Kari	44678
+Svendson	Tove	 
+The LEFT JOIN keyword returns all the rows from the left table (Persons), even if there are no matches in the right table (Orders).
+
+SQL RIGHT JOIN Keyword
+
+The RIGHT JOIN keyword returns all the rows from the right table (table_name2), even if there are no matches in the left table (table_name1).
+
+SQL RIGHT JOIN Syntax
+
+SELECT column_name(s)
+FROM table_name1
+RIGHT JOIN table_name2
+ON table_name1.column_name=table_name2.column_name
+PS: In some databases RIGHT JOIN is called RIGHT OUTER JOIN.
+
+SQL RIGHT JOIN Example
+
+The "Persons" table:
+
+P_Id	LastName	FirstName	Address	City
+1	Hansen	Ola	Timoteivn 10	Sandnes
+2	Svendson	Tove	Borgvn 23	Sandnes
+3	Pettersen	Kari	Storgt 20	Stavanger
+The "Orders" table:
+
+O_Id	OrderNo	P_Id
+1	77895	3
+2	44678	3
+3	22456	1
+4	24562	1
+5	34764	15
+Now we want to list all the orders with containing persons - if any, from the tables above.
+
+We use the following SELECT statement:
+
+SELECT Persons.LastName, Persons.FirstName, Orders.OrderNo
+FROM Persons
+RIGHT JOIN Orders
+ON Persons.P_Id=Orders.P_Id
+ORDER BY Persons.LastName
+The result-set will look like this:
+
+LastName	FirstName	OrderNo
+Hansen	Ola	22456
+Hansen	Ola	24562
+Pettersen	Kari	77895
+Pettersen	Kari	44678
+ 	 	34764
+The RIGHT JOIN keyword returns all the rows from the right table (Orders), even if there are no matches in the left table (Persons).
+
+SQL FULL JOIN Keyword
+
+SQL FULL JOIN Keyword
+
+The FULL JOIN keyword return rows when there is a match in one of the tables.
+
+SQL FULL JOIN Syntax
+
+SELECT column_name(s)
+FROM table_name1
+FULL JOIN table_name2
+ON table_name1.column_name=table_name2.column_name
+
+SQL FULL JOIN Example
+
+The "Persons" table:
+
+P_Id	LastName	FirstName	Address	City
+1	Hansen	Ola	Timoteivn 10	Sandnes
+2	Svendson	Tove	Borgvn 23	Sandnes
+3	Pettersen	Kari	Storgt 20	Stavanger
+The "Orders" table:
+
+O_Id	OrderNo	P_Id
+1	77895	3
+2	44678	3
+3	22456	1
+4	24562	1
+5	34764	15
+Now we want to list all the persons and their orders, and all the orders with their persons.
+
+We use the following SELECT statement:
+
+SELECT Persons.LastName, Persons.FirstName, Orders.OrderNo
+FROM Persons
+FULL JOIN Orders
+ON Persons.P_Id=Orders.P_Id
+ORDER BY Persons.LastName
+The result-set will look like this:
+
+LastName	FirstName	OrderNo
+Hansen	Ola	22456
+Hansen	Ola	24562
+Pettersen	Kari	77895
+Pettersen	Kari	44678
+Svendson	Tove	 
+ 	 	34764
+The FULL JOIN keyword returns all the rows from the left table (Persons), and all the rows from the right table (Orders). If there are rows in "Persons" that do not have matches in "Orders", or if there are rows in "Orders" that do not have matches in "Persons", those rows will be listed as well
+
+The SQL UNION operator combines two or more SELECT statements.
+
+The SQL UNION Operator
+
+The UNION operator is used to combine the result-set of two or more SELECT statements.
+
+Notice that each SELECT statement within the UNION must have the same number of columns. The columns must also have similar data types. Also, the columns in each SELECT statement must be in the same order.
+
+SQL UNION Syntax
+
+SELECT column_name(s) FROM table_name1
+UNION
+SELECT column_name(s) FROM table_name2
+Note: The UNION operator selects only distinct values by default. To allow duplicate values, use UNION ALL.
+
+SQL UNION ALL Syntax
+
+SELECT column_name(s) FROM table_name1
+UNION ALL
+SELECT column_name(s) FROM table_name2
+PS: The column names in the result-set of a UNION are always equal to the column names in the first SELECT statement in the UNION.
+
+SQL UNION Example
+
+Look at the following tables:
+
+"Employees_Norway":
+
+E_ID	E_Name
+01	Hansen, Ola
+02	Svendson, Tove
+03	Svendson, Stephen
+04	Pettersen, Kari
+"Employees_USA":
+
+E_ID	E_Name
+01	Turner, Sally
+02	Kent, Clark
+03	Svendson, Stephen
+04	Scott, Stephen
+Now we want to list all the different employees in Norway and USA.
+
+We use the following SELECT statement:
+
+SELECT E_Name FROM Employees_Norway
+UNION
+SELECT E_Name FROM Employees_USA
+The result-set will look like this:
+
+E_Name
+Hansen, Ola
+Svendson, Tove
+Svendson, Stephen
+Pettersen, Kari
+Turner, Sally
+Kent, Clark
+Scott, Stephen
+
+
+SQL UNION ALL Example
+
+Now we want to list all employees in Norway and USA:
+
+SELECT E_Name FROM Employees_Norway
+UNION ALL
+SELECT E_Name FROM Employees_USA
+Result
+
+E_Name
+Hansen, Ola
+Svendson, Tove
+Svendson, Stephen
+Pettersen, Kari
+Turner, Sally
+Kent, Clark
+Svendson, Stephen
+Scott, Stephen
+
+The SQL SELECT INTO statement can be used to create backup copies of tables.
+
+The SQL SELECT INTO Statement
+
+The SELECT INTO statement selects data from one table and inserts it into a different table.
+
+The SELECT INTO statement is most often used to create backup copies of tables.
+
+SQL SELECT INTO Syntax
+
+We can select all columns into the new table:
+
+SELECT *
+INTO new_table_name [IN externaldatabase]
+FROM old_tablename
+Or we can select only the columns we want into the new table:
+
+SELECT column_name(s)
+INTO new_table_name [IN externaldatabase]
+FROM old_tablename
+
+SQL SELECT INTO Example
+
+Make a Backup Copy - Now we want to make an exact copy of the data in our "Persons" table.
+
+We use the following SQL statement:
+
+SELECT *
+INTO Persons_Backup
+FROM Persons
+We can also use the IN clause to copy the table into another database:
+
+SELECT *
+INTO Persons_Backup IN 'Backup.mdb'
+FROM Persons
+We can also copy only a few fields into the new table:
+
+SELECT LastName,FirstName
+INTO Persons_Backup
+FROM Persons
+
+SQL SELECT INTO - With a WHERE Clause
+
+We can also add a WHERE clause.
+
+The following SQL statement creates a "Persons_Backup" table with only the persons who lives in the city "Sandnes":
+
+SELECT LastName,Firstname
+INTO Persons_Backup
+FROM Persons
+WHERE City='Sandnes'
+
+SQL SELECT INTO - Joined Tables
+
+Selecting data from more than one table is also possible.
+
+The following example creates a "Persons_Order_Backup" table contains data from the two tables "Persons" and "Orders":
+
+SELECT Persons.LastName,Orders.OrderNo
+INTO Persons_Order_BacThe ALTER TABLE Statement
+
+The ALTER TABLE statement is used to add, delete, or modify columns in an existing table.
+
+SQL ALTER TABLE Syntax
+
+To add a column in a table, use the following syntax:
+
+ALTER TABLE table_name
+ADD column_name datatype
+To delete a column in a table, use the following syntax (notice that some database systems don't allow deleting a column):
+
+ALTER TABLE table_name
+DROP COLUMN column_name
+To change the data type of a column in a table, use the following syntax:
+
+SQL Server / MS Access:
+
+ALTER TABLE table_name
+ALTER COLUMN column_name datatype
+My SQL / Oracle:
+
+ALTER TABLE table_name
+MODIFY column_name datatype
+
+SQL ALTER TABLE Example
+
+Look at the "Persons" table:
+
+P_Id	LastName	FirstName	Address	City
+1	Hansen	Ola	Timoteivn 10	Sandnes
+2	Svendson	Tove	Borgvn 23	Sandnes
+3	Pettersen	Kari	Storgt 20	Stavanger
+Now we want to add a column named "DateOfBirth" in the "Persons" table.
+
+We use the following SQL statement:
+
+ALTER TABLE Persons
+ADD DateOfBirth date
+Notice that the new column, "DateOfBirth", is of type date and is going to hold a date. The data type specifies what type of data the column can hold. For a complete reference of all the data types available in MS Access, MySQL, and SQL Server, go to our complete Data Types reference.
+
+The "Persons" table will now like this:
+
+P_Id	LastName	FirstName	Address	City	DateOfBirth
+1	Hansen	Ola	Timoteivn 10	Sandnes	 
+2	Svendson	Tove	Borgvn 23	Sandnes	 
+3	Pettersen	Kari	Storgt 20	Stavanger	 
+
+Change Data Type Example
+
+Now we want to change the data type of the column named "DateOfBirth" in the "Persons" table.
+
+We use the following SQL statement:
+
+ALTER TABLE Persons
+ALTER COLUMN DateOfBirth year
+Notice that the "DateOfBirth" column is now of type year and is going to hold a year in a two-digit or four-digit format.
+
+DROP COLUMN Example
+
+Next, we want to delete the column named "DateOfBirth" in the "Persons" table.
+
+We use the following SQL statement:
+
+ALTER TABLE Persons
+DROP COLUMN DateOfBirth
+The "Persons" table will now like this:
+
+P_Id	LastName	FirstName	Address	City
+1	Hansen	Ola	Timoteivn 10	Sandnes
+2	Svendson	Tove	Borgvn 23	Sandnes
+3	Pettersen	Kari	Storgt 20	Stavanger
+
+FROM Persons
+INNER JOIN Orders
+ON Persons.P_Id=Orders.P_Id
+
+
+
+
+
+

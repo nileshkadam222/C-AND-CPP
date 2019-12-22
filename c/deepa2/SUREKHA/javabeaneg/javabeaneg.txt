@@ -1,0 +1,274 @@
+1.datejsp1.jsp
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>JSP Page</title>
+    </head>
+    <body>
+<jsp:useBean class="mydate.Celender" id="clock" />
+<pre>
+Time:<jsp:getProperty name="clock" property="time" /><br>
+Hour:<jsp:getProperty name="clock" property="hour" /><br>
+Minute:<jsp:getProperty name="clock" property="minute" /><br>
+Second:<jsp:getProperty name="clock" property="second" /><br>
+</pre>
+    </body>
+</html>
+
+###create a package namely mydate and store this Celender.java in it..
+
+package mydate;
+import java.util.Calendar;
+import java.util.Date;
+public class Celender
+{
+	private Calendar calendar;
+
+
+	public Celender()
+	{
+		calendar=Calendar.getInstance();
+		calendar.setTime(new Date());
+
+	}
+        public Date getTime()
+	{
+		return calendar.getTime();
+	}
+	public int getHour()
+	{
+		return calendar.get(Calendar.HOUR);
+	}
+	public int getMinute()
+	{
+		return calendar.get(Calendar.MINUTE);
+	}
+	public int getSecond()
+	{
+		return calendar.get(Calendar.SECOND);
+	}
+}
+
+**for execution in web(mozilla or IE) the path will be
+http://localhost:8080/WebApplication18/datejsp1.jsp
+
+2.UseBean.jsp
+
+<html>
+<title>Java bean example in jsp</title>
+<head>
+
+<hr></hr>
+</head>
+<body>
+<jsp:useBean id="mybean" class="my.MyBean" scope="session" >
+<jsp:setProperty name="mybean" property="name" value=" Hello world" />
+</jsp:useBean>
+
+<h1> <jsp:getProperty name="mybean" property="name" /></h1>
+
+**again create a package namely my and store this below prg in it.
+
+MyBean.java
+
+package my;
+public class MyBean {
+  
+  private String name=new String();
+  
+  public String getName() {
+  return name;
+  }
+  public void setName(String name) {
+  this.name = name;
+  }
+  } 
+</body>
+</html>
+
+3.greeter.html
+<html>
+
+  <body>
+
+   <form  method=post  action=greeter.jsp>
+
+   <input   type=text  name='text1'>
+
+   <input   type=submit>
+
+    </form>
+
+   </body>
+
+   </html>
+
+##greeter.jsp
+
+   <html>
+
+   <body>
+
+    <jsp:useBean   id="greeter1"  class="ourbeans.greeterbean"  />
+
+    <%
+
+   String   s = request.getParameter("text1");  
+
+     String   a = greeter1.greetme(s);
+
+   out.println(a);
+
+   %>
+
+  </body>
+
+   </html>
+
+
+##greeterbean.java
+
+create this prg below ourbeans package.(create it)
+package ourbeans;
+
+public  class greeterbean
+
+{
+
+  public greeterbean()   {  }
+
+  public String  greetme(String s)
+
+  {
+
+  return   "How are you?...."+s;
+
+  }
+
+}
+
+4.its a java application unlike web application.
+a)LoginBean.java
+
+import java.util.*;
+import java.awt.*;
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+public class LoginBean  extends JPanel implements ActionListener
+{
+     JLabel l1=new JLabel("Login name:");
+     JLabel l2=new JLabel("password:");
+     JTextField tf1=new JTextField(15);
+     JPasswordField tf2=new JPasswordField(15);
+     JButton ok=new JButton("login");
+     public LoginBean()
+     {
+         setLayout(new FlowLayout());
+         add(l1);
+         add(tf1);
+         add(l2);
+         add(tf2);
+         add(ok);
+         ok.addActionListener(this);
+         
+         
+     }
+     LoginListener me1;
+     public void addLoginListener(LoginListener me1)
+     {
+         this.me1=me1;
+         
+     }
+     LoginEvent mec;
+     public void fireLoginEvent(LoginEvent mec)
+     {
+         me1.validateLogin(mec);
+         
+     }
+     public void actionPerformed(ActionEvent ae)
+     {
+         if(ae.getSource()==ok)
+         {
+             String temp1=tf1.getText();
+             String temp2=new String(tf2.getPassword());
+             mec=new LoginEvent(ok,temp1,temp2);
+             fireLoginEvent(mec);
+         }
+     }
+}
+
+b)LoginEvent.java
+import java.util.*;
+public class LoginEvent extends EventObject
+{
+     public String uname;
+     public String pass;
+             public LoginEvent(Object obj,String uname,String pass)
+             {
+                 super(obj);
+                 this.uname=uname;
+                 this.pass=pass;
+                 
+             }
+}
+
+c)LoginListener.java
+import java.util.*;
+public interface LoginListener extends EventListener
+{
+    public void validateLogin(LoginEvent mec);
+}
+
+d)LoginValidator.java
+
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+public class LoginValidator extends JFrame implements LoginListener
+{
+    LoginBean meb;
+    public LoginValidator()
+    {
+        super("login form");
+        meb=new LoginBean();
+        getContentPane().add(meb);
+        meb.addLoginListener(this);
+        
+    }
+    public void validateLogin(LoginEvent mec)
+    {
+        String temp1=mec.uname;
+        String temp2=mec.pass;
+        if(temp1.equals(temp2))
+        {
+            JOptionPane.showMessageDialog(this,new String("INvalid login details"));
+            
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(this,new String("valid login details")); 
+            
+        }
+    }
+    public static void main(String args[])
+    {
+        LoginValidator mec=new LoginValidator();
+        mec.setSize(300,300);
+        mec.setVisible(true);
+    }
+}
+        
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,48 @@
+declare 
+   i number ;
+begin
+  for i in 1..10 
+   loop
+    
+     dbms_output.put_line('i incremented ' || i);
+  end loop;
+end;
+/
+
+
+//
+
+declare
+    i number :=0;
+begin
+  loop
+      i :=i +2;
+     exit  when i>10;/
+
+end loop;
+dbms_output.put_line('loop exited as the value of i has reached' || to_char(i));
+end;   
+
+
+declare
+   a number;
+   b number;
+   c number ;
+   i number;
+begin
+   a := 0;
+  b := 1;
+  i := 8;
+dbms_output.put_line(  a  );
+dbms_output.put_line( ' ' || b);
+while i>0 
+loop
+   c := a + b ;
+dbms_output.put_line(' ' || c);
+a :=b;
+b := c;
+i := i-1;
+end loop;
+end;
+/
+

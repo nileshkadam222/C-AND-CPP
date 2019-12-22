@@ -1,0 +1,85 @@
+1.create trigger trigdell
+on emp36
+for delete
+as
+print 'deletion of department is not allowed.'
+rollback transaction
+return
+
+
+create table emp36 
+(
+   eno int,
+   ename varchar(10),
+   eadd varchar(10),
+   esal int)
+
+insert into emp36 values(2,'queen','bandra',29000)
+select * from emp36
+
+delete from emp36
+
+2.
+create trigger triginsert
+on emp36
+for insert
+as
+declare @modifieddate datetime
+select @modifieddate = doj from inserted
+if(@modifieddate!=getdate())
+begin
+
+print'the modified date should be current date.hence cannot be inserted.'
+rollback transaction
+return
+end
+
+insert into emp36 values(1,'ppp','aaa',9000,getdate())
+
+3.create trigger trigupdate
+
+on emp36
+
+for update
+as
+if update(esal)
+
+begin
+
+declare @salary int
+
+select @salary = esal
+
+from emp36
+
+if (@salary >9000)
+begin
+
+print'the salary cannot be more than 9000'
+
+rollback transaction
+end
+end
+
+update emp36 set esal=10000 
+
+4.create trigger trgdelete1 on emp
+after
+delete
+as
+print'deletion successful'
+
+.
+
+
+
+
+
+
+
+
+
+
+
+
+

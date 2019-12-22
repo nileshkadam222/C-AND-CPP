@@ -1,0 +1,271 @@
+/*
+#include <iostream.h>
+#include<conio.h>
+class test
+{
+private:
+		int a,b;
+public:
+		 test()
+		{
+				a=100;
+				b=200;
+		}
+
+		friend int compute(test t);
+
+};
+
+int compute(test t)
+{
+//Friend Function Definition which has access to private data
+		return((t.a+t.b)-5);
+}
+
+void main()
+{
+		test t1;
+	   //	t1.compute();
+		clrscr();
+		cout << "The result is:" <<compute(t1);
+		getch();
+
+}
+//=========================================
+*/
+/*
+// friend functions
+#include <iostream.h>
+#include<conio.h>
+class CRectangle
+{
+	int width, height;
+
+	public:
+	void set_values (int, int);
+	int area ()
+	 {
+		return (width * height);
+	 }
+	friend CRectangle duplicate(CRectangle);
+};
+
+void CRectangle::set_values (int a, int b)
+{
+  width = a;
+  height = b;
+}
+
+CRectangle duplicate (CRectangle rectparam)
+{
+  CRectangle rectres;
+  rectres.width = rectparam.width*2;
+  rectres.height = rectparam.height*2;
+  return (rectres);
+}
+
+void main ()
+{
+  CRectangle rect, rectb;
+  clrscr();
+  rect.set_values (2,3);
+  rectb = duplicate (rect);
+  cout << rectb.area();
+  getch();
+}
+//=================================================
+*/
+// friend class
+#include <iostream.h>
+#include<conio.h>
+
+class CSquare;
+
+class CRectangle
+{
+	int width, height;
+  public:
+	int area ()
+	  {
+	  return (width * height);
+	  }
+	void convert (CSquare a);
+};
+
+class CSquare
+{
+  private:
+	int side;
+  public:
+	void set_side (int a)
+	  {
+	  side=a;
+	  }
+	friend class CRectangle;
+};
+
+void CRectangle::convert (CSquare a)
+{
+  width = a.side;
+  height = a.side;
+}
+
+void main ()
+ {
+  CSquare sqr;
+  CRectangle rect;
+  sqr.set_side(4);
+  rect.convert(sqr);
+  clrscr();
+  cout << rect.area();
+  getch();
+}
+/*
+=============================================================
+INHERITANCE
+=============================================================
+
+
+	#include <iostream>
+	using namespace std;
+	class exforsys
+	{
+	public:
+			exforsys(void) { x=0; }
+			void f(int n1)
+			{
+					x= n1*5;
+			}
+
+			void output(void) { cout << "n" << "x=" << x; }
+
+	private:
+			int x;
+	};
+
+	class sample: public exforsys
+	{
+	public:
+			sample(void) { s1=0; }
+
+			void f1(int n1)
+			{
+					s1=n1*10;
+			}
+
+			void output(void)
+			{
+					exforsys::output();
+					cout << "n" << "s1=" << s1;
+			}
+
+	private:
+			int s1;
+	};
+
+	int main(void)
+	{
+			sample s;
+			s.f(10);
+			s.f1(20);
+			s.output();
+	}
+
+=======================================================
+#include <iostream>
+using namespace std;
+
+class A {
+   int data;
+public:
+   void f(int arg) { data = arg; }
+   int g() { return data; }
+};
+
+class B {
+public:
+   A x;
+};
+
+int main() {
+   B obj;
+   obj.x.f(20);
+   cout << obj.x.g() << endl;
+//   cout << obj.g() << endl;
+}
+=========================================================
+#include <iostream>
+using namespace std;
+
+class A {
+   int data;
+public:
+   void f(int arg) { data = arg; }
+   int g() { return data; }
+};
+
+class B : public A { };
+
+int main() {
+   B obj;
+   obj.f(20);
+   cout << obj.g() << endl;
+}
+===================================
+#include <iostream>
+using namespace std;
+
+class BaseClass {
+  int i;
+public:
+  void setInt(int n);
+  int getInt();
+};
+
+class DerivedClass : public BaseClass {
+  int j;
+public:
+  void setJ(int n);
+  int mul();
+};
+
+void BaseClass::setInt(int n)
+{
+  i = n;
+}
+
+int BaseClass::getInt()
+{
+  return i;
+}
+
+void DerivedClass::setJ(int n)
+{
+  j = n;
+}
+
+int DerivedClass::mul()
+{
+  return j * getInt();
+}
+
+int main()
+{
+  DerivedClass ob;
+
+  ob.setInt(10);        // load i in BaseClass
+  ob.setJ(4);          // load j in DerivedClass
+
+  cout << ob.mul();     // displays 40
+
+  return 0;
+}
+===============================================
+MULTIPLE INHERITANCE
+==============================================
+class A {  };
+class B {  };
+class C {  };
+class X : public A, private B, public C { ;
+======================================================
+ */

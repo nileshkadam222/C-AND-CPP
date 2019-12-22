@@ -1,0 +1,956 @@
+1.
+<html>
+<head>
+<script language="javascript">
+var a,b,c;
+a=3;
+b=6;
+c=a+b;
+document.write("sum="+c);
+</script>
+</html>
+
+2.
+<html>
+<head>
+<script language="javascript">
+var a,b,c;
+a=parseInt(prompt("enter 1st number"));
+b=parseInt((prompt("enter 2nd number"));
+c=a+b;
+document.write("sum="+c);
+</script>
+</head>
+</html>
+
+2.a)
+<html>
+<head>
+<script language="javascript">
+var a,b,c;
+a=prompt("enter ur name:");
+b=prompt("enter ur surname");
+c=a+b;
+document.write("ur full name is " + a +" " + b);
+document.write("ur full name is "+ c);
+</script>
+</head>
+</html>
+
+
+3.
+<html>
+<head>
+<script language="javascript">
+var a,b,c;
+a=parseInt(prompt("enter 1st number"));
+if(a%2==0)
+{
+	alert("even number");
+}
+else
+{
+	alert("odd number");
+}
+</script>
+</head>
+</html>
+
+4.
+<html>
+<head>
+<script language="javascript">
+var a,b,c;
+a=parseInt(prompt("enter 1st number"));
+b=parseInt(prompt("enter 2nd number"));
+if(a>b)
+{
+	alert("a is greater than b");
+}
+else
+{
+	alert("b is greater than a");
+}
+</script>
+</head>
+</html>
+5.
+
+<html>
+<head>
+<script language="javascript">
+alert("hello welcome to javascript");
+</script>
+</head>
+</html>
+
+6.
+<html>
+<head>
+<script language="javascript">
+function abc()
+{
+	alert("welcome to javascript");
+}
+</script>
+<body>
+<input type="button" value="click me" onclick="abc()" name="b1">
+</body>
+</html>
+
+7.
+<html>
+<head>
+<script language="javascript">
+function abc()
+{
+	a=form1.text1.value;
+	if(a>10)
+	{
+		alert("a is greater than 10");
+	}
+	else
+	{
+		alert(" a is smaller than 10");
+	}
+
+
+}
+</script>
+<body>
+<form name="form1">
+<input type="text" name="text1">
+<input type="button" name="b1" onclick="abc()" value="click me">
+</form>
+</body>
+</html>
+
+8.
+<html>
+<head>
+<script language="javascript">
+function abc()
+{
+	if((form1.text1.value=="disha")&&(form1.text2.value=="comp"))	
+	{
+		alert("matched");
+	}
+	else	
+	{
+		alert("not matched");
+	}
+}
+function cde()
+{
+	
+	form1.text1.value="";
+	form1.text2.value="";	
+
+}
+</script>
+<body>
+<form name="form1">
+USER NAME: <input type="text" name="text1"><br>
+PASSWORD: <input type="text" name="text2"><br>
+<input type="button" name="b1" value="ok" onclick="abc()">
+<input type="button" name="b2" value="cancel" onclick="cde()">
+</form>
+</body>
+</html>
+
+9.
+<html>
+<head>
+<script language="javascript">
+function abc()
+{
+var a;
+a=confirm("do you want to continue");
+if(a)
+{
+	alert("you clicked on ok button");
+}
+else
+{
+	alert("you clicked on cancel button");
+}
+}
+</script>
+</head>
+<body>
+<input type="button" name="b1" onclick="abc()" value="click me">
+</body>
+<html>
+
+
+10.
+<html>
+<head>
+<script language="javascript">
+var a=0;
+while(a<=10)
+{
+	alert(a);
+	a++;
+}
+</script>
+</head>
+</html>
+
+11.
+<html>
+<head>
+<script language="javascript">
+var a=0;
+while(a<=10)
+{
+	if(a%2==0)
+	{
+	alert(a);
+	}
+	a++;
+}
+</script>
+</head>
+</html>
+
+12.
+<html>
+<head>
+<script language="javascript">
+var a=0;
+do
+{
+	alert(a);
+	a++;
+}while(a<=10);
+</script>
+</head>
+</html>
+
+
+13.
+<html>
+<head>
+<script language="javascript">
+var a;
+for(a=0;a<=10;a++)
+{
+	alert(a);
+}
+</script>
+</head>
+</html>
+
+14.
+<html>
+<head>
+<script language="javascript">
+var a,b;
+for(a=0;a<=10;a++)
+{
+	for(b=a;b<=10;b++)
+	{
+		document.write(b);
+	}
+	document.write("<br>");
+}
+</script>
+</head>
+</html>
+
+
+15.
+<html>
+<head>
+<script language="javascript">
+var i;
+var a=new Array(5);
+a[0]=1;
+a[1]=4;
+a[2]=3;
+a[3]=9;
+a[4]=6;
+for(i=0;i<5;i++)
+{
+	alert(a[i]);
+}
+</script>
+</head>
+</html>
+
+16.
+<html>
+<head>
+<script language="javascript">
+var i;
+var a=new Array(5);
+for(i=0;i<5;i++)
+{
+	a[i]=prompt("enter no");
+}
+for(i=0;i<5;i++)
+{
+	alert(a[i]);
+}
+</script>
+</head>
+</html>
+
+17.
+
+<html>
+<head>
+<script language="javascript">
+var a=0;
+function abc()
+{
+	alert(a);
+	a++;
+}
+</script>
+<body>
+<input type="button" name="b1" value="click me" onclick="abc()">
+</body>
+</head>
+</html>
+
+18.
+<html>
+<head>
+<script language="javascript">
+var a=0;
+function abc()
+{
+	form1.text1.value=a;
+	a++;
+	setTimeout("abc()",1000);
+}
+</script>
+<body>
+<form name="form1">
+<input type="text" name="text1">
+<input type="button" name="b1" onclick="abc()" value="click me">
+</body>
+</html>
+
+19.
+
+<html>
+<head>
+<script language="javascript">
+function abc()
+{
+	var today=new Date;
+	var H=today.getHours();
+	var M=today.getMinutes();
+	var S=today.getSeconds();
+	form1.text1.value=H+":"+M+":"+S;
+	setTimeout("abc()",1000);
+}
+</script>
+<body>
+<form name="form1">
+<input type="text" name="text1">
+<input type="button" name="b1" value="click me" onclick="abc()">
+</form>
+</body>
+</html>
+
+
+20.
+<html>
+<head>
+<script language="javascript">
+function abc()
+{
+	window.print();
+}
+</script>
+<body>
+<input type="button" name="b1" value="print" onclick="abc()">
+</body>
+</head>
+</html>
+
+21.
+
+<html>
+<head>
+<script language="javascript">
+function abc()
+{
+	document.bgColor="green";
+}
+function cde()
+{
+	document.bgColor="red";
+}
+</script>
+<body>
+<img src="1.jpg" onmouseover="abc()" on mouseout="cde()">
+</body>
+</head>
+<html>
+
+22.
+<html>
+<head>
+<script language="javascript">
+function abc()
+{
+	document.getElementById("1").src="2.jpg";
+}
+function cde()
+{
+	document.getElementById("1").src="1.jpg";
+}
+</script>
+<body>
+<img src="1.jpg" onmouseover="abc()" on mouseout="cde()">
+</body>
+</head>
+<html>
+
+23.
+<html>
+<head>
+<script language="javascript">
+function abc()
+{
+	var today=new Date;
+	var H=today.getHours();
+	if(H>12)
+	{
+		alert("good afternoon");
+	}
+	else
+	{
+		alert("good morning");
+	}
+}
+</script>
+<body>
+<form name="form1">
+<input type="text" name="text1">
+<input type="button" name="b1" value="click me" onclick="abc()">
+</form>
+</body>
+</html>
+
+
+24.
+<html>
+<head>
+<script langugae="javascript">
+function disha()
+{
+	alert(event.keyCode);
+}
+</script>
+</head>
+<body onkeydown="disha()">
+</html>
+
+25.
+<html>
+<head>
+<script langugae="javascript">
+function disha()
+{
+	if(event.keyCode==16)
+	{
+		alert("SHIFT BUTTON");
+	}
+	else
+	{
+		alert("any other button");
+	}
+}
+</script>
+</head>
+<body onkeydown="disha()">
+</html>
+
+26.
+
+<html>
+<head>
+<script langugae="javascript">
+function disha()
+{
+	if(event.button==2)
+	{
+		alert("you clicked right mouse button");
+	}
+	else
+	{
+		alert("you clciked left mouse buton");
+	}
+}
+</script>
+</head>
+<body onmousedown="disha()">
+</html>
+
+27.
+<html>
+<head>
+<script langugae="javascript">
+function disha()
+{
+	if(event.button==2)
+	{
+		alert copy rights not allowed");
+	}
+}
+</script>
+</head>
+<body>
+<img src="1.jpg" onmousedown="disha()">
+</html>
+
+
+28.
+<html>
+<head>
+<script language="javascript">
+var a ;
+var i = 0;
+function abc()
+{
+                   alert("hello:");
+             
+	
+                   a=form1.text1.value;
+                  alert(a);
+	
+}
+function cde()
+{
+	var i=0,c=0;
+	var n;
+	n=prompt("Enter name");
+	if(n==a)
+	{
+		c=1;
+	}
+	
+	if(c==1)
+	{
+		alert("matched");
+	}
+	else
+	{
+		alert("not matched");
+	}
+}
+
+</script>
+<body>
+<form name="form1">
+<input type="text" name="text1">
+<input type="button" name="b1" value="click me" onclick="abc()">
+<input type="button" name="b2" value="check me" onclick="cde()">
+</body>
+<html>
+
+29.	
+
+
+30.
+<html>
+<head>
+<script language="javascript">
+function disha()
+{
+	try
+	{
+		alert("go");
+		allertttt("hello");
+	}
+	catch(err)
+	{
+		alert("error");
+	}
+}
+</script>
+<body>
+<input type="button" name="b1" value="click me" onclick="disha()">
+</body>
+</html>
+
+
+31.
+<html>
+<head>
+<script language="javascript">
+function disha()
+{
+	try
+	{
+		alert("go");
+		allertttt("hello");
+	}
+	catch(err)
+	{
+		alert("error");
+	}
+	finally
+	{
+		alert("this will execute");
+	}
+}
+</script>
+<body>
+<input type="button" name="b1" value="click me" onclick="disha()">
+</body>
+</html>
+
+32.
+<html>
+<head>
+<script type="text/javascript">
+document.write("<h1>disha</h1>");
+</script>
+</head>
+</html>
+
+33.
+<html>
+<head>
+<script type="text/javascript">
+var a=1;
+while(a<=6)
+{	
+	document.write("<h" + a +">" +"disha" + "</h" + a +">");
+
+	a++;
+}
+</script>
+</head>
+</html>
+
+34.
+<html>
+<head>
+<script type="text/javascript">
+function abc()
+{
+         var n=form1.text1.value;
+         alert(n);
+         var a=0;
+         while(a<=6)
+        {
+	document.write("<h"+a+">"+n);
+                   document.write("</h"+a+">");
+	a++;
+        }
+}
+
+</script>
+</head>
+<body>
+<form name="form1">
+<input type="text" name="text1">
+<input type="button" name="b1" value="click me" onclick="abc()">
+</body>
+</html>
+
+35a..<html>
+     <head>
+   <title>
+     getElementBuId Select example
+   </title>
+   <script language="javascript" >
+      function selectOption() {
+	alert("You hvae selected site "+ 
+           document.getElementById("listSelect").value);
+      }
+      function selectTypeOption() {
+	alert("You have selected type "+
+           document.getElementById("typeSelect").value);
+      }
+   </script>
+  </head>
+  <body>
+   <div style="background: #DFDFFF; width:'100%';" align="center">
+    <font color="#000080" size="12pt">
+    <b>getElementById in &lt;select&gt;</b>
+    </font>
+   </div>
+   <p>&nbsp;</p>
+     Select Type : 
+    <select id="typeSelect" style="width:150px;"
+                                 onChange="selectTypeOption();">
+	<option value="Technologies">Technologies</option>
+	<option value="News">News </option>
+	<option value="Job Search">Job Search</option>
+    </select>
+    <p>&nbsp;</p>
+       Select Site : 
+      <select id="listSelect" style="width:150px;" 
+                                 onChange="selectOption();">
+	<option value="Rose India">Rose India</option>
+	<option value="News Track India">News Track India</option>
+	<option value="Cool Jobs">Cool Jobs</option>
+      </select>
+   </body>
+</html>
+
+
+
+35.
+<html>
+<head>
+<script language="javascript">
+function abc()
+{
+      alert("You have selected :: "+ document.getElementById("1").value);
+
+}
+</script>
+<body>
+<select id="1" style="width:150px;"  onChange="abc();">
+	<option value="computer">COMPUTER</option>
+	<option value="mouse">MOUSE</option>
+	<option value="keyboard">KEYBOARD</option>
+    </select>
+
+<input type="button" name="b1" value="click me" onclick="abc();">
+</body>
+</html>
+
+
+
+37.
+
+<html>
+<head>
+<script language="javascript">
+function abc()
+{
+	window.open("2.html");
+
+}
+</script>
+<body>
+<input type="button" onclick="abc()" value="click me" name="b1">
+</body>
+</html>
+
+38.
+
+<html>
+<head>
+<script language="javascript">
+function abc()
+{
+	var str,n;
+        str="microsoft windows";
+        document.write(str); 
+        n=str.replace("microsoft","sunmicrosystems")
+        alert(n);
+   
+
+}
+</script>
+<body>
+<input type="button" onclick="abc()" value="click me" name="b1">
+</body>
+
+</html>
+39.
+<html>
+<head>
+<script language="javascript">
+function abc()
+{
+	window.status="downloading";
+
+}
+</script>
+<body>
+<input type="button" onclick="abc()" value="click me" name="b1">
+</body>
+</html>
+
+40.
+<html>
+<head>
+<script language="javascript">
+function abc()
+{
+	if((form1.text1.value=="")||(form1.text2.value=="")||(form1.text3.value=="")||(form1.text4.value==""))
+	{
+	alert("fill all details");
+	}
+	else
+	{
+	alert("data successfully submitted");
+	}
+}
+function cde()
+{
+	
+	if(event.keyCode==16)
+	{
+	if((form1.text1.value=="")||(form1.text2.value=="")||(form1.text3.value=="")||(form1.text4.value==""))
+	{
+	alert("fill all details");
+	}
+	else
+	{
+	alert("data successfully submitted");
+	}
+	}
+}
+</script>
+<body onkeydown="cde()">
+NAME: <input type="text"><br>
+ROLL: <input type="text"><br>
+MALE:<input type="radio" name="r1">  FEMALE:<input type="radio" name="r2"><br>
+Address: <input type="text"><br>
+<input type="button" name="b1" value="click me" onclick="cde()">
+</body>
+</html>
+
+41.
+<html>
+<head>
+<script language="javascript">
+function abc()
+{
+alert(document.getElementById("myselect").length);
+}
+</script>
+</head>
+<body>
+<form>
+<select id="myselect">
+<option>apple</option>
+<option>banana</option>
+<option>pear</option>
+<option>orange</option>
+</select>
+<input type="button" value="click me" onclick="abc()" name="b1">
+</body>
+</form>
+</html>
+
+42.
+<html>
+<head>
+<script language="javascript">
+fucntion abc()
+{
+	try
+	{
+		doco.write("hello");
+	}
+	catch(err)
+	{
+		alert(err);
+	}
+}
+</script>
+<body>
+<input type="button" name="b1" value="click me" onclick="abc()">
+</body>
+</html>
+
+43.
+<html>
+<head>
+<script language="javascript">
+var i,j,c;
+for(i=1;i<=10;i++)
+{
+	for(j=1;j<=10;j++)
+	{
+		c=i*j;
+		document.write(c);
+	}
+	document.write("<br>");
+}
+</script>
+</head>
+</html>
+
+44.
+<html>
+<head>
+<script language="javascript">
+function abc(a)
+{
+	alert(a);
+}
+</script>
+<body>
+<input type="button" name="b1" value="click me" onclick="abc('disha computer')">
+</body>
+</head>
+</html>
+
+
+45.
+
+<html>
+<head>
+<script language="javascript">
+var c,a,b;
+function add()
+{
+	
+	a=parseInt(form1.text1.value);
+                   b=parseInt(form1.text2.value);
+                   c=a+b;
+                   form1.text3.value=c;
+                   
+	
+}
+function mul()
+{
+	
+	a=parseInt(form1.text1.value);
+                   b=parseInt(form1.text2.value);
+                   c=a*b;
+                   form1.text3.value=c;
+                   
+	
+}
+function sub()
+{
+	
+	a=parseInt(form1.text1.value);
+                   b=parseInt(form1.text2.value);
+                   c=a-b;
+                   form1.text3.value=c;
+                   
+	
+}
+function div()
+{
+	
+	a=parseInt(form1.text1.value);
+                   b=parseInt(form1.text2.value);
+                   c=a/b;
+                   form1.text3.value=c;
+                   
+	
+}
+
+</script>
+<body>
+<form name="form1">
+<input type="text" name="text1">
+<input type="text" name="text2">
+<input type="text" name="text3">
+<input type="button" name="b1" value="+" onclick="add()">
+<input type="button" name="b2" value="*" onclick="mul()">
+<input type="button" name="b3" value="-" onclick="sub()">
+<input type="button" name="b4" value="/" onclick="div()">
+</body>
+</html>
+
+**28,34,35,36,38,40,41,42

@@ -1,0 +1,2157 @@
+1.DECLARE 
+
+ var_salary number(6); 
+
+ var_emp_id number(6) = 1116; 
+
+BEGIN
+
+ SELECT salary 
+
+ INTO var_salary 
+
+ FROM employee 
+
+ WHERE emp_id = var_emp_id; 
+
+ dbms_output.put_line(var_salary); 
+
+ dbms_output.put_line('The employee ' 
+
+  	|| var_emp_id || ' has  salary  ' || var_salary); 
+
+END; 
+
+2.
+DECLARE
+
+2>  var_num1 number; 
+
+3>  var_num2 number; 
+
+4> BEGIN 
+
+5>  var_num1 := 100; 
+
+6>  var_num2 := 200; 
+
+7>  DECLARE 
+
+8>   var_mult number; 
+
+9>   BEGIN 
+
+10>    var_mult := var_num1 * var_num2; 
+
+11>   END; 
+
+12> END; 
+
+3.
+DECLARE 
+
+ salary_increase CONSTANT number(3); 
+
+BEGIN 
+
+ salary_increase := 100; 
+
+ dbms_output.put_line (salary_increase); 
+
+END; 
+
+
+DECLARE
+        n_counter NUMBER := 0;
+    BEGIN
+      LOOP
+    n_counter := n_counter + 1;
+    DBMS_OUTPUT.PUT_LINE(n_counter);
+    IF n_counter = 10 THEN
+      EXIT;
+    END IF;
+  END LOOP;
+END;
+
+#####
+declare
+   num1 number;
+   num2 number;
+begin
+   num1 :=&num1;
+   num2 :=&num2;
+  if num1 > num2 then 
+   dbms_output.put_line('the num1 is greater:');
+  else
+   dbms_output.put_line('the num2 is greater:');
+   end if;
+end;
+
+
+####
+ create a table acct_mstr with folowing columns:
+  acno   varchar2(5)
+  branch_no varchar2(10),
+ customer varchar2(10),
+ curbal number;
+then do the following:
+###
+
+declare
+      num1 number;
+      result number;
+begin
+       num1 :=&num1;
+       select mod(num1,2) into result from dual;
+if result =0 then
+    dbms_output.put_line('the number is even');
+else
+     dbms_output.put_line('the number is odd');
+endif;
+end;
+
+#####
+
+declare
+     mcur_bal number(11,2);
+     acno varchar2(7);
+     mfine number(4) :=100;
+     mmin_bal constant number(7,2) :=5000.00;
+begin
+     acno  :=&acno;
+     select curbal into mcur_bal from acct_mstr where acct_no=acno;
+    if mcur_bal<mmin_bal then
+         update acct_mstr set curbal=curbal-mfine
+         where acct_no=acno;
+end if;
+end;
+
+answer: enter 'a1' instead of a1
+####
+DECLARE
+  n_i NUMBER := 0;
+  n_j NUMBER := 0;
+BEGIN
+  << outer_loop >>
+  LOOP
+    n_i := n_i + 1;
+    EXIT WHEN n_i = 2;
+    << inner_loop >>
+    LOOP
+      n_j := n_j + 1;
+      EXIT WHEN n_j = 5;
+      DBMS_OUTPUT.PUT_LINE('Outer loop counter ' || n_i);
+      DBMS_OUTPUT.PUT_LINE('Inner loop counter ' || n_j);
+    END LOOP inner_loop;
+  END LOOP outer_loop;
+END;
+
+
+###
+DECLARE
+  n_counter   NUMBER := 10;
+  n_factorial NUMBER := 1;
+  n_temp      NUMBER;
+BEGIN
+  n_temp := n_counter;
+  WHILE n_counter > 0
+  LOOP
+    n_factorial := n_factorial * n_counter;
+    n_counter   := n_counter - 1;
+  END LOOP;
+DBMS_OUTPUT.PUT_LINE('factorial of ' || n_temp ||
+                       ' is ' || n_factorial);
+ 
+END;
+/
+
+###
+DECLARE
+  n_times NUMBER := 10;
+BEGIN
+  FOR n_i IN 1..n_times LOOP
+    DBMS_OUTPUT.PUT_LINE(n_i);
+  END LOOP;
+END;
+/
+
+
+####
+
+DECLARE
+  n_times NUMBER := 10;
+BEGIN
+  FOR n_i IN REVERSE 1..n_times LOOP
+    DBMS_OUTPUT.PUT_LINE(n_i);
+  END LOOP;
+END;
+/
+
+
+###
+
+declare
+ pi constant number(4,2) := 3.14;
+ radius number (5);
+ area number(14,2);
+begin
+ radius := 3;
+ while radius <= 7
+ loop
+  area := pi * power(radius,2);
+ insert into areas  values(radius,area);
+ radius := radius + 1;
+ end loop;
+end;
+/
+########
+declare
+  given_number varchar(5) := '5639';
+  str_length number(2);
+  inverted_number varchar(5);
+begin
+  str_length := length(given_number);
+  for cntr in reverse 1..str_length
+  loop
+   inverted_number := inverted_number || substr(given_number,cntr,1);
+  end loop;
+  dbms_output.put_line('the given number is' || given_number);
+  dbms_output.put_line('the given number is' || inverted_number);
+end;
+/
+
+
+
+#####
+
+
+declare
+     num1 number;
+     num2 number;
+     add number;
+begin
+   num1 :=&num1;
+   num2 :=&num2;
+   if num1 =0 then
+        goto p;
+   end if;
+   if num2 =0 then
+      goto p;
+   end if;
+   add := num1 + num2;
+   dbms_ouput.put_line(add);
+   <<p>>
+      dbms_output.put_line('the values cant be zero:');
+   end;
+
+####
+declare
+  mbal number(8,2);
+begin
+ insert into trans_mstr
+  (trans_no, acct_no, dt, type, particular, dr_cr, amt, balance)
+  values('t100','ca10','04-jul-2004','c','telebill','w',1000,31000);
+  update acct_mstr set curbal = curbal - 1000 where acct_no ='ca10';
+  savepoint no_update;
+  insert into trans_mstr
+   (trans_no,acct_no,dt,type,particular,dr_cr,amt,balance)
+   values('101','ca10','04-jul-2004','c','deposit','d',140000.0,171000.0);
+  update acct_mstr set curbal = curbal + 140000 where acct_no = 'ca10';
+  select sum(curbal) into mbal from acct_mstr;
+  if mbal > 200000 then
+   rollback to savepoint no_update;
+  end if;
+  commit;
+end;
+####
+
+4.
+PL/SQL Records
+
+What are records?
+
+Records are another type of datatypes which oracle allows to be defined as a placeholder. Records are composite datatypes, which means it is a combination of different scalar datatypes like char, varchar, number etc.  Each scalar data types in the record holds a value. A record can be visualized as a row of data. It can contain all the contents of a row.
+Declaring a record:
+To declare a record, you must first define a composite datatype; then declare a record for that type.
+
+The General Syntax to define a composite datatype is:
+
+TYPE record_type_name IS RECORD 
+
+(first_col_name column_datatype, 
+
+second_col_name column_datatype, ...); 
+
+    record_type_name – it is the name of the composite type you want to define.
+    first_col_name, second_col_name, etc.,- it is the names the fields/columns within the record.
+    column_datatype defines the scalar datatype of the fields.
+
+
+There are different ways you can declare the datatype of the fields.
+
+1) You can declare the field in the same way as you declare the fieds while creating the table.
+2) If a field is based on a column from database table, you can define the field_type as follows:
+
+col_name table_name.column_name%type; 
+
+By declaring the field datatype in the above method, the datatype of the column is dynamically applied to the field.  This method is useful when you are altering the column specification of the table, because you do not need to change the code again.
+NOTE: You can use also %type to declare variables and constants.
+
+The General Syntax to declare a record of a uer-defined datatype is:
+
+record_name record_type_name; 
+
+The following code shows how to declare a record called employee_rec based on a user-defined type.
+
+DECLARE 
+
+TYPE employee_type IS RECORD 
+
+(employee_id number(5), 
+
+ employee_first_name varchar2(25), 
+
+ employee_last_name employee.last_name%type, 
+
+ employee_dept employee.dept%type); 
+
+ employee_salary employee.salary%type;
+
+ employee_rec employee_type; 
+
+If all the fields of a record are based on the columns of a table, we can declare the record as follows:
+
+record_name table_name%ROWTYPE; 
+
+For example, the above declaration of employee_rec can as follows:
+
+DECLARE 
+
+ employee_rec employee%ROWTYPE; 
+
+The advantages of declaring the record as a ROWTYPE are:
+1)  You do not need to explicitly declare variables for all the columns in a table.
+2) If you alter the column specification in the database table, you do not need to update the code.
+
+The disadvantage of declaring the record as a ROWTYPE is:
+1) When u create a record as a ROWTYPE, fields will be created for all the columns in the table and memory will be used to create the datatype for all the fields. So use ROWTYPE only when you are using all the columns of the table in the program.
+
+NOTE: When you are creating a record, you are just creating a datatype, similar to creating a variable. You need to assign values to the record to use them.
+
+The following table consolidates the different ways in which you can define and declare a pl/sql record.
+
+Syntax 	
+
+Usage
+
+TYPE record_type_name IS RECORD (column_name1 datatype, column_name2 datatype, ...);
+	
+
+Define a composite datatype, where each field is scalar.
+
+col_name table_name.column_name%type;
+	
+
+Dynamically define the datatype of a column based on a database column.
+
+record_name record_type_name;
+	
+
+Declare a record based on a user-defined type.
+
+record_name table_name%ROWTYPE;
+	Dynamically declare a record based on an entire row of a table. Each column in the table corresponds to a field in the record.
+
+Passing Values To and From a Record
+
+When you assign values to a record, you actually assign values to the fields within it.
+The General Syntax to assign a value to a column within a record direclty is:
+
+record_name.col_name := value; 
+
+If you used %ROWTYPE to declare a record, you can assign values as shown:
+
+record_name.column_name := value;  
+
+We can assign values to records using SELECT Statements as shown:
+
+SELECT col1, col2 
+
+INTO record_name.col_name1, record_name.col_name2 
+
+FROM table_name 
+
+[WHERE clause]; 
+
+If %ROWTYPE is used to declare a record then you can directly assign values to the whole record instead of each columns separately. In this case, you must SELECT all the columns from the table into the record as shown:
+
+SELECT * INTO record_name 
+
+FROM table_name 
+
+[WHERE clause]; 
+
+Lets see how we can get values from a record.
+The General Syntax to retrieve a value from a specific field into another variable is:
+
+var_name := record_name.col_name; 
+
+The following table consolidates the different ways you can assign values to and from a record:
+Syntax 	
+
+Usage
+
+record_name.col_name := value;
+	
+
+To directly assign a value to a specific column of a record.
+
+record_name.column_name := value;
+	
+
+To directly assign a value to a specific column of a record, if the record is declared using %ROWTYPE.
+
+SELECT col1, col2 INTO record_name.col_name1, record_name.col_name2 FROM table_name [WHERE clause];
+	
+
+To assign values to each field of a record from the database table.
+
+SELECT * INTO record_name FROM table_name [WHERE clause];
+	
+
+To assign a value to all fields in the record from a database table.
+
+variable_name := record_name.col_name;
+	
+
+To get a value from a record column and assigning it to a variable.
+
+SET SERVEROUTPUT ON SIZE 1000000;
+
+DECLARE
+
+  r_emp employees%ROWTYPE;
+
+  n_emp_id  employees.employee_id%TYPE := 200;
+
+BEGIN
+
+  SELECT *
+
+  INTO r_emp
+
+  FROM employees
+
+  WHERE employee_id = n_emp_id;
+
+  -- print out the employee's first name
+
+  DBMS_OUTPUT.PUT_LINE(r_emp.first_name);
+
+END;
+
+SET SERVEROUTPUT ON SIZE 1000000;
+
+DECLARE
+
+  TYPE t_name IS RECORD(
+
+     first_name employees.first_name%TYPE,
+
+     last_name  employees.last_name%TYPE
+
+  );
+
+  r_name   t_name; -- name record
+
+  n_emp_id employees.employee_id%TYPE := 200;
+
+BEGIN
+
+  SELECT first_name,
+
+         last_name
+
+  INTO r_name
+
+  FROM employees
+
+  WHERE employee_id = n_emp_id;
+
+  -- print out the employee's name
+
+  DBMS_OUTPUT.PUT_LINE(r_name.first_name || ',' || r_name.last_name );
+
+END;
+
+
+
+ 
+      
+
+   5.
+
+SET SERVEROUTPUT ON SIZE 1000000;
+
+/
+6.
+    SET SERVEROUTPUT ON SIZE 1000000;
+
+    DECLARE
+
+      n_salary EMPLOYEES.SALARY%TYPE;
+
+      n_emp_id EMPLOYEES.EMPLOYEE_ID%TYPE := 200;
+
+      v_msg    VARCHAR(20);
+
+    BEGIN
+
+      SELECT salary
+
+      INTO n_salary
+
+      FROM employees
+
+      WHERE employee_id = n_emp_id;
+
+     
+
+      CASE
+
+        WHEN n_salary < 2000 THEN
+
+          v_msg := 'Low';
+
+        WHEN n_salary >= 2000 AND n_salary <=3000 THEN
+
+          v_msg := 'Fair';
+
+        WHEN n_salary >= 3000 THEN
+
+          v_msg := 'High';
+
+      END CASE;
+
+      DBMS_OUTPUT.PUT_LINE(v_msg);
+
+    END;
+
+   7.
+Declaring Cursor-based Record
+
+You can define a record based on a cursor.  A cursor has to be defined first. And then you use %ROWTYPE with the cursor variable to declare a record. The fields of the record correspond to the columns in the cursor SELECT statement. Here is an example of declaring a record based on a cursor.
+PL/SQL Cursor-based Record	   
+
+    SET SERVEROUTPUT ON SIZE 1000000;
+
+    DECLARE
+
+      CURSOR cur_emp IS
+
+        SELECT *
+
+        FROM employees
+
+        WHERE employee_id = 200;
+
+     
+
+      emp_rec cur_emp%ROWTYPE;
+
+    BEGIN
+
+      NULL;
+
+    END;
+
+    8.
+Working with PL/SQL Record
+
+After having a PL/SQL record, you can work with a record as a whole or you can work with individual field of the PL/SQL record.
+Working with PL/SQL record at record level
+
+At record level, you can do the following:
+
+    You can assign a PL/SQL record to another PL/SQL record. The pair of PL/SQL records must have the same number of fields and the data type of each field has to be convertible.
+    You can assign a PL/SQL record to NULL value by assign a record to an uninitialized record.
+    A PL/SQL record can be used as an argument of parameter list in a function
+    You can return a PL/SQL record from a function
+    To check if the record is NULL, you have to check each individual field of the record.
+    To compare record, you have to compare each individual field of record.
+
+Here is an example of working with PL/SQL record at record level:
+PL/SQL code	   
+
+    SET serveroutput ON SIZE 1000000;
+
+    DECLARE
+
+      TYPE t_name IS RECORD(
+
+        first_name employees.first_name%TYPE,
+
+        last_name employees.last_name%TYPE
+
+      );
+
+      r_name      t_name;
+
+      r_name2     t_name;
+
+      r_name_null t_name;
+
+      n_emp_id employees.employee_id%TYPE := 200;
+
+    BEGIN
+
+      -- assign employee's infomation to record
+
+      SELECT first_name,
+
+             last_name
+
+      INTO r_name
+
+      FROM employees
+
+      WHERE employee_id = n_emp_id;
+
+     
+
+      -- assign record to another record
+
+      r_name2 := r_name;
+
+      -- print out the employee's name
+
+      DBMS_OUTPUT.PUT_LINE(r_name2.first_name || ',' || r_name2.last_name);
+
+     
+
+      -- assign record to NULL
+
+      r_name2 := r_name_null; 
+
+     
+
+      -- check NULL for each individual field
+
+      IF r_name2.first_name IS NULL AND
+
+         r_name2.last_name IS NULL THEN
+
+        DBMS_OUTPUT.PUT_LINE('Record r_name2 is NULL');
+
+      END IF;
+
+     
+
+    END;
+
+9
+Introducing to PL/SQL Cursor
+
+When you work with Oracle database, you work with a complete set of rows that is known as result set returned by SQL SELECT statement. However applications in some cases cannot work effectively with entire result set therefore database server needs to provide a mechanism for these applications to work with one row or a subset of result set at a time. As the result, Oracle introduced Cursor concept to provides these extensions.
+
+PL/SQL cursor is a pointer that points to the result set of the SQL query against database tables.
+Working with PL/SQL Cursor
+
+There are several steps you need to do when yo work with PL/SQL cursor as describe in the image below:
+PL/SQL Cursor
+
+PL/SQL Cursor
+
+Let’s examine each steps in details.
+Declaring PL/SQL Cursor
+
+To use PL/SQL cursor, you must first declare it in the declaration section of PL/SQL block or in a package as follows:
+PL/SQL Declaration Syntax	   
+
+    CURSOR cursor_name [ ( [ parameter_1 [, parameter_2 ...] ) ]
+
+          [ RETURN return_specification ]
+
+    IS sql_select_statements
+
+    [FOR UPDATE [OF [column_list]];
+
+    First you declare the name of cursor cursor_name after the keyword CURSOR. The name of cursor can have up to 30 characters in length and follows the rules of identifiers in PL/SQL. It is important to note that cursor’s name is not a variable so you cannot use it as a variable such as assign it to other cursor or use it in an expression.
+    parameter1 , parameter2… are optional section in cursor declaration. These parameter allows you to pass arguments into the cursor.
+    RETURN return_specification is an optional part
+    Next you specify the valid SQL statement which returns a result set where the cursor points to.
+    Finally you can indicate a list of columns you want to update after the FOR UPDATE OF. This part is optional so you can omit it in the CURSOR declaration.
+
+Here is an example of declaring a cursor:
+PL/SQL Cursor Declaration Example	   
+
+    CURSOR cur_chief IS
+
+          SELECT first_name,
+
+                 last_name,
+
+                 department_name
+
+          FROM employees e
+
+          INNER JOIN departments d ON d.manager_id = e.employee_id;
+
+Opening a  PL/SQL Cursor
+
+After declaring a cursor you can use open it by following the below syntax:
+Opening PL/SQL Cursor Syntax	   
+
+    OPEN cursor_name [ ( argument_1 [, argument_2 ...] ) ];
+
+You have to specify the cursor’s name cursor_name after the keyword OPEN. If the cursor was defined with a parameter list, you need to pass corresponding arguments to the cursor also. When you OPEN the cursor, PL/SQL executes the SQL SELECT statement and identifies the active result set. Note that the OPEN action does not actually retrieve records from database. It happens in the FETCH step. If the cursor was declared with FOR UPDATE clause, PL/SQL locks all the records in the result set.
+
+We can open our cursor cur_chief above as follows:
+Open PL/SQL Cursor Example	   
+
+    OPEN cur_chief;
+
+Fetching Records from PL/SQL Cursor
+
+Once cursor is open, you can fetch data from the cursor into a record that has structure corresponding to the cursor. You can also fetch data from cursor to a list of variables. The fetch action retrieve data and fill the record or variable. You then can manipulate this data in memory. You can fetch the data until there is no record found in active result set.  The syntax of FETCH is as follows:
+PL/SQL Cursor FETCH Syntax	   
+
+    FETCH cursor_name INTO RECORD OR variables
+
+You can test the cursor’s attribute %FOUND or %NOTFOUND to check if the fetch against the cursor succeeded. There are more cursor’s attributes which will cover in the next section.
+
+We can use PL/SQL LOOP statement together with the FETCH to loop through all records in active result set as follows:
+PL/SQL Cursor Fetch Example	   
+
+    LOOP
+
+        -- fetch information from cursor into record
+
+        FETCH cur_chief INTO r_chief;
+
+     
+
+        EXIT WHEN cur_chief%NOTFOUND;
+
+     
+
+        -- print department - chief
+
+        DBMS_OUTPUT.PUT_LINE(r_chief.department_name || ' - ' ||
+
+                             r_chief.first_name || ',' ||
+
+                             r_chief.last_name);
+
+      END LOOP;
+
+Closing PL/SQL Cursor
+
+You should always close the cursor when you’re done with it. Otherwise you will have memory leak in your program which is not good. The close cursor syntax is very simple as follows:
+PL/SQL code	   
+
+    CLOSE cursor_name;
+
+And here is an example of closing cursor:
+PL/SQL Cursor CLOSE example	   
+
+    CLOSE cur_chief;
+
+A Complete PL/SQL Cursor Example
+
+We can have a complete example of cursor for printing chief of department and department name as follows:
+PL/SQL Cursor Example	   
+
+    SET SERVEROUTPUT ON SIZE 1000000;
+
+    DECLARE
+
+      -- declare a cursor
+
+      CURSOR cur_chief IS
+
+          SELECT first_name,
+
+                 last_name,
+
+                 department_name
+
+          FROM employees e
+
+          INNER JOIN departments d ON d.manager_id = e.employee_id;
+
+     
+
+      r_chief cur_chief%ROWTYPE;
+
+    BEGIN
+
+      OPEN cur_chief;
+
+      LOOP
+
+        -- fetch information from cursor into record
+
+        FETCH cur_chief INTO r_chief;
+
+     
+
+        EXIT WHEN cur_chief%NOTFOUND;
+
+     
+
+        -- print department - chief
+
+        DBMS_OUTPUT.PUT_LINE(r_chief.department_name || ' - ' ||
+
+                             r_chief.first_name || ',' ||
+
+                             r_chief.last_name);
+
+      END LOOP;
+
+      -- close cursor cur_chief
+
+      CLOSE cur_chief;
+
+    END;
+
+    /
+
+PL/SQL Cursor Attributes
+
+These are the main attributes of a PL/SQL cursor and their explanations.
+Attribute	Explanation
+cursor_name%FOUND	returns TRUE if record was fetched successfully by cursor cursor_name
+cursor_name%NOTFOUND	return TRUE if record was not fetched successfully by cursor cursor_name
+cursor_name%ROWCOUNT	returns the number of records fetched from the  cursor cursor_name at the time we test %ROWCOUNT attribute
+cursor_name%ISOPEN	returns TRUE if the cursor cursor_name is open
+
+In this tutorial, you’ve learned how to use PL/SQL Cursor to loop through multiple rows with every steps that need to be done including DECLARE, OPEN, FETCH and CLOSE.
+
+10.
+What are Cursors?
+
+A cursor is a temporary work area created in the system memory when a SQL statement is executed. A cursor contains information on a select statement and the rows of data accessed by it. This temporary work area is used to store the data retrieved from the database, and manipulate this data. A cursor can hold more than one row, but can process only one row at a time. The set of rows the cursor holds is called the active set.
+
+There are two types of cursors in PL/SQL:
+Implicit cursors:
+
+These are created by default when DML statements like, INSERT, UPDATE, and DELETE statements are executed. They are also created when a SELECT statement that returns just one row is executed.
+Explicit cursors:
+
+They must be created when you are executing a SELECT statement that returns more than one row. Even though the cursor stores multiple records, only one record can be processed at a time, which is called as current row. When you fetch a row the current row position moves to next row.
+Both implicit and explicit cursors have the same functionality, but they differ in the way they are accessed.
+
+
+
+Implicit Cursors:
+
+When you execute DML statements like DELETE, INSERT, UPDATE and SELECT statements, implicit statements are created to process these statements.
+
+Oracle provides few attributes called as implicit cursor attributes to check the status of DML operations. The cursor attributes available are %FOUND, %NOTFOUND, %ROWCOUNT, and %ISOPEN.
+
+For example, When you execute INSERT, UPDATE, or DELETE statements the cursor attributes tell us whether any rows are affected and how many have been affected.
+When a SELECT... INTO statement is executed in a PL/SQL Block, implicit cursor attributes can be used to find out whether any row has been returned by the SELECT statement. PL/SQL returns an error when no data is selected.
+
+The status of the cursor for each of these attributes are defined in the below table. 
+Attributes
+	
+
+Return Value
+	
+
+Example
+
+%FOUND
+	
+
+The return value is TRUE, if the DML statements like INSERT, DELETE and UPDATE affect at least one row and if SELECT ….INTO statement return at least one row.
+	
+
+SQL%FOUND
+
+The return value is FALSE, if DML statements like INSERT, DELETE and UPDATE do not affect row and if SELECT….INTO statement do not return a row.
+
+%NOTFOUND
+	
+
+The return value is FALSE, if DML statements like INSERT, DELETE and UPDATE at least one row and if SELECT ….INTO statement return at least one row.
+	
+
+SQL%NOTFOUND
+
+The return value is TRUE, if a DML statement like INSERT, DELETE and UPDATE do not affect even one row and if SELECT ….INTO statement does not return a row.
+
+%ROWCOUNT
+	
+
+Return the number of rows affected by the DML operations INSERT, DELETE, UPDATE, SELECT
+	
+
+SQL%ROWCOUNT
+
+For Example: Consider the PL/SQL Block that uses implicit cursor attributes as shown below:
+
+DECLARE  
+var_rows number(5);
+
+BEGIN
+
+  UPDATE emp16 
+
+  SET esal= esal + 1000;
+
+  IF SQL%NOTFOUND THEN
+
+    dbms_output.put_line('None of the salaries where updated');
+
+  ELSIF SQL%FOUND THEN
+
+    var_rows := SQL%ROWCOUNT;
+
+    dbms_output.put_line('Salaries for ' || var_rows || 'employees are updated');
+
+  END IF; 
+
+END; 
+
+In the above PL/SQL Block, the salaries of all the employees in the ‘employee’ table are updated. If none of the employee’s salary are updated we get a message 'None of the salaries where updated'. Else we get a message like for example, 'Salaries for 1000 employees are updated' if there are 1000 rows in ‘employee’ table.
+
+11.
+Explicit Cursors
+
+An explicit cursor is defined in the declaration section of the PL/SQL Block. It is created on a SELECT Statement which returns more than one row. We can provide a suitable name for the cursor.
+
+The General Syntax for creating a cursor is as given below:
+
+CURSOR cursor_name IS select_statement;
+
+    cursor_name – A suitable name for the cursor.
+    select_statement – A select query which returns multiple rows.
+
+
+How to use Explicit Cursor?
+
+There are four steps in using an Explicit Cursor.
+
+    DECLARE the cursor in the declaration section.
+    OPEN the cursor in the Execution Section.
+    FETCH the data from cursor into PL/SQL variables or records in the Execution Section.
+    CLOSE the cursor in the Execution Section before you end the PL/SQL Block.
+
+1) Declaring a Cursor in the Declaration Section:
+
+   DECLARE
+
+   CURSOR emp_cur IS 
+
+   SELECT * 
+
+   FROM emp_tbl
+
+   WHERE salary > 5000; 
+
+      In the above example we are creating a cursor ‘emp_cur’ on a query which returns the records of all the
+      employees with salary greater than 5000. Here ‘emp_tbl’ in the table which contains records of all the
+      employees.
+
+2) Accessing the records in the cursor:
+      Once the cursor is created in the declaration section we can access the cursor in the execution
+      section of the PL/SQL program.
+How to access an Explicit Cursor?
+These are the three steps in accessing the cursor.
+1) Open the cursor.
+2) Fetch the records in the cursor one at a time.
+3) Close the cursor.
+
+General Syntax to open a cursor is:
+
+OPEN cursor_name;
+
+General Syntax to fetch records from a cursor is:
+
+FETCH cursor_name INTO record_name;
+
+OR
+
+FETCH cursor_name INTO variable_list;
+
+General Syntax to close a cursor is:
+
+CLOSE cursor_name;
+
+When a cursor is opened, the first row becomes the current row. When the data is fetched it is copied to the record or variables and the logical pointer moves to the next row and it becomes the current row. On every fetch statement, the pointer moves to the next row. If you want to fetch after the last row, the program will throw an error. When there is more than one row in a cursor we can use loops along with explicit cursor attributes to fetch all the records.
+
+Points to remember while fetching a row:
+
+· We can fetch the rows in a cursor to a PL/SQL Record or a list of variables created in the PL/SQL Block.
+· If you are fetching a cursor to a PL/SQL Record, the record should have the same structure as the cursor.
+· If you are fetching a cursor to a list of variables, the variables should be listed in the same order in the fetch statement as the columns are present in the cursor.
+
+General Form of using an explicit cursor is:
+
+ DECLARE
+
+    variables;
+
+    records;
+
+    create a cursor;
+
+ BEGIN 
+
+   OPEN cursor;
+
+   FETCH cursor;
+
+     process the records;
+
+   CLOSE cursor;
+
+ END;
+
+
+Lets Look at the example below
+
+Example 1:
+
+1> DECLARE 
+
+2>    emp_rec emp_tbl%rowtype;
+
+3>    CURSOR emp_cur IS 
+
+4>    SELECT *
+
+5>    FROM 
+
+6>    WHERE salary > 10; 
+
+7> BEGIN 
+
+8>    OPEN emp_cur; 
+
+9>    FETCH emp_cur INTO emp_rec; 
+
+10>      dbms_output.put_line (emp_rec.first_name || '  ' || emp_rec.last_name); 
+
+11>   CLOSE emp_cur; 
+
+12> END; 
+
+In the above example, first we are creating a record ‘emp_rec’ of the same structure as of table ‘emp_tbl’ in line no 2. We can also create a record with a cursor by replacing the table name with the cursor name. Second, we are declaring a cursor ‘emp_cur’ from a select query in line no 3 - 6. Third, we are opening the cursor in the execution section in line no 8. Fourth, we are fetching the cursor to the record in line no 9. Fifth, we are displaying the first_name and last_name of the employee in the record emp_rec in line no 10. Sixth, we are closing the cursor in line no 11.
+
+
+
+####
+
+ DECLARE 
+    emp_rec emp%rowtype;
+    CURSOR emp_cur IS 
+    SELECT *
+    FROM emp
+    WHERE deptno=10; 
+ BEGIN 
+    OPEN emp_cur; 
+    FETCH emp_cur INTO emp_rec; 
+      dbms_output.put_line (emp_rec.eno || '  ' ||       emp_rec.ename  || emp_rec.esal); 
+      emp_rec.esal :=emp_rec.esal + 200;
+      dbms_output.put_line (emp_rec.esal);
+      update emp
+      set esal=emp_rec.esal 
+      where deptno=10;
+   CLOSE emp_cur; 
+END; 
+/
+
+What are Explicit Cursor Attributes?
+
+Oracle provides some attributes known as Explicit Cursor Attributes to control the data processing while using cursors. We use these attributes to avoid errors while accessing cursors through OPEN, FETCH and CLOSE Statements.
+When does an error occur while accessing an explicit cursor?
+
+a) When we try to open a cursor which is not closed in the previous operation.
+b) When we try to fetch a cursor after the last operation.
+
+These are the attributes available to check the status of an explicit cursor.
+
+Attributes
+	
+
+Return values
+	
+
+Example
+
+%FOUND
+	TRUE, if fetch statement returns at least one row. 	
+
+Cursor_name%FOUND
+FALSE, if fetch statement doesn’t return a row.
+
+%NOTFOUND
+	TRUE, , if fetch statement doesn’t return a row. 	Cursor_name%NOTFOUND
+FALSE, if fetch statement returns at least one row.
+
+%ROWCOUNT
+	The number of rows fetched by the fetch statement 	
+
+Cursor_name%ROWCOUNT
+If no row is returned, the PL/SQL statement returns an error.
+
+%ISOPEN
+	TRUE, if the cursor is already open in the program 	
+
+Cursor_name%ISNAME
+FALSE, if the cursor is not opened in the program.
+
+Using Loops with Explicit Cursors:
+
+Oracle provides three types of cursors namely SIMPLE LOOP, WHILE LOOP and FOR LOOP. These loops can be used to process multiple rows in the cursor. Here I will modify the same example for each loops to explain how to use loops with cursors.
+Cursor with a Simple Loop:
+
+DECLARE 
+   CURSOR emp_cur IS 
+   SELECT eno, esal FROM emp16; 
+   emp_rec emp_cur%rowtype; 
+ BEGIN 
+   IF NOT emp_cur%ISOPEN THEN 
+      OPEN emp_cur;
+   END IF; 
+   LOOP 
+     FETCH emp_cur INTO emp_rec; 
+    dbms_output.put_line(emp_rec.eno || ' ' || emp_rec.esal); 
+     EXIT WHEN emp_cur%NOTFOUND; 
+  END LOOP; 
+  END; 
+/
+
+In the above example we are using two cursor attributes %ISOPEN and %NOTFOUND.
+In line no 6, we are using the cursor attribute %ISOPEN to check if the cursor is open, if the condition is true the program does not open the cursor again, it directly moves to line no 9.
+In line no 11, we are using the cursor attribute %NOTFOUND to check whether the fetch returned any row. If there is no rows found the program would exit, a condition which exists when you fetch the cursor after the last row, if there is a row found the program continues.
+
+We can use %FOUND in place of %NOTFOUND and vice versa. If we do so, we need to reverse the logic of the program. So use these attributes in appropriate instances.
+Cursor with a While Loop:
+
+Lets modify the above program to use while loop.
+
+DECLARE 
+  CURSOR emp_cur IS 
+  SELECT first_name, last_name, esal FROM employees; 
+  emp_rec emp_cur%rowtype; 
+ BEGIN 
+   IF NOT emp_cur%ISOPEN THEN 
+      OPEN emp_cur; 
+   END IF; 
+   FETCH emp_cur INTO emp_rec;  
+  WHILE emp_cur%FOUND 
+  LOOP 
+    dbms_output.put_line(emp_rec.first_name || ' ' ||emp_rec.last_name 
+    || ' ' ||emp_rec.esal); 
+    FETCH emp_cur INTO emp_rec; 
+  END LOOP; 
+ END; 
+/
+
+
+In the above example, in line no 10 we are using %FOUND to evaluate if the first fetch statement in line no 9 returned a row, if true the program moves into the while loop. In the loop we use fetch statement again (line no 15) to process the next row. If the fetch statement is not executed once before the while loop the while condition will return false in the first instance and the while loop is skipped. In the loop, before fetching the record again, always process the record retrieved by the first fetch statement, else you will skip the first row.
+Cursor with a FOR Loop:
+
+When using FOR LOOP you need not declare a record or variables to store the cursor values, need not open, fetch and close the cursor. These functions are accomplished by the FOR LOOP automatically.
+
+DECLARE
+   CURSOR cur_chief IS
+   SELECT e.ename,e.eadd,d.dname 
+   FROM emp e,dept d where  e.eno = d.eno;
+   r_chief cur_chief%ROWTYPE;
+BEGIN
+   OPEN cur_chief;
+     FETCH cur_chief INTO r_chief;
+     while cur_chief%found
+     loop
+        DBMS_OUTPUT.PUT_LINE(r_chief.ename||' '|| r_chief.eadd||' ' || r_chief.dname);
+     FETCH cur_chief INTO r_chief;
+     END LOOP;
+   CLOSE cur_chief;
+end;
+/
+
+Stored Procedures
+
+What is a Stored Procedure?
+
+A stored procedure or in simple a proc is a named PL/SQL block which performs one or more specific task. This is similar to a procedure in other programming languages. A procedure has a header and a body. The header consists of the name of the procedure and the parameters or variables passed to the procedure. The body consists or declaration section, execution section and exception section similar to a general PL/SQL Block. A procedure is similar to an anonymous PL/SQL Block but it is named for repeated usage.
+
+We can pass parameters to procedures in three ways.
+1) IN-parameters
+2) OUT-parameters
+3) IN OUT-parameters
+
+A procedure may or may not return any value.
+
+General Syntax to create a procedure is:
+
+CREATE [OR REPLACE] PROCEDURE proc_name [list of parameters] 
+
+IS    
+
+   Declaration section 
+
+BEGIN    
+
+   Execution section 
+
+EXCEPTION    
+
+  Exception section 
+
+END; 
+
+IS - marks the beginning of the body of the procedure and is similar to DECLARE in anonymous PL/SQL Blocks. The code between IS and BEGIN forms the Declaration section.
+
+The syntax within the brackets [ ] indicate they are optional. By using CREATE OR REPLACE together the procedure is created if no other procedure with the same name exists or the existing procedure is replaced with the current code.
+
+The below example creates a procedure ‘employer_details’ which gives the details of the employee.
+
+ CREATE OR REPLACE PROCEDURE employer_details
+ IS 
+  CURSOR emp_cur IS 
+  SELECT first_name, last_name, esal FROM emppp;
+  emp_rec emp_cur%rowtype;
+ BEGIN 
+  FOR emp_rec in emp_cur 
+  LOOP 
+  dbms_output.put_line(emp_rec.first_name || ' ' ||emp_rec.last_name
+    || ' ' ||emp_rec.esal);
+ END LOOP;
+END;
+/
+
+How to execute a Stored Procedure?
+
+There are two ways to execute a procedure./
+
+1) From the SQL prompt.
+
+ EXECUTE [or EXEC] procedure_name; 
+
+2) Within another procedure – simply use the procedure name.
+
+  procedure_name;
+
+NOTE: In the examples given above, we are using backward slash ‘/’ at the end of the program. This indicates the oracle engine that the PL/SQL program has ended and it can begin processing the statements.
+
+PL/SQL Functions
+
+What is a Function in PL/SQL?
+
+A function is a named PL/SQL Block which is similar to a procedure. The major difference between a procedure and a function is, a function must always return a value, but a procedure may or may not return a value.
+
+The General Syntax to create a function is:
+
+CREATE [OR REPLACE] FUNCTION function_name [parameters] 
+
+RETURN return_datatype;  
+
+IS  
+
+Declaration_section  
+
+BEGIN  
+
+Execution_section 
+
+Return return_variable;  
+
+EXCEPTION  
+
+exception section  
+
+Return return_variable;  
+
+END; 
+
+1) Return Type: The header section defines the return type of the function. The return datatype can be any of the oracle datatype like varchar, number etc.
+2) The execution and exception section both should return a value which is of the datatype defined in the header section.
+
+For example, let’s create a frunction called ''employer_details_func' similar to the one created in stored proc
+
+example 2:
+
+declare
+  ss  number;
+begin
+     ss:=emp_func();
+     dbms_output.put_line('the salary is ' || ss);
+end;
+/* CREATE OR REPLACE FUNCTION  emp_func1
+    RETURN number 
+ IS 
+    esalary number; 
+ BEGIN 
+	SELECT esal iNTO esalary
+	FROM employees WHERE eno = 'e001';
+	RETURN esalary;
+ END;*/
+/
+
+
+1> /
+
+11> / 
+
+In the example we are retrieving the ‘first_name’ of employee with empID 100 to variable ‘emp_name’.
+The return type of the function is VARCHAR which is declared in line no 2.
+The function returns the 'emp_name' which is of type VARCHAR as the return value in line no 9.
+How to execute a PL/SQL Function?
+
+A function can be executed in the following ways.
+
+1) Since a function returns a value we can assign it to a variable.
+
+employee_name :=  employer_details_func;
+
+If ‘employee_name’ is of datatype varchar we can store the name of the employee by assigning the return type of the function to it.
+
+2) As a part of a SELECT statement
+
+SELECT employer_details_func FROM dual;
+
+3) In a PL/SQL Statements like,
+
+dbms_output.put_line(employer_details_func);
+
+Parameters in Procedure and Functions
+
+How to pass parameters to Procedures and Functions in PL/SQL ?
+
+In PL/SQL, we can pass parameters to procedures and functions in three ways.
+
+1) IN type parameter: These types of parameters are used to send values to stored procedures.
+2) OUT type parameter: These types of parameters are used to get values from stored procedures. This is similar to a return type in functions.
+3) IN OUT parameter: These types of parameters are used to send values and get values from stored procedures.
+
+NOTE: If a parameter is not explicitly defined a parameter type, then by default it is an IN type parameter.
+
+1) IN parameter:
+
+This is similar to passing parameters in programming languages. We can pass values to the stored procedure through these parameters or variables. This type of parameter is a read only parameter. We can assign the value of IN type parameter to a variable or use it in a query, but we cannot change its value inside the procedure.
+
+The General syntax to pass a IN parameter is
+
+CREATE [OR REPLACE] PROCEDURE procedure_name ( 
+
+  param_name1 IN datatype, param_name12 IN datatype ... )
+
+    param_name1, param_name2... are unique parameter names.
+    datatype - defines the datatype of the variable.
+    IN - is optional, by default it is a IN type parameter.
+
+
+2) OUT Parameter:
+
+The OUT parameters are used to send the OUTPUT from a procedure or a function. This is a write-only parameter i.e, we cannot pass values to OUT paramters while executing the stored procedure, but we can assign values to OUT parameter inside the stored procedure and the calling program can recieve this output value.
+
+The General syntax to create an OUT parameter is
+
+CREATE [OR REPLACE] PROCEDURE proc2 (param_name OUT datatype) 
+
+The parameter should be explicity declared as OUT parameter.
+
+3) IN OUT Parameter:
+
+The IN OUT parameter allows us to pass values into a procedure and get output values from the procedure. This parameter is used if the value of the IN parameter can be changed in the calling program.
+
+By using IN OUT parameter we can pass values into a parameter and return a value to the calling program using the same parameter. But this is possible only if the value passed to the procedure and output value have a same datatype. This parameter is used if the value of the parameter will be changed in the procedure.
+
+The General syntax to create an IN OUT parameter is
+
+CREATE [OR REPLACE] PROCEDURE proc3 (param_name IN OUT datatype)
+
+
+The below examples show how to create stored procedures using the above three types of parameters.
+
+Example1:
+
+Using IN and OUT parameter:
+
+Let’s create a procedure which gets the name of the employee when the employee id is passed.
+
+1> /
+7> /
+
+We can call the procedure ‘emp_name’ in this way from a PL/SQL Block.
+
+1> DECLARE
+
+2>  empName varchar(20);
+
+3>  CURSOR id_cur SELECT id FROM emp_ids;
+
+4> BEGIN
+
+5> FOR emp_rec in id_cur
+
+6> LOOP
+
+7>   emp_name(emp_rec.id, empName);
+
+8>   dbms_output.putline('The employee ' || empName || ' has id ' || emp-rec.id);
+
+9> END LOOP;
+
+10> END;
+
+11> /
+
+In the above PL/SQL Block
+In line no 3; we are creating a cursor ‘id_cur’ which contains the employee id.
+In line no 7; we are calling the procedure ‘emp_name’, we are passing the ‘id’ as IN parameter and ‘empName’ as OUT parameter.
+In line no 8; we are displaying the id and the employee name which we got from the procedure ‘emp_name’.
+
+
+1. CREATE OR REPLACE PROCEDURE emp_salary_increase1
+ (emp_id IN emp16.eno%type) 
+ IS 
+    tmp_sal number; 
+ BEGIN 
+    SELECT esal 
+    INTO tmp_sal 
+    FROM emp16
+    WHERE eno = emp_id; 
+   dbms_output.put_line('the incremented salary is :' || tmp_sal);
+ END;*/
+/
+
+2. CREATE OR REPLACE PROCEDURE emp_salary_increase
+ (emp_id IN emp16.eno%type, salary_inc IN OUT emp16.esal%type) 
+ IS 
+    tmp_sal number; 
+ BEGIN 
+    SELECT esal 
+    INTO tmp_sal 
+    FROM emp16
+    WHERE eno = emp_id; /
+   IF tmp_sal between 10000 and 20000 THEN 
+      salary_inc := tmp_sal * 1.2; 
+   ELSIF tmp_sal between 20000 and 30000 THEN 
+      salary_inc := tmp_sal * 1.3; 
+   ELSIF tmp_sal > 30000 THEN 
+      salary_inc := tmp_sal * 1.4; 
+   END IF; 
+   dbms_output.put_line('the incremented salary is :' || salary_inc);
+ END;
+/
+
+
+Example 2:
+
+Using IN OUT parameter in procedures:
+
+1> CREATE OR REPLACE PROCEDURE emp_salary_increase
+
+2> (emp_id IN emptbl.empID%type, salary_inc IN OUT emptbl.salary%type) 
+
+3> IS 
+
+4>    tmp_sal number; 
+
+5> BEGIN 
+
+6>    SELECT salary 
+
+7>    INTO tmp_sal 
+
+8>    FROM emp_tbl
+
+9>    WHERE empID = emp_id; 
+
+10>   IF tmp_sal between 10000 and 20000 THEN 
+
+11>      salary_inout := tmp_sal * 1.2; 
+
+12>   ELSIF tmp_sal between 20000 and 30000 THEN 
+
+13>      salary_inout := tmp_sal * 1.3; 
+
+14>   ELSIF tmp_sal > 30000 THEN 
+
+15>      salary_inout := tmp_sal * 1.4; 
+
+16>   END IF; 
+
+17> END;
+
+18> / 
+
+The below PL/SQL block shows how to execute the above 'emp_salary_increase' procedure.
+
+1> DECLARE 
+
+2>    CURSOR updated_sal is 
+
+3>    SELECT empID,salary 
+
+4>    FROM emp_tbl; 
+
+5>    pre_sal number; 
+
+6> BEGIN 
+
+7>   FOR emp_rec IN updated_sal LOOP 
+
+8>       pre_sal := emp_rec.salary; 
+
+9>       emp_salary_increase(emp_rec.empID, emp_rec.salary); 
+
+10>       dbms_output.put_line('The salary of ' || emp_rec.empID || 
+
+11>                ' increased from '|| pre_sal || ' to '||emp_rec.salary);
+
+12>   END LOOP; 
+
+13> END;
+
+14> /
+
+
+Exception Handling
+
+In this section we will discuss about the following,
+1) What is Exception Handling.
+2) Structure of Exception Handling.
+3) Types of Exception Handling.
+1) What is Exception Handling?
+
+PL/SQL provides a feature to handle the Exceptions which occur in a PL/SQL Block known as exception Handling. Using Exception Handling we can test the code and avoid it from exiting abruptly. When an exception occurs a messages which explains its cause is recieved.
+PL/SQL Exception message consists of three parts.
+1) Type of Exception
+2) An Error Code
+3) A message
+By Handling the exceptions we can ensure a PL/SQL block does not exit abruptly.
+2) Structure of Exception Handling.
+
+The General Syntax for coding the exception section
+
+ DECLARE
+
+   Declaration section 
+
+ BEGIN 
+
+   Exception section 
+
+ EXCEPTION 
+
+ WHEN ex_name1 THEN 
+
+    -Error handling statements 
+
+ WHEN ex_name2 THEN 
+
+    -Error handling statements 
+
+ WHEN Others THEN 
+
+   -Error handling statements 
+
+END; 
+
+General PL/SQL statments can be used in the Exception Block.
+
+When an exception is raised, Oracle searches for an appropriate exception handler in the exception section. For example in the above example, if the error raised is 'ex_name1 ', then the error is handled according to the statements under it. Since, it is not possible to determine all the possible runtime errors during testing fo the code, the 'WHEN Others' exception is used to manage the exceptions that are not explicitly handled. Only one exception can be raised in a Block and the control does not return to the Execution Section after the error is handled.
+
+If there are nested PL/SQL blocks like this.
+
+ DELCARE
+
+   Declaration section 
+
+ BEGIN
+
+    DECLARE
+
+      Declaration section 
+
+    BEGIN 
+
+      Execution section 
+
+    EXCEPTION 
+
+      Exception section 
+
+    END; 
+
+ EXCEPTION
+
+   Exception section 
+
+ END; 
+
+In the above case, if the exception is raised in the inner block it should be handled in the exception block of the inner PL/SQL block else the control moves to the Exception block of the next upper PL/SQL Block. If none of the blocks handle the exception the program ends abruptly with an error.
+3) Types of Exception.
+
+There are 3 types of Exceptions.
+a) Named System Exceptions
+b) Unnamed System Exceptions
+c) User-defined Exceptions
+a) Named System Exceptions
+
+System exceptions are automatically raised by Oracle, when a program violates a RDBMS rule. There are some system exceptions which are raised frequently, so they are pre-defined and given a name in Oracle which are known as Named System Exceptions.
+
+For example: NO_DATA_FOUND and ZERO_DIVIDE are called Named System exceptions.
+
+Named system exceptions are:
+1) Not Declared explicitly,
+2) Raised implicitly when a predefined Oracle error occurs,
+3) caught by referencing the standard name within an exception-handling routine.
+Exception Name 	Reason 	Error Number
+
+CURSOR_ALREADY_OPEN
+	
+
+When you open a cursor that is already open.
+	
+
+ORA-06511
+
+INVALID_CURSOR
+	
+
+When you perform an invalid operation on a cursor like closing a cursor, fetch data from a cursor that is not opened.
+	
+
+ORA-01001
+
+NO_DATA_FOUND
+	
+
+When a SELECT...INTO clause does not return any row from a table.
+	
+
+ORA-01403
+
+TOO_MANY_ROWS
+	
+
+When you SELECT or fetch more than one row into a record or variable.
+	
+
+ORA-01422
+
+ZERO_DIVIDE
+	
+
+When you attempt to divide a number by zero.
+	
+
+ORA-01476
+
+For Example: Suppose a NO_DATA_FOUND exception is raised in a proc, we can write a code to handle the exception as given below.
+
+BEGIN 
+
+  Execution section
+
+EXCEPTION 
+
+WHEN NO_DATA_FOUND THEN 
+
+ dbms_output.put_line ('A SELECT...INTO did not return any row.'); 
+
+ END; 
+
+b) Unnamed System Exceptions
+
+Those system exception for which oracle does not provide a name is known as unamed system exception. These exception do not occur frequently. These Exceptions have a code and an associated message.
+
+There are two ways to handle unnamed sysyem exceptions:
+1. By using the WHEN OTHERS exception handler, or
+2. By associating the exception code to a name and using it as a named exception.
+
+We can assign a name to unnamed system exceptions using a Pragma called EXCEPTION_INIT.
+EXCEPTION_INIT will associate a predefined Oracle error number to a programmer_defined exception name.
+
+Steps to be followed to use unnamed system exceptions are
+• They are raised implicitly.
+• If they are not handled in WHEN Others they must be handled explicity.
+• To handle the exception explicity, they must be declared using Pragma EXCEPTION_INIT as given above and handled referecing the user-defined exception name in the exception section.
+
+The general syntax to declare unnamed system exception using EXCEPTION_INIT is:
+
+DECLARE 
+
+   exception_name EXCEPTION; 
+
+   PRAGMA 
+
+   EXCEPTION_INIT (exception_name, Err_code); 
+
+BEGIN 
+
+Execution section
+
+EXCEPTION
+
+  WHEN exception_name THEN
+
+     handle the exception
+
+END;
+
+For Example: Lets consider the product table and order_items table from sql joins.
+
+Here product_id is a primary key in product table and a foreign key in order_items table.
+If we try to delete a product_id from the product table when it has child records in order_id table an exception will be thrown with oracle code number -2292.
+We can provide a name to this exception and handle it in the exception section as given below.
+
+ DECLARE 
+
+  Child_rec_exception EXCEPTION; 
+
+  PRAGMA 
+
+   EXCEPTION_INIT (Child_rec_exception, -2292); 
+
+BEGIN 
+
+  Delete FROM product where product_id= 104; 
+
+EXCEPTION 
+
+   WHEN Child_rec_exception 
+
+   THEN Dbms_output.put_line('Child records are present for this product_id.'); 
+
+END; 
+
+/ 
+
+c) User-defined Exceptions
+
+Apart from sytem exceptions we can explicity define exceptions based on business rules. These are known as user-defined exceptions.
+
+Steps to be followed to use user-defined exceptions:
+• They should be explicitly declared in the declaration section.
+• They should be explicitly raised in the Execution Section.
+• They should be handled by referencing the user-defined exception name in the exception section.
+
+For Example: Lets consider the product table and order_items table from sql joins to explain user-defined exception.
+Lets create a business rule that if the total no of units of any particular product sold is more than 20, then it is a huge quantity and a special discount should be provided.
+
+DECLARE 
+
+  huge_quantity EXCEPTION; 
+
+  CURSOR product_quantity is 
+
+  SELECT p.product_name as name, sum(o.total_units) as units
+
+  FROM order_tems o, product p
+
+  WHERE o.product_id = p.product_id; 
+
+  quantity order_tems.total_units%type; 
+
+  up_limit CONSTANT order_tems.total_units%type := 20; 
+
+  message VARCHAR2(50); 
+
+BEGIN 
+
+  FOR product_rec in product_quantity LOOP 
+
+    quantity := product_rec.units;
+
+     IF quantity > up_limit THEN 
+
+      message := 'The number of units of product ' || product_rec.name ||  
+
+                 ' is more than 20. Special discounts should be provided. 
+
+		 Rest of the records are skipped. '
+
+     RAISE huge_quantity; 
+
+     ELSIF quantity < up_limit THEN 
+
+      v_message:= 'The number of unit is below the discount limit.'; 
+
+     END IF; 
+
+     dbms_output.put_line (message); 
+
+  END LOOP; 
+
+ EXCEPTION 
+
+   WHEN huge_quantity THEN 
+
+     dbms_output.put_line (message); 
+
+ END; 
+
+/ 
+
+RAISE_APPLICATION_ERROR ( )
+
+RAISE_APPLICATION_ERROR is a built-in procedure in oracle which is used to display the user-defined error messages along with the error number whose range is in between -20000 and -20999.
+
+Whenever a message is displayed using RAISE_APPLICATION_ERROR, all previous transactions which are not committed within the PL/SQL Block are rolled back automatically (i.e. change due to INSERT, UPDATE, or DELETE statements).
+
+RAISE_APPLICATION_ERROR raises an exception but does not handle it.
+
+RAISE_APPLICATION_ERROR is used for the following reasons,
+a) to create a unique id for an user-defined exception.
+b) to make the user-defined exception look like an Oracle error.
+
+The General Syntax to use this procedure is:
+
+RAISE_APPLICATION_ERROR (error_number, error_message); 
+
+
+• The Error number must be between -20000 and -20999
+• The Error_message is the message you want to display when the error occurs.
+
+Steps to be folowed to use RAISE_APPLICATION_ERROR procedure:
+1. Declare a user-defined exception in the declaration section.
+2. Raise the user-defined exception based on a specific business rule in the execution section.
+3. Finally, catch the exception and link the exception to a user-defined error number in RAISE_APPLICATION_ERROR.
+
+Using the above example we can display a error message using RAISE_APPLICATION_ERROR.
+
+DECLARE
+
+  huge_quantity EXCEPTION; 
+
+  CURSOR product_quantity is 
+
+  SELECT p.product_name as name, sum(o.total_units) as units
+
+  FROM order_tems o, product p
+
+  WHERE o.product_id = p.product_id; 
+
+  quantity order_tems.total_units%type; 
+
+  up_limit CONSTANT order_tems.total_units%type := 20; 
+
+  message VARCHAR2(50); 
+
+BEGIN 
+
+  FOR product_rec in product_quantity LOOP 
+
+    quantity := product_rec.units;
+
+     IF quantity > up_limit THEN 
+
+        RAISE huge_quantity; 
+
+     ELSIF quantity < up_limit THEN 
+
+      v_message:= 'The number of unit is below the discount limit.'; 
+
+     END IF; 
+
+     Dbms_output.put_line (message); 
+
+  END LOOP; 
+
+ EXCEPTION 
+
+   WHEN huge_quantity THEN 
+
+	raise_application_error(-2100, 'The number of unit is above the discount limit.');
+
+ END; 
+
+What is a Trigger?
+
+A trigger is a pl/sql block structure which is fired when a DML statements like Insert, Delete, Update is executed on a database table. A trigger is triggered automatically when an associated DML statement is executed.
+
+Syntax of Triggers
+
+The Syntax for creating a trigger is:
+
+ CREATE [OR REPLACE ] TRIGGER trigger_name 
+
+ {BEFORE | AFTER | INSTEAD OF } 
+
+ {INSERT [OR] | UPDATE [OR] | DELETE} 
+
+ [OF col_name] 
+
+ ON table_name 
+
+ [REFERENCING OLD AS o NEW AS n] 
+
+ [FOR EACH ROW] 
+
+ WHEN (condition)  
+
+ BEGIN 
+
+   --- sql statements  
+
+ END; 
+
+    CREATE [OR REPLACE ] TRIGGER trigger_name - This clause creates a trigger with the given name or overwrites an existing trigger with the same name.
+    {BEFORE | AFTER | INSTEAD OF } - This clause indicates at what time should the trigger get fired. i.e for example: before or after updating a table. INSTEAD OF is used to create a trigger on a view. before and after cannot be used to create a trigger on a view.
+    {INSERT [OR] | UPDATE [OR] | DELETE} - This clause determines the triggering event. More than one triggering events can be used together separated by OR keyword. The trigger gets fired at all the specified triggering event.
+    [OF col_name] - This clause is used with update triggers. This clause is used when you want to trigger an event only when a specific column is updated.
+    CREATE [OR REPLACE ] TRIGGER trigger_name - This clause creates a trigger with the given name or overwrites an existing trigger with the same name.
+    [ON table_name] - This clause identifies the name of the table or view to which the trigger is associated.
+    [REFERENCING OLD AS o NEW AS n] - This clause is used to reference the old and new values of the data being changed. By default, you reference the values as :old.column_name or :new.column_name. The reference names can also be changed from old (or new) to any other user-defined name. You cannot reference old values when inserting a record, or new values when deleting a record, because they do not exist.
+    [FOR EACH ROW] - This clause is used to determine whether a trigger must fire when each row gets affected ( i.e. a Row Level Trigger) or just once when the entire sql statement is executed(i.e.statement level Trigger).
+    WHEN (condition) - This clause is valid only for row level triggers. The trigger is fired only for rows that satisfy the condition specified.
+
+
+      
+
+For Example: The price of a product changes constantly. It is important to maintain the history of the prices of the products.
+
+We can create a trigger to update the 'product_price_history' table when the price of the product is updated in the 'product' table.
+
+1) Create the 'product' table and 'product_price_history' table
+
+CREATE TABLE product_price_history 
+
+(product_id number(5), 
+
+product_name varchar2(32), 
+
+supplier_name varchar2(32), 
+
+unit_price number(7,2) ); 
+
+
+CREATE TABLE product 
+
+(product_id number(5), 
+
+product_name varchar2(32), 
+
+supplier_name varchar2(32), 
+
+unit_price number(7,2) ); 
+
+2) Create the price_history_trigger and execute it.
+
+CREATE or REPLACE TRIGGER price_history_trigger1 
+
+BEFORE UPDATE OF unit_price 
+
+ON product1 
+
+FOR EACH ROW 
+
+BEGIN 
+
+INSERT INTO product_price_history1 
+
+VALUES 
+
+(:old.product_id, 
+
+ :old.product_name, 
+
+ :old.supplier_name, 
+
+ :old.unit_price); 
+
+END; 
+
+/ 
+
+3) Lets update the price of a product.
+
+UPDATE PRODUCT SET unit_price = 800 WHERE product_id = 100
+
+Once the above update query is executed, the trigger fires and updates the 'product_price_history' table.
+
+4)If you ROLLBACK the transaction before committing to the database, the data inserted to the table is also rolled back.
+Types of PL/SQL Triggers
+
+There are two types of triggers based on the which level it is triggered.
+1) Row level trigger - An event is triggered for each row upated, inserted or deleted.
+2) Statement level trigger - An event is triggered for each sql statement executed.
+PL/SQL Trigger Execution Hierarchy
+
+The following hierarchy is followed when a trigger is fired.
+1) BEFORE statement trigger fires first.
+2) Next BEFORE row level trigger fires, once for each row affected.
+3) Then AFTER row level trigger fires once for each affected row. This events will alternates between BEFORE and AFTER row level triggers.
+4) Finally the AFTER statement level trigger fires.
+
+For Example: Let's create a table 'product_check' which we can use to store messages when triggers are fired.
+
+CREATE TABLE product_check
+/
+
+(Message varchar2(50), 
+
+ Current_Date date
+
+);
+
+Let's create a BEFORE and AFTER statement and row level triggers for the product table.
+
+1) BEFORE UPDATE, Statement Level: This trigger will insert a record into the table 'product_check' before a sql update statement is executed, at the statement level.
+
+CREATE or REPLACE TRIGGER Before_Update_Stat_product 
+
+BEFORE 
+
+UPDATE Of unit_price oN product 
+
+Begin 
+
+INSERT INTO product_check 
+
+Values('Before update, statement level',sysdate); 
+
+END; 
+
+/ 
+
+2) BEFORE UPDATE, Row Level: This trigger will insert a record into the table 'product_check' before each row is updated.
+
+ CREATE or REPLACE TRIGGER Before_Upddate_Row_product 
+
+ BEFORE 
+
+ UPDATE ON product 
+
+ FOR EACH ROW 
+
+ BEGIN 
+
+ INSERT INTO product_check 
+
+ Values('Before update row level',sysdate); 
+
+ END; 
+
+ / 
+
+3) AFTER UPDATE, Statement Level: This trigger will insert a record into the table 'product_check' after a sql update statement is executed, at the statement level.
+
+ CREATE or REPLACE TRIGGER After_Update_Stat_product 
+
+ AFTER 
+
+ UPDATE ON product 
+
+ BEGIN 
+
+ INSERT INTO product_check 
+
+ Values('After update, statement level', sysdate); 
+
+ End; 
+
+ / 
+
+4) AFTER UPDATE, Row Level: This trigger will insert a record into the table 'product_check' after each row is updated.
+
+ CREATE or REPLACE TRIGGER After_Update_Row_product 
+
+ AFTER  
+
+ insert On product 
+
+ FOR EACH ROW 
+
+ BEGIN 
+
+ INSERT INTO product_check 
+
+ Values('After update, Row level',sysdate); 
+
+ END; 
+
+ / 
+
+Now lets execute a update statement on table product.
+
+ UPDATE PRODUCT SET unit_price = 800  
+
+ WHERE product_id in (100,101); 
+
+Lets check the data in 'product_check' table to see the order in which the trigger is fired.
+
+ SELECT * FROM product_check; 
+
+Output:
+
+Mesage                                             Current_Date
+
+------------------------------------------------------------
+
+Before update, statement level          26-Nov-2008
+Before update, row level                    26-Nov-2008
+After update, Row level                     26-Nov-2008
+Before update, row level                    26-Nov-2008
+After update, Row level                     26-Nov-2008
+After update, statement level            26-Nov-2008
+
+The above result shows 'before update' and 'after update' row level events have occured twice, since two records were updated. But 'before update' and 'after update' statement level events are fired only once per sql statement.
+
+The above rules apply similarly for INSERT and DELETE statements.
+How To know Information about Triggers.
+
+We can use the data dictionary view 'USER_TRIGGERS' to obtain information about any trigger.
+
+The below statement shows the structure of the view 'USER_TRIGGERS'
+
+ DESC USER_TRIGGERS; 
+
+NAME                              Type
+
+--------------------------------------------------------
+
+TRIGGER_NAME                 VARCHAR2(30)
+TRIGGER_TYPE                  VARCHAR2(16)
+TRIGGER_EVENT                VARCHAR2(75)
+TABLE_OWNER                  VARCHAR2(30)
+BASE_OBJECT_TYPE           VARCHAR2(16)
+TABLE_NAME                     VARCHAR2(30)
+COLUMN_NAME                  VARCHAR2(4000)
+REFERENCING_NAMES        VARCHAR2(128)
+WHEN_CLAUSE                  VARCHAR2(4000)
+STATUS                            VARCHAR2(8)
+DESCRIPTION                    VARCHAR2(4000)
+ACTION_TYPE                   VARCHAR2(11)
+TRIGGER_BODY                 LONG
+
+This view stores information about header and body of the trigger.
+
+SELECT * FROM user_triggers WHERE trigger_name = 'Before_Update_Stat_product'; 
+
+The above sql query provides the header and body of the trigger 'Before_Update_Stat_product'.
+
+You can drop a trigger using the following command.
+
+DROP TRIGGER trigger_name;
+
+CYCLIC CASCADING in a TRIGGER
+
+This is an undesirable situation where more than one trigger enter into an infinite loop. while creating a trigger we should ensure the such a situtation does not exist.
+
+The below example shows how Trigger's can enter into cyclic cascading.
+Let's consider we have two tables 'abc' and 'xyz'. Two triggers are created.
+1) The INSERT Trigger, triggerA on table 'abc' issues an UPDATE on table 'xyz'.
+2) The UPDATE Trigger, triggerB on table 'xyz' issues an INSERT on table 'abc'.
+
+In such a situation, when there is a row inserted in table 'abc', triggerA fires and will update table 'xyz'.
+When the table 'xyz' is updated, triggerB fires and will insert a row in table 'abc'.
+This cyclic situation continues and will enter into a infinite loop, which will crash the database.
+
+
+
+
+
+
+    

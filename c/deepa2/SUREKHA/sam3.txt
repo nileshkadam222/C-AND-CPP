@@ -1,0 +1,16 @@
+DECLARE 
+  CURSOR emp_cur IS 
+  SELECT ename, esal FROM emp where esal >30000; 
+  emp_rec emp_cur%rowtype; 
+ BEGIN 
+   IF NOT emp_cur%ISOPEN THEN 
+      OPEN emp_cur; 
+   END IF; 
+   FETCH emp_cur INTO emp_rec;  
+  WHILE emp_cur%FOUND 
+  LOOP 
+    dbms_output.put_line(emp_rec.ename || ' ' ||emp_rec.esal); 
+    FETCH emp_cur INTO emp_rec; 
+  END LOOP; 
+ END; 
+/

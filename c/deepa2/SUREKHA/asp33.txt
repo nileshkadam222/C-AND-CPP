@@ -1,0 +1,354 @@
+ASP is a powerful tool for making dynamic and interactive Web pages.
+What Are Active Server Pages?
+Active Server Pages (ASPs) are Web pages that contain server-side scripts in addition to the usual mixture of text and HTML (Hypertext Markup Language) tags. Server-side scripts are special commands you put in Web pages that are processed before the pages are sent from your Personal Web Server to the Web browser of someone who's visiting your Web site. . When you type a URL in the Address box or click a link on a Web page, you're asking a Web hosting server on a computer somewhere to send a file to the Web browser (sometimes called a "client") on your computer. If that file is a normal HTML file, it looks exactly the same when your Web browser receives it as it did before the Web server sent it. After receiving the file, your Web browser displays its contents as a combination of text, images, and sounds.
+
+In the case of an Active Server Page, the process is similar, except there's an extra processing step that takes place just before the Web server sends the file. Before the Web server sends the Active Server Page to the Web browser, it runs all server-side scripts contained in the page. Some of these scripts display the current date, time, and other information. Others process information the user has just typed into a form, such as a page in the Web site's guestbook.
+
+To distinguish them from normal HTML pages, Active Server Pages are given the ".asp" extension.
+What Can You Do with Active Server Pages?
+There are many things you can do with Active Server Pages.
+
+    You can display date, time, and other information in different ways.
+    You can make a survey form and ask people who visit your site to fill it out, send emails, save the information to a file, etc
+
+What Do Active Server Pages Look Like?
+The appearance of an Active Server Page depends on who or what is viewing it. To the Web browser that receives it, an Active Server Page looks just like a normal HTML page. If a visitor to your Web site views the source code of an Active Server Page, that's what they see: a normal HTML page. However, the file located in the server  looks very different. In addition to text and HTML tags, you also see server-side scripts. This is what the Active Server Page looks like to the Web server before it is processed and sent in response to a request.
+What Do Server-Side Scripts Look Like?
+Server-side scripts look a lot like HTML tags. However, instead of starting and ending with lesser-than ( < ) and greater-than ( > ) brackets, they typically start with <% and end with %>. The <% is called an opening tag, and the %> is called a closing tag. In between these tags are the server-side scripts. You can insert server-side scripts anywhere in your Web page--even inside HTML tags. 
+***************
+<!DOCTYPE html>
+<html>
+<body>
+<%
+response.write("My first ASP script!")
+%>
+</body>
+</html> 
+********************
+firstscript.asp ASP Code:
+
+<%
+Response.Write("Hello Me")
+%>
+
+Be sure to save this file to the directory "tizagASP" as was mentioned in the previous lesson, Running ASP.
+
+Launch Internet Explorer and type the following into the address bar:
+
+    http://localhost/tizagASP/firstscript.asp
+
+Internet Explorer Display:
+Hello Me 
+
+2.ASP Syntax: Wrappers
+
+Just how HTML uses tags to create web pages, ASP needs tags to create dynamic web sites. These tags do not resemble the typical tags used in HTML, so be sure you notice the difference between tags used for ASP and tags used for HTML. 
+<html>
+<body>
+<%
+Response.Write("Hello Me")
+%>
+</body>
+</html>
+
+3.
+ASP - Tags
+
+These special tags <% and %> will always encapsulate your ASP code. Some things about the ASP tag that sets it apart from normal HTML tags:
+
+    An opening ASP tag is <% while an HTML tag normally looks like <tagname>
+    A closing ASP tag looks like %> while an HTML tag normally looks like </tagname>
+    ASP code can occurr anywhere, even within an HTML tag opening tag like this:
+
+ASP Code:
+
+<a href="<% Response.Write("index.asp") %>">Home</a>
+
+Display:
+Home 
+
+4
+ASP Syntax - Script Dependent
+
+Besides the ASP Tag wrapper, the rest of ASP's syntax is dependent on which scripting language you are using in your ASP code. The default setting for ASP is VBScript, a scripting language based off of Visual Basic. However, you can also use non-Microsoft scripting languages, the most popular option being Javascript. The following two lessons will be talking about coding ASP with the aide of both these scripting languages.
+5..
+ASP Programming - VBScript
+
+As was mentioned in the last lesson, ASP uses VBScript as its default scripting language. VBScript is similar to Javascript, a client side programming language used to add functionality through the <script> tag.
+VBScript, when used to program ASP converts it to server side scripting. Any given web page could be created from a combination of server side and client side scripting. The confusing part is this: You must use these client side scripting languages (Javascript, VBScript, etc) to program in ASP!
+
+Below we have a simple ASP script programmed in VBScript and includes the necessary HTML as well. This is only server-side scripting.
+Server Side ASP Code using VBScript:
+
+6>
+<html>
+<body>
+<% 
+Dim myString
+myString = Date()
+Response.Write("The date is: " & myString)
+%>
+</body>
+</html>
+
+Display:
+The 
+date is: 4/24/2012 
+
+7.
+<script>
+document.write("The date is:<% 
+Dim myString
+myString = Date()
+Response.Write(myString)
+%>")
+</script>
+
+Display:
+The date is: 4/24/2012 
+
+8.
+ASP Operators
+
+ASP is programmed in VBScript by default, thus ASP's operators are VBScript operators by default. 
+ASP Arithmetic Operators
+
+The mathematical operators in ASP are similar to many other programming languages. However, ASP does not support shortcut operators like ++, --, +=, etc.
+Operator	English	Example	Result
++	Addition	myNum = 3 + 4	myNum = 7
+-	Subtraction	myNum = 4 - 1	myNum = 3
+*	Multiplication	myNum = 3 * 2	myNum = 6
+/	Division	myNum = 9 / 3	myNum = 3
+^	Exponential	myNum = 2 ^ 4	myNum = 16
+Mod	Modulus	myNum = 23 Mod 10	myNum = 3
+-	Negation	myNum = -10	myNum = -10
+\	Integer Division	myNum = 9 \ 3	myNum = 3
+Comparison Operators
+
+Comparison operators are used when you want to compare two values to make a decision. Comparison operators are most commonly used in conjunction with "If...Then" and "While something is true do this..." statements, otherwise known as conditional statements. The items that are most often compared are numbers. The result of a comparison operator is either TRUE or FALSE.
+Operator	English	Example	Result
+=	Equal To	4 = 3	False
+<	Less Than	4 < 3	False
+>	Greater Than	4 > 3	True
+<=	Less Than Or Equal To	4 <= 3	False
+>=	Greater Than Or Equal To	4 >= 3	True
+<>	Not Equal To	4 <>3	True
+Logical Operators
+
+The above comparison operators result in a truth value of TRUE or FALSE. A logical operator is used for complex statements that must make decisions based on one or more of these truth values.
+Operator	English	Example	Result
+And	Both Must be TRUE	True and False	False
+Or	One Must be TRUE	True or False	True
+Not	Flips Truth Value	Not True	False
+String Operators
+
+The only string operator is the string concatenation operator "&" that takes two strings and slams them together to form a new string. An example would be string1 = "Tim" and string2 = " is a Hero". The following code would combine these two strings into one: string3 = string1 & string2
+Operator	English	Example	Result
+&	String Concatenation	string4 = "Bob" & " runs"	string4 = "Bob runs"
+
+9.
+
+ASP - If Statement
+
+An If Statement is used to make a decision in your ASP program to execute certain code if some condition is True. Because ASP is programmed in VBScript by default, when you program an ASP If Statement it is actually the same as programming a VBScript If Statement.
+
+
+
+ASP's If Statement is slightly different than the If Statement implementation in most other languages. There are no brackets, or curly braces, nor are there any parenthesis. Rather the beginning of the code to be executed in the If Statement when its true is marked with Then and the end of the If Statement is plainly marked with End If. Below is a very basic If Statement that will always be True.
+ASP Code:
+
+<%
+Dim myNum
+myNum = 6
+If myNum = 6 Then
+	Response.Write("Variable myNum = 6")
+End If
+%>
+
+Display:
+Variable myNum = 6
+
+ASP Code:
+
+<%
+Dim myNum
+myNum = 23
+If myNum = 6 Then
+	Response.Write("Variable myNum = 6")
+Else
+	Response.Write("**Variable myNum = " & myNum)
+End If
+%>
+
+Display:
+**Variable myNum = 23
+ASP - ElseIf Conditional Statement
+
+
+ASP Code:
+
+<%
+Dim myFastfood
+myFastfood = "JBox"
+If myFastfood = "McD's" Then
+	Response.Write("Happy Meal Por Favor!")
+ElseIf myFastfood = "JBox" Then
+	Response.Write("Two tacos please!")
+Else
+	Response.Write("Foot-long turkey sub.")
+End If
+%>
+
+Display:
+Two tacos please!
+
+10.
+ASP Select Case
+
+In the previous lesson you learned how to setup a block of If Statements using the ElseIf keyword, but this is not the most efficient method for checking multiple conditions. ASP uses the Select Case statement to check for multiple Is Equal To "=" conditions of a single variable. 
+
+<%
+Dim myNum
+myNum = 5
+Select Case myNum
+	Case 2
+		Response.Write("myNum is Two")
+	Case 3
+		Response.Write("myNum is Three")
+	Case 5
+		Response.Write("myNum is Five")
+	Case Else
+		Response.Write("myNum is " & myNum) 
+End Select
+%>
+Display:
+myNum is Five 
+11,
+<%
+Dim myNum
+myNum = 454
+Select Case myNum
+	Case 2
+		Response.Write("myNum is Two")
+	Case 3
+		Response.Write("myNum is Three")
+	Case 5
+		Response.Write("myNum is Five")
+	Case Else
+		Response.Write("myNum is " & myNum) 
+End Select
+%>
+
+
+Display:
+myNum is 454 
+
+12.
+<%
+Dim myPet
+myPet = "cat"
+Select Case myPet
+	Case "dog"
+		Response.Write("I own a dog")
+	Case "cat"
+		Response.Write("I do not own a cat")
+	Case Else
+		Response.Write("I once had a cute goldfish")
+End Select
+%>
+
+13.Declaring a Variable in ASP
+<%
+'Single Variable Declarations
+Dim myVar1
+Dim myVar2
+'Multiple Variable Declarations
+Dim myVar6, myVar7, myVar8
+%>
+
+14.
+ASP Variable Naming Conventions
+
+Once again, ASP uses VBScript by default and so it also uses VBScripts variable naming conventions. These rules are:
+
+    Variable name must start with an alphabetic character (A through Z or a through z)
+    Variables cannot contain a period
+    Variables cannot be longer than 255 characters (don't think that'll be a problem!)
+    Variables must be unique in the scope in which it is declared (Basically, don't declare the same variable name in one script and you will be OK).
+
+ASP - Assigning Values to ASP Variables
+
+Assigning values in ASP is straightforward enough, just use the equals "=" operator. Below we have set a variable equal to a number and a separate variable equal to a string.
+ASP Code:
+
+<%
+'Single Variable Declarations
+Dim myString, myNum, myGarbage
+myNum = 25
+myString = "Hello"
+myGarbage = 99
+myGarbage = "I changed my variable"
+Response.Write("myNum = " & myNum & "<br />")
+Response.Write("myString = " & myString & "<br />")
+Response.Write("myGarbage = " & myGarbage & "<br />")
+%>
+
+Display:
+myNum = 25 myString = Hello
+myGarbage = I changed my variable 
+**********************
+<html>  
+    <head>
+    <title> Time Check </title><br>  
+    </head><br>  
+    <body><br>  
+    <%  
+    
+    Response.Write("<p>The server time is now: ")  
+    Response.Write(Time)  
+      
+    %>  
+    </body>
+    </html> 
+
+*********
+<html>
+<head>
+<title>My Member’s Area</title>
+</head>
+<body>
+
+<form action="index.asp" method="post">
+Username: <input type="text" name="username">
+Password: <input type="password" name="password">
+<input type="submit" name="submit" value="Enter!">
+</form>
+
+</body>
+</html>
+
+*********
+index.asp
+<html>
+<title>My Member’s Area</title>
+
+<body>
+<%
+if request.form("username") = "johndoe" and request.form("password") = "letmein" then
+     response.write("You are logged in!")
+
+else
+
+    response.write("You must login to access this page")
+end if
+%>
+</body>
+</html>
+
+
+
+
+
+
+
+

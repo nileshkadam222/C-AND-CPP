@@ -1,0 +1,25 @@
+ AccessSpecifiers describes as the scope of accessibility of an Object and its members. We can control the scope of the member object of a class using access specifiers. We are using access specifiers for providing security of our applications.
+
+Visual Basic .Net provide five access specifiers , they are as follows :
+
+Public, Private , Protected , Friend and ProtectedFriend .
+
+Public :
+
+Public is the most common access specifier. It can be access from anywhere, hat means there is no restriction on accessability. The scope of the accessibility is inside class also in outside the class.
+
+Private :
+
+The scope of the accessibility is limited only inside the classes in which they are decleared. The Private members can not be accessed outside the class and it is the least permissive access level.
+
+Protected :
+
+The scope of accessibility is limited within the class and the classses derived (Inherited )from this class.
+
+Friend :
+
+The Friend access specifier can access within the program that contain its declarations and also access within the same assembly level. You can use friend instead of Dim keyword.
+
+ProtectedFriend :
+
+ProtectedFriend is same access lebels of both Protected and Friend. It can access anywhere in the same assebly and in the same class also the classes inherited from the same class .

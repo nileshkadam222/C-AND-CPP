@@ -1,0 +1,47 @@
+Networking in Java:
+It is define in java.net package. which allow you to build distributed applications. It defines the Internet Addresses. 
+Internet Address:
+ An Internet address is a 32 bit quantity that defines a machine connected to the internet. It is expressed as a sequence of four numbers separated from each other by periods. 
+For ex: "128.34.29.56"
+The class Inet Address in java.net package encapsulates an Internet address.
+Its various methods are-
+1)byte[ ] getAddress()  Returns an array of bytes containing the address information.
+2) String getHostAddress()  Returns a string containing the address information.
+3) String getHostName() Returns a string containing the host name.
+
+Socket:
+A socket is one end of a bidirectional communication path between two machines. It provides a mechanism for 2 applications to obtain reliable, sequenced data exchange. 
+The ServerSocket and Socket classes can be used to build client/server applications. The constructor of ServerSocket class is
+
+ServerSocket(int port) throws IOException
+where port is the software port on which to listen for incoming client request. It waits until a request arrives. The signature of the method is
+Socket accept() throws IOException
+
+The accept() method returns a socket object.
+
+The Socket class is used to exchange data between a client and a server.
+Consturctor:
+Socket(String hostName, int port) throws UnknownHostException, IOException
+
+After a socket is created a program must obtain input and output stream to communicate. The getInputStream() & getOutputStream() methods are used for this purpose. Their signatures are -
+InputStream getInputStream() throws IOException
+
+The InputStream and OutputStream objects are used to create DataInputStream and DataOutputStream objects.
+You can close the socket by using close() method.
+void close() throws IOException
+
+DataGram sockets and Packets:
+
+The Datagram Packet and Datagram Socket classes can be used to build client/server applications.
+The DatagramPacket class encapsulates a datagram packet. The constructors are
+DatagramPacket(byte[] buffer, int size)
+DatagramPacket(byte[] buffer, int size, InetAddress ia, int port)
+
+The first form of constructor creates a DatagramPacket object that can be used to receive an incoming datagram. In that form buffer is a byte array to which incoming data is written.
+
+The second form of constructor creates  a DatagramPacket object that can be used to transmit an outgoing datagram. 
+The DatagramSocket class is used to send or receive datagrams. The constructors are -
+DatagramSocket() throws SocketException
+DatagramSocket(int port) throws SocketException
+The receive() method listens for an incoming datagram. The send() method transmit a datagram. 
+OutputStream getOutputStream() throws IOException

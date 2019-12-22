@@ -1,0 +1,61 @@
+create procedure padress7 @city nvarchar(30)='nerul'
+as
+select *
+from emp
+where eadd=@city
+go
+exec padress7
+create table department
+(
+departmentid varchar(10)primary key,
+employeeid varchar(10)
+)
+insert into department values('d4','e004')
+create table employeedepartmenthistroy
+(
+departmentid varchar(10) references department(departmentid),
+shiftid int,
+startdate datetime,
+enddate datetime,
+employeeid varchar(10)
+)
+insert into employeedepartmenthistroy values('d4',4,'09-09-2012','09-09-2013','e4')
+
+create procedure prcgetemployeeiddetail1 @empid varchar(10),@depname char(10)
+output,@shiftid int output
+as
+begin
+if exists(select * from emloyee where employeeid=@empid)
+begin
+select @depname=d.name,@shiftid=h.shiftid
+from department.d join
+employeedepartmenthistroy h
+on d.depatmentid=h.departmentid
+where employeeid=@empid and h.enddate is null
+return 0
+end
+else
+return 1
+end
+exec prcgetemployeeiddetail1
+
+
+
+create procedure predisplayemployeestatus @empid int
+as
+begin
+declare @depname char(10)
+declare @shiftid int
+declare @returnvalue int
+exec @returnvalue=prcgetemployeedetail1 @empid,
+@depname output,
+@shiftid output,
+if(@returnvalue=0)
+begin
+print'the details of employee with id:'+ convert (char(10),@empid)
+print'department name:'+ convert(char(10),@shiftid)
+select managerid title from employee where employeeid=@empid
+end
+else
+print'no records found for the given employee'
+end

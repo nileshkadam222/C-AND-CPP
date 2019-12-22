@@ -1,0 +1,44 @@
+FileOutputStream:
+This class extends OutputStream and allows you to write binary data to a file.
+constructors:
+FileOutputStream(String filepath) throws IOException
+FileOutputStream(String filepath, boolean append) throws IOException
+FileOutputStream(File fileObj) throws IOException
+where filepath is the full path name of a file and fileObj is a file object that describes a file. If append is true, characters are appended to the end of the file.
+
+FilterOutputStream: This class extends OutputStream. It is used to filter output.
+Constructor:
+FilterOutputStream(OutputStream os)
+
+BufferedOutputSteam : This class extends FilterOutputSteam and buffers output to a byte stream. Its constructor is-
+
+BufferedOutputStream(OutputStream os)
+BufferedOutputStream(OutputStream os, int bufSize)
+
+
+DataOutputStream: This class extends FilterOutputStream and implements DataOutput. It allows you to write the simple Java types to a byte output stream. The constructor is-
+DataOutputStream(OutputStream os)
+
+PrintStream:  This class extends FilterOutputStream and provides all of the formatting capabilities from System.out
+Constructors:
+PrintStream(OutputStream outputStream)
+PrintStream(OutputStream outputStream, boolean flushOnNewline)
+
+FileInputStream: This class extends InputStream and allows you to read binary data from a file. The constructors are-
+FileInputStream(String filepath)throws FileNotFoundException
+FileInputStream(File fileObj) throws FileNotFoundException
+where filepath is the full path name of a file and fileObj is a file object.
+
+FilterInputStream:
+This class extends InputStream and filters an input stream. The constructor is FilterInputStream(InputStream is)
+
+BufferedInputStream: This class extends FilterInputStream and buffers input from a byte stream. Its constructors are-
+BufferedInputStream(InputStream is)
+BufferedInputStream(InputStream is, int bufSize)
+
+DataInputStream:
+This class extends FilterInputStream and implements DataInput. It allows you to read the simple java types from a byte input stream.
+
+constructor: DataInputSream(InputStream is)
+
+

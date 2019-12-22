@@ -1,0 +1,236 @@
+check.html
+
+<HTML>
+
+<BODY bgcolor="white">
+
+
+<FORM TYPE=POST ACTION=checkresult.jsp>
+<BR>
+<font size=5 color="red">
+Check all Favorite fruits: <br>
+
+<input TYPE=checkbox name=fruit VALUE=apples> Apples <BR>
+<input TYPE=checkbox name=fruit VALUE=grapes> Grapes <BR>
+<input TYPE=checkbox name=fruit VALUE=oranges> Oranges <BR>
+<input TYPE=checkbox name=fruit VALUE=melons> Melons <BR>
+
+
+<br> <INPUT TYPE=submit name=submit Value="Submit">
+
+</font>
+</FORM>
+</BODY>
+</HTML>
+
+=============
+
+
+<html>
+
+<body bgcolor="white">
+<font size=5 color="red">
+<%! String[] fruits; %>
+<jsp:useBean id="foo" scope="page" class="checkbox.CheckTest" />
+
+<jsp:setProperty name="foo" property="fruit" param="fruit" />
+<hr>
+The checked fruits (got using request) are: <br>
+<% 
+	fruits = request.getParameterValues("fruit");
+%>
+<ul>
+<%
+    if (fruits != null) {
+	  for (int i = 0; i < fruits.length; i++) {
+%>
+<li>
+<%
+	      out.println (util.HTMLFilter.filter(fruits[i]));
+	  }
+	} else out.println ("none selected");
+%>
+</ul>
+<br>
+<hr>
+
+The checked fruits (got using beans) are <br>
+
+<% 
+		fruits = foo.getFruit();
+%>
+<ul>
+<%
+    if (!fruits[0].equals("1")) {
+	  for (int i = 0; i < fruits.length; i++) {
+%>
+<li>
+<%
+		  out.println (util.HTMLFilter.filter(fruits[i]));
+	  }
+	} else out.println ("none selected");
+%>
+</ul>
+</font>
+</body>
+</html>
+=============================================================
+checktest.html
+<HTML>
+
+
+<HEAD>
+<title>
+checkbox.CheckTest Bean Properties
+</title>
+<BODY BGCOLOR="white">
+<H2>
+checkbox.CheckTest Bean Properties
+</H2>
+<HR>
+<DL>
+<DT>public class <B>CheckTest</B><DT>extends Object</DL>
+
+<P>
+<HR>
+
+<P>
+
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0">
+<TR BGCOLOR="#EEEEFF">
+<TD COLSPAN=3><FONT SIZE="+2">
+<B>Properties Summary</B></FONT></TD>
+</TR>
+<TR BGCOLOR="white">
+<td align="right" valign="top" width="1%">
+<FONT SIZE="-1">
+String
+</FONT></TD>
+<TD><B>CheckTest:fruit</B>
+<BR>
+       </TD>
+<td width="1%">
+<FONT SIZE="-1">
+Multi
+</FONT></TD>
+</TABLE>
+<HR>
+</BODY>
+</HTML>
+=============================================
+
+carts.jsp
+
+<html>
+
+
+<jsp:useBean id="cart" scope="session" class="sessions.DummyCart" />
+
+<jsp:setProperty name="cart" property="*" />
+<%
+	cart.processRequest(request);
+%>
+
+
+<FONT size = 5 COLOR="#CC0000">
+<br> You have the following items in your cart:
+<ol>
+<% 
+	String[] items = cart.getItems();
+	for (int i=0; i<items.length; i++) {
+%>
+<li> <% out.print(util.HTMLFilter.filter(items[i])); %> 
+<%
+	}
+%>
+</ol>
+
+</FONT>
+
+<hr>
+<%@ include file ="/sessions/carts.html" %>
+</html>
+
+=====================================
+<HTML>
+
+
+<HEAD>
+<title>
+sessions.DummyCart Bean Properties
+</title>
+<BODY BGCOLOR="white">
+<H2>
+sessions.DummyCart Bean Properties
+</H2>
+<HR>
+<DL>
+<DT>public class <B>DummyCart</B><DT>extends Object</DL>
+
+<P>
+<HR>
+
+<P>
+
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0">
+<TR BGCOLOR="#EEEEFF">
+<TD COLSPAN=3><FONT SIZE="+2">
+<B>Properties Summary</B></FONT></TD>
+</TR>
+<TR BGCOLOR="white">
+<td align="right" valign="top" width="1%">
+<FONT SIZE="-1">
+String
+</FONT></TD>
+<TD><B>DummyCart:items</B>
+<BR>
+       </TD>
+<td width="1%">
+<FONT SIZE="-1">
+Multi
+</FONT></TD>
+</TABLE>
+<HR>
+</BODY>
+</HTML>
+============================================================
+carts.html
+<html>
+
+
+<head>
+    <title>carts</title>
+</head>
+
+ <body bgcolor="white">
+<font size = 5 color="#CC0000">
+
+<form type=POST action=carts.jsp>
+<BR>
+Please enter item to add or remove:
+<br>
+Add Item:
+
+<SELECT NAME="item">
+<OPTION>Beavis & Butt-head Video collection
+<OPTION>X-files movie
+<OPTION>Twin peaks tapes
+<OPTION>NIN CD
+<OPTION>JSP Book
+<OPTION>Concert tickets
+<OPTION>Love life
+<OPTION>Switch blade
+<OPTION>Rex, Rugs & Rock n' Roll
+</SELECT>
+
+
+<br> <br>
+<INPUT TYPE=submit name="submit" value="add">
+<INPUT TYPE=submit name="submit" value="remove">
+
+</form>
+       
+</FONT>
+</body>
+</html>
+

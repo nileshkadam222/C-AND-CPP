@@ -1,0 +1,84 @@
+/*
+#include<stdio.h>
+#include<conio.h>
+void main()
+{
+	int u=3;
+	int v;
+	int *pu, *pv;
+	pu=&u;
+	pv=&v;
+	v=*pu;
+	clrscr();
+	printf("\n u=%d &u=%x pu=%x *pu=%d",u,&u,pu,*pu);
+	printf("\n v=%d &v=%x pv=%x *pv=%d",v,&v,pv,*pv);
+	getch();
+}
+
+
+
+#include<stdio.h>
+#include<conio.h>
+void main()
+{
+   int i=3,*j;
+   j=&i;
+   clrscr();
+   printf("\n %x",j);
+   j=j+1;
+   printf("\n %x",j);
+   j=j-1;
+   printf("\n %x",j);
+   getch();
+}
+
+
+
+#include<stdio.h>
+#include<conio.h>
+void main()
+{
+   int arr[]={1,2,3,4,5};
+   int *i,*j;
+   i=&arr[1];
+   j=&arr[4];
+   clrscr();
+   printf("%x %d",j-1,*j-*i);
+   getch();
+}
+
+
+#include<stdio.h>
+#include<conio.h>
+void main()
+{
+   int num[]={1,2,3,4,5};
+   int i,*j;
+   clrscr();
+   for(i=0;i<=4;i++)
+   {
+	  j=&num[i];
+	  printf("\n Elements %d has address %x",i,
+	  j);
+   }
+   getch();
+}    */
+
+#include<stdio.h>
+#include<conio.h>
+void main()
+{
+   char *name;
+   int lenght;
+   char *cptr=name;
+   clrscr();
+   name=hello;
+   while(*cptr!='\0')
+   {
+	  printf("%c has address %x",*cptr,cptr);
+	  cptr++;
+   }
+   lenght=cptr-name;
+   printf("Length of string is %d",lenght);
+   getch();
+} */

@@ -1,0 +1,127 @@
+1.static void Main(string[] args)
+
+{
+
+ try
+
+{
+
+ DirectoryInfo di = new DirectoryInfo(@"D:\newFile\");
+
+ DirectoryInfo[] dir1 = di.GetDirectories();
+
+ Console.WriteLine("The number of directories containing is {0}.", dir1.Length);
+
+  }
+
+   catch (Exception e)
+
+      {
+
+        Console.WriteLine("The process failed: {0}", e.ToString());
+
+        }
+
+ }
+
+2.
+static void Main(string[] args)
+
+        {
+
+            DirectoryInfo di = new DirectoryInfo(@"D:\newfile");
+
+            DirectoryInfo[] dirs = di.GetDirectories();
+
+            foreach (DirectoryInfo diNext in dirs)
+
+            {
+
+            Console.WriteLine("The number of files in {0} is {1}", diNext,
+
+            diNext.GetFiles().Length);
+
+            }
+
+        }   
+
+3.
+class Program
+
+    {
+
+        static void Main(string[] args)
+
+        {
+
+            DirectoryInfo fi = new DirectoryInfo(@"D:\newfile");
+
+            Console.WriteLine("Directory name is {0} ", fi.Name);
+
+            Console.WriteLine("Directory creation time is {0} ", fi.CreationTime.ToLongTimeString());
+
+            Console.WriteLine("Directory Lastaccesstime is {0} ", fi.LastAccessTime.ToLongDateString());       
+
+            Console.WriteLine("Directory exist is: ", fi.Exists);
+
+            Console.WriteLine("Directory LastWriteTime is {0} ", fi.LastWriteTime);
+
+            Console.WriteLine("Directory root is {0} ", fi.Root);              
+
+        }
+
+    }
+
+}
+4.
+  try
+
+            {
+
+                DirectoryInfo di = new DirectoryInfo(@"D:\newFile\");
+
+                DirectoryInfo[] dir1 = di.GetDirectories();
+
+                Console.WriteLine("The number of directories containing is {0}.", dir1.Length);
+
+            }
+
+            catch (Exception e)
+
+            {
+
+                Console.WriteLine("The process failed: {0}", e.ToString());
+
+            }
+
+ 
+
+// GetFiles method
+
+ 
+
+            DirectoryInfo di = new DirectoryInfo(@"D:\newfile");
+
+            DirectoryInfo[] dirs = di.GetDirectories();
+
+            foreach (DirectoryInfo diNext in dirs)
+
+            {
+
+                Console.WriteLine("The number of files in {0} is {1}", diNext,
+
+                diNext.GetFiles().Length);
+
+            }
+
+        }     
+
+    }
+
+}
+
+ 
+
+The DirectoryInfo class provides the following properties that enable you to retrieve information about a directory.
+
+  

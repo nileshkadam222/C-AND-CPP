@@ -1,0 +1,544 @@
+VBScript is a Microsoft scripting language.
+
+VBScript is the default scripting language in ASP.
+
+Client-side VBScript only works in Internet Explorer 
+
+1.
+<html>
+<body>
+
+<script type="text/vbscript">
+document.write("This is my first VBScript!")
+</script>
+
+</body>
+</html> 
+
+2.<html>
+<body>
+<script type="text/vbscript">
+document.write("<h1>Hello World!</h1>")
+</script>
+</body>
+</html> 
+
+3.
+VBScript Variables
+
+Variables are "containers" for storing information.
+VBScript Variables
+
+As with algebra, VBScript variables are used to hold values or expressions.
+
+A variable can have a short name, like x, or a more descriptive name, like carname.
+
+Rules for VBScript variable names:
+
+    Must begin with a letter 
+    Cannot contain a period (.)
+    Cannot exceed 255 characters
+
+In VBScript, all variables are of type variant, that can store different types of data.
+Declaring (Creating) VBScript Variables
+
+Creating variables in VBScript is most often referred to as "declaring" variables.
+
+You can declare VBScript variables with the Dim, Public or the Private statement. Like this:
+Dim x
+Dim carname
+
+Now you have created two variables. The name of the variables are "x" and "carname".
+
+You can also declare variables by using its name in a script. Like this:
+carname="Volvo"
+
+Now you have also created a variable. The name of the variable is "carname". However, this method is not a good practice, because you can misspell the variable name later in your script, and that can cause strange results when your script is running.
+
+If you misspell for example the "carname" variable to "carnime", the script will automatically create a new variable called "carnime".  To prevent your script from doing this, you can use the Option Explicit statement. This statement forces you to declare all your variables with the dim, public or private statement.
+
+Put the Option Explicit statement on the top of your script. Like this:
+Option Explicit
+Dim carname
+carname=some value
+
+Assigning Values to Variables
+
+You assign a value to a variable like this:
+carname="Volvo"
+x=10
+<html>
+<body>
+<script type="text/vbscript">
+dim x
+dim carname
+carname="volvo"
+x=12
+
+document.write("carname::" & carname)
+document.write("<br>")
+document.write("   x::" & x)
+</script>
+</body>
+</html> 
+
+
+
+
+The variable name is on the left side of the expression and the value you want to assign to the variable is on the right. Now the variable "carname" has the value of "Volvo", and the variable "x" has the value of "10".
+Lifetime of Variables
+
+How long a variable exists is its lifetime.
+
+When you declare a variable within a procedure, the variable can only be accessed within that procedure. When the procedure exits, the variable is destroyed. These variables are called local variables. You can have local variables with the same name in different procedures, because each is recognized only by the procedure in which it is declared.
+
+If you declare a variable outside a procedure, all the procedures on your page can access it. The lifetime of these variables starts when they are declared, and ends when the page is closed.
+VBScript Array Variables
+
+An array variable is used to store multiple values in a single variable.
+
+In the following example, an array containing 3 elements is declared:
+Dim names(2)
+
+The number shown in the parentheses is 2. We start at zero so this array contains 3 elements. This is a fixed-size array. You assign data to each of the elements of the array like this:
+names(0)="Tove"
+names(1)="Jani"
+names(2)="Stale"
+
+
+###
+<html>
+<body>
+<script type="text/vbscript">
+Dim names(2)
+names(0)="Tove"
+names(1)="Jani"
+names(2)="Stale"
+
+document.write(names(0) & "<br>")
+
+document.write(names(1) & "<br>")
+document.write(names(2))
+</script>
+
+</html> 
+
+
+Similarly, the data can be retrieved from any element using the index of the particular array element you want. Like this:
+mother=names(0)
+
+You can have up to 60 dimensions in an array. Multiple dimensions are declared by separating the numbers in the parentheses with commas. Here we have a two-dimensional array consisting of 5 rows and 7 columns:
+Dim table(4,6)
+
+Asign data to a two-dimensional array:
+
+<html>
+<body>
+
+<script type="text/vbscript">
+Dim x(2,2)
+x(0,0)="Volvo"
+x(0,1)="BMW"
+x(0,2)="Ford"
+x(1,0)="Apple"
+x(1,1)="Orange"
+x(1,2)="Banana"
+x(2,0)="Coke"
+x(2,1)="Pepsi"
+x(2,2)="Sprite"
+for i=0 to 2
+    document.write("<p>")
+    for j=0 to 2
+        document.write(x(i,j) & "<br />")
+    next
+    document.write("</p>")
+next
+</script>
+
+</body>
+</html>
+
+<html>
+<body>
+
+<script type="text/vbscript">
+Dim x(2,2)
+x(0,0)="Volvo"
+x(0,1)="BMW"
+x(0,2)="Ford"
+x(1,0)="Apple"
+x(1,1)="Orange"
+x(1,2)="Banana"
+x(2,0)="Coke"
+x(2,1)="Pepsi"
+x(2,2)="Sprite"
+for i=0 to 2
+    document.write("<p>")
+    for j=0 to 2
+        document.write(x(i,j) & "<br />")
+    next
+    document.write("</p>")
+next
+</script>
+
+</body>
+</html>
+
+
+
+##Conditional Statements
+
+Conditional statements are used to perform different actions for different decisions.
+
+In VBScript we have four conditional statements:
+
+    If statement - executes a set of code when a condition is true
+    If...Then...Else statement - select one of two sets of lines to execute
+    If...Then...ElseIf statement - select one of many sets of lines to execute
+    Select Case statement - select one of many sets of lines to execute
+
+If...Then...Else
+
+Use the If...Then...Else statement if you want to
+
+    execute some code if a condition is true
+    select one of two blocks of code to execute
+
+If you want to execute only one statement when a condition is true, you can write the code on one line:
+If i=10 Then alert("Hello")
+
+<html>
+<body>
+<script type="text/vbscript">
+dim i
+i=10
+If   i=10 Then
+       alert("Hello")
+End if
+</script>
+</body>
+</html>
+
+If you want to execute more than one statement when a condition is true, you must put each statement on separate lines, and end the statement with the keyword "End If":
+If i=10 Then
+alert("Hello")
+i = i+1
+End If
+
+There is no ..Else.. in the example above either. You just tell the code to perform multiple actions if the condition is true.
+
+If you want to execute a statement if a condition is true and execute another statement if the condition is not true, you must add the "Else" keyword:
+Example (IE Only)
+<html>
+<body>
+<head>
+<script type="text/vbscript">
+Function greeting()
+i=hour(time)
+If i < 10 Then
+  document.write("Good morning!")
+Else
+  document.write("Have a nice day!")
+End If
+End Function
+</script>
+</head>
+
+<body onload="greeting()">
+</body>
+
+</html>
+
+
+Select Case
+
+You can also use the "Select Case" statement if you want to select one of many blocks of code to execute:
+Example (IE Only)
+<html>
+<body>
+<script type="text/vbscript">
+d=weekday(date)
+Select Case d
+  Case 1
+    document.write("Sleepy Sunday")
+  Case 2
+    document.write("Monday again!")
+  Case 3
+    document.write("Just Tuesday!")
+  Case 4
+    document.write("Wednesday!")
+  Case 5
+    document.write("Thursday...")
+  Case 6
+    document.write("Finally Friday!")
+  Case else
+    document.write("Super Saturday!!!!")
+End Select
+</script>
+
+</body>
+</html>
+
+VBScript Procedures
+« Previous
+Next Chapter »
+
+VBScript has two kinds procedures:
+
+    Sub procedure
+    Function procedure
+
+VBScript Sub Procedures
+
+A Sub procedure:
+
+    is a series of statements, enclosed by the Sub and End Sub statements
+    can perform actions, but does not return a value
+    can take arguments
+
+Sub mysub()
+  some statements
+End Sub
+
+or
+Sub mysub(argument1,argument2)
+  some statements
+End Sub
+
+<html>
+<body>
+<head>
+<script type="text/vbscript">
+dim a,b
+Sub mysub(a,b)
+     alert(a+" " + b)
+End Sub
+
+call mysub("hello","world")
+
+
+
+
+</script>
+</head>
+</body>
+
+
+</html>
+
+
+Sub mysub()
+  alert("Hello World")
+End Sub
+
+Try it yourself »
+VBScript Function Procedures
+
+A Function procedure:
+
+    is a series of statements, enclosed by the Function and End Function statements
+    can perform actions and can return a value
+    can take arguments that are passed to it by a calling procedure
+    without arguments, must include an empty set of parentheses ()
+    returns a value by assigning a value to its name
+
+Function myfunction()
+  some statements
+  myfunction=some value
+End Function
+
+or
+Function myfunction(argument1,argument2)
+  some statements
+  myfunction=some value
+End Function
+
+
+<html>
+<body>
+<head>
+<script type="text/vbscript">
+dim a,b
+function myfunction()
+     i=date()
+     alert(i)
+end function
+
+document.write(myfunction())
+
+
+
+
+</script>
+</head>
+</body>
+
+
+</html>
+
+
+
+Example (IE Only)
+function myfunction()
+  myfunction=Date()
+end function
+
+Try it yourself »
+How to Call a Procedure
+
+There are different ways to call a procedure. You can call it from within another procedure, on an event, or call it within a script.
+Example (IE Only)
+
+Call a procedure when the user clicks on a button:
+
+
+Try it yourself »
+
+Procedures can be used to get a variable value:
+carname=findname()
+
+Here you call a Function called "findname", the Function returns a value that will be stored in the variable "carname".
+
+variable "carname".
+
+Function procedures can calculate the sum of two arguments:
+Example (IE Only)
+Function myfunction(a,b)
+myfunction=a+b
+End Function
+
+document.write(myfunction(5,9))
+
+Try it yourself »
+
+The function "myfunction" will return the sum of argument "a" and argument "b". In this case 14.
+
+When you call a procedure you can use the Call statement, like this:
+Call MyProc(argument)
+
+Or, you can omit the Call statement, like this:
+MyProc argument
+
+
+VBScript Looping
+« Previous
+Next Chapter »
+Looping Statements
+
+Looping statements are used to run the same block of code a specified number of times.
+
+In VBScript we have four looping statements:
+
+    For...Next statement - runs code a specified number of times
+    For Each...Next statement - runs code for each item in a collection or each element of an array
+    Do...Loop statement - loops while or until a condition is true
+    While...Wend statement - Do not use it - use the Do...Loop statement instead
+
+For...Next Loop
+
+Use the For...Next statement to run a block of code a specified number of times.
+
+The For statement specifies the counter variable (i), and its start and end values. The Next statement increases the counter variable (i) by one.
+Example
+<html>
+<body>
+
+<script type="text/vbscript">
+For i = 0 To 5
+  document.write("The number is " & i & "<br />")
+Next
+</script>
+
+</body>
+</html>
+
+The Step Keyword
+
+With the Step keyword, you can increase or decrease the counter variable by the value you specify.
+
+In the example below, the counter variable (i) is INCREASED by two, each time the loop repeats.
+For i=2 To 10 Step 2
+  some code
+Next
+
+<html>
+<body>
+
+<script type="text/vbscript">
+dim fact
+fact=1
+For i=4 to 1 step -1
+     fact=fact * i
+Next
+document.write("The factorial  is " & fact & "<br>")
+</script>
+
+</body>
+</html>
+
+
+To decrease the counter variable, you must use a negative Step value. You must specify an end value that is less than the start value.
+
+In the example below, the counter variable (i) is DECREASED by two, each time the loop repeats.
+For i=10 To 2 Step -2
+  some code
+Next
+Exit a For...Next
+ou can exit a For...Next statement with the Exit For keyword.
+For i=1 To 10
+  If i=5 Then Exit For
+  some code
+Next
+For Each...Next Loop
+
+A For Each...Next loop repeats a block of code for each item in a collection, or for each element of an array.
+Example
+<html>
+<body>
+
+<script type="text/vbscript">
+Dim cars(2)
+cars(0)="Volvo"
+cars(1)="Saab"
+cars(2)="BMW"
+For Each x In cars
+  document.write(x & "<br />")
+Next
+</script>
+
+</body>
+</html>
+
+
+Do...Loop
+
+If you don't know how many repetitions you want, use a Do...Loop statement.
+
+The Do...Loop statement repeats a block of code while a condition is true, or until a condition becomes true.
+Repeat Code While a Condition is True
+
+You use the While keyword to check a condition in a Do...Loop statement.
+
+Do
+  some code
+Loop While i>10 
+
+Do Until i=10
+  some code
+Loop 
+
+Do
+  some code
+Loop Until i=10
+
+Do Until i=10
+  i=i-1
+  If i<10 Then Exit Do
+Loop 
+
+Do While i>10
+  some code
+Loop 
+
+
+

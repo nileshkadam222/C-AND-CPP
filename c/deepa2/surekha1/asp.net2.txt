@@ -1,0 +1,178 @@
+1.<!DOCTYPE html>
+<html>
+<body>
+     <h1>Hello Web Pages</h1>
+     <p>The time is @DateTime.Now</p>
+</body>
+</html> 
+
+2.<html>
+<body>
+@RenderPage("header.cshtml")
+<h1>Hello Web Pages</h1>
+<p>This is a paragraph</p>
+@RenderPage("footer.cshtml")
+</body>
+</html>
+
+3.ASP.NET DropDownList Control
+Definition and Usage
+
+The DropDownList control is used to create a drop-down list.
+
+Each selectable item in a DropDownList control is defined by a ListItem element!
+
+Tip: This control supports data binding!
+Properties
+Property 	Description 	.NET
+SelectedIndex 	The index of a selected item 	1.0
+OnSelectedIndexChanged 	The name of the function to be executed when the index of the selected item has changed 	1.0
+runat 	Specifies that the control is a server control. Must be set to "serve
+
+
+DropDownList.aspx (source code):
+
+
+<%@ Page Title="" Language="C#" MasterPageFile="~/RoseindiaMaster.master"
+AutoEventWireup="true" CodeFile="DropDownList.aspx.cs" Inherits="DropDownList" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
+<style type="text/css">
+.style3
+{
+color: #800000;
+}
+</style>
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
+<div>
+<h2 style="color:Green">DropDownList in ASP.NET 4 , C#</h2>
+<strong><span class="style3">Enter first number:</span>
+</strong>
+<br />
+<asp:TextBox ID="txt1" runat="server" Text="12"/>
+<br />
+<br />
+<span class="style3">
+<strong>Enter second number:
+</strong>
+</span>
+<br />
+<asp:TextBox ID="txt2" runat="server" Text="3" />
+<br />
+<br />
+<span class="style3">
+<strong>Select operation:
+</strong>
+</span>
+<br />
+<asp:DropDownList ID="drp1" runat="server" Width="145px" 
+Font-Bold="True" ForeColor="#006666" 
+onselectedindexchanged="drp1_SelectedIndexChanged" AutoPostBack="True">
+<asp:ListItem>----Select----</asp:ListItem>
+<asp:ListItem>Addition</asp:ListItem>
+<asp:ListItem>Subtraction</asp:ListItem>
+<asp:ListItem>Multiplication</asp:ListItem>
+<asp:ListItem>Division</asp:ListItem>
+</asp:DropDownList>
+</div>
+<br />
+<asp:Label ID="label1" runat="server" Font-Bold="True" ForeColor="#000099" />
+</asp:Content>
+
+DropDownList.aspx.cs (C# code file):
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+public partial class DropDownList : System.Web.UI.Page
+{
+
+protected void Page_Load(object sender, EventArgs e)
+{
+
+}
+protected void drp1_SelectedIndexChanged(object sender, EventArgs e)
+{
+double firstno = Convert.ToDouble(txt1.Text);
+double secondno = Convert.ToDouble(txt2.Text);
+if(drp1.SelectedIndex == 1)
+{
+double add = firstno + secondno;
+label1.Text = "Addition is :" + add;
+}
+if (drp1.SelectedIndex == 2)
+{
+double sub = firstno - secondno;
+label1.Text = "Subtraction is :" + sub;
+}
+if (drp1.SelectedIndex == 3)
+{
+double mul = firstno * secondno;
+label1.Text = "Multiplication is :" + mul;
+}
+if (drp1.SelectedIndex == 4)
+{
+double div = firstno / secondno;
+label1.Text = "Division is :" + div;
+}
+}
+}
+
+
+4.<%@ Page Language="C#" AutoEventWireup="true" CodeFile="checkbox2.aspx.cs" 
+Inherits="checkbox2" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1" runat="server">
+<title>How to use HTML Input Checkbox</title>
+<script language="javascript" type="text/javascript">
+</script>
+</head>
+<body>
+<form id="HTMLInputCheckBox" method="post" runat="server">
+<p>
+<strong>Please choose a Country that like.</strong></p>
+<input id="Chkindia" type="checkbox" runat="server" />  INDIA<br />
+<input id="ChkBHARAT" type="checkbox" runat="server" />  BHARAT<p>
+<input id="btnSubmit" runat="server" type="submit" onserverclick="btnSubmit_Click"
+value="Submit" onclick="return btnSubmit_onclick()" />
+</p>
+</form>
+<div id="lbltext" runat="server">
+</div>
+</body>
+</html>
+
+using System;
+using System.Collections;
+using System.Configuration;
+using System.Data;
+using System.Linq;
+using System.Web;
+using System.Web.Security;
+using System.Web.UI;
+using System.Web.UI.HtmlControls;
+using System.Web.UI.WebControls;
+using System.Web.UI.WebControls.WebParts;
+using System.Xml.Linq;
+public partial class checkbox2 : System.Web.UI.Page
+{
+protected void btnSubmit_Click(object sender, System.EventArgs e)
+{
+string strResponse = "";
+if (Chkindia.Checked)
+{
+strResponse += "INDIA ";
+}
+if (ChkBHARAT.Checked)
+{
+strResponse += "BHARAT";
+}
+if (Page.IsPostBack)
+{
+lbltext.InnerHtml = "Select Option: " + strResponse;
+}
+

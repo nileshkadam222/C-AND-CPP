@@ -1,0 +1,108 @@
+In C#, the deallocation or freeing of resources consumed by created instances occurs automatically on a system-determined schedule by an intelligent mechanism known as garbage collection. The Garbage Collector (GC) is like a sweeper fish in an aquarium. If you drop more food than the other fish can eat, the sweeper fish consumes the remaining food without leaving any behind.
+
+The convenience and usefulness of GC has been evident since Java. In C++ Builder, Borland introduced a similar mechanism that makes every allocation owned by some parent-a kind of owned object pattern in which a button must belong a form, for example. When the form is destroyed, so is the button. Borland's Visual Component Library (VCL) implements this by forcing a common base class of all components so you can utilize polymorphism.
+
+The GC in C# improves on the concept because it does not reduce the system's performance until really needed. It is smarter than other garbage collectors currently on the market. You can overcome the disadvantages of CG's nondeterministic behavior by using destructors (dtors) and finalizers. You can allocate member instances with constructors (ctors). Let's explore some important aspects of garbage collecting in .NET.
+
+In C#, most of the time, you do not need to code destructors or finalizers because you can trust GC to clean up for you with dtors. These functions are called implicitly by the C# runtime system's garbage collector.
+
+If explicit deterministic deallocation of objects is important in class and inheritance hierarchy, make sure your classes inherit the IDisposable interface and implement the Dispose function. You can call this function anytime to finalize an object and release the resources you want to free.
+
+Listing 5.72 illustrates the concept of garbage collection in C#.
+
+Listing 5.72: GC Example
+
+class X
+{
+    // implicit dtor ~X()
+    // created for you automatically by C#
+}
+
+class Y
+{
+    ~Y() // explicit dtor, same as Finalize
+    {
+        // some code
+    }
+}
+
+//verbose syntax:
+
+class Z
+{
+    protected override void Finalize() //verbose explicit dtor, same as ~
+    {
+        // Some code
+        // implicit call to base.Finalize();
+    }
+}
+
+Indeed, if you look at the intermediate language (IL) generated for each .NET Framework instruction via ildasm.exe (Intermediate Language Disassembler), you'll find that the C# compiler emits the name ~Y (destructor in Listing 5.72 above) as Finalize.
+
+X's implicit call to base.Finalize is mysterious. In C++, destructors for derived objects destroy their base-class subobjects automatically. By contrast, C# finalizers don't intrinsically call other finalizers, including base-class finalizers. Nonetheless, you often want to finalize both a derived object and its base class in the same call. Furthermore, every C# class you write has exactly one base class, even if that base class is implicitly System.Object.
+
+When you exit the program, you can make the System.GC methods force the GC to schedule the implicit finalizer call, and then wait for that call to complete, as shown.
+
+System.GC.Collect();
+System.GC.WaitForPendingFinalizers();
+
+You can also call System.GC.SuppressFinalize to prevent the garbage collector from implicitly invoking the finalizer a second time.
+
+Do not directly call your base class Finalize method. It is called automatically from your destructor.
+
+Destructors and object.Finalize cannot be called directly. Consider calling IDisposable.Dispose, if available.
+
+To explicitly destroy the object, you should call System.GC.SuppressFinalize immediately to prevent multiple object deallocation by the GC:
+
+System.GC.SuppressFinalize(anyInstance);
+
+Your C# common program structure can resemble that in Listing 5.73 if, in fact, you want to provide your own finalizers. If the order of destruction is important, you should store in a dequeue or a stack the order of the objects created for which dispose/finalize will be called.
+
+Listing 5.73: Dtor.cs, Destructors Example
+
+// example: explicit destruction/finalize
+using System;
+
+class MyClass : IDisposable
+{
+    public MyClass() //default ctor
+    {
+        this.iNumber = 0;
+        System.Console.WriteLine("ctor:MyClass {0}", iNumber);
+    }
+
+    public MyClass(Int32 iNumber) // specialized ctor
+    {
+        this.iNumber = iNumber;
+        System.Console.WriteLine("ctor:MyClass {0}", iNumber);
+    }
+
+    ~MyClass() // dtor or finalize
+    {
+        System.Console.WriteLine("dtor:~MyClass {0}", iNumber);
+    }
+
+    public void Dispose() // helper finalize function
+    {
+        // here you can free the resources you allocated explicitly
+        System.GC.SuppressFinalize(this);
+    }
+
+    private int iNumber;
+}
+
+class main
+{
+    static void Main()
+    {
+        MyClass myClass1 = new MyClass();
+        MyClass myClass2 = new MyClass(19);
+        myClass1.Dispose(); // myClass1 is explicitly exposed.
+        System.GC.Collect();
+        System.GC.WaitForPendingFinalizers();
+
+        // myClass2 is implicitly exposed by GC.
+        Console.ReadLine();
+    }
+}
+answer:::0::19

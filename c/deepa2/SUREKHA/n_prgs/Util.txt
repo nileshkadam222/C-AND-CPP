@@ -1,0 +1,141 @@
+ Util Package
+Collection Interface:
+The collection interface is a framework. It determine the fundamental nature of collection classes.  
+
+Collection: It is an object that groups multiple elements into a single unit. Collections are used to store, retrieve and manipulate data and to transmit data from one method to another.
+
+Set: It is a collection that cannot contain duplicate elements.
+List: It is an ordered collection which can contain duplicate elements.
+Map: It is an object that maps keys to values. Map cannot contains duplicate keys.
+
+Comparable Interface: It provides automatic natural order on classes that implement it. It gives the programmer complete control over object ordering.
+
+Iterator: It is very similar to an Enumeration. Iterators allow the caller to remove elemets from the underlying collection during the iteration with well defined semantics.The method names have been improved.
+
+Collection Classes:
+1)Abstraction Collection - implements collection interface
+2)AbstractList
+3) AbstractSequentialList
+4)LinkedList
+5)ArrayList
+6)AbstractSet
+7)HashSet
+8)TreeSet
+
+ArrayList Class:  This class extends AbstractList and implements the List interface. It has a variable length array of object references and dynamically increase or decrease in size.
+
+Constructors: ArrayList()
+	ArrayList(Collection c)
+	ArrayList(int capacity)
+
+How to obtain an Array from ArrayList:
+1)To obtain faster processing times for certain operations.
+2)To pass an array to a method that is not overloaded to accept a collection.
+3) To integrate your newer, collection-based code with legacy code that does not understand collections.
+
+The LinkedList Class:
+The linkedList class extends AbstractSequentialList and implements the List interface.It provides a linked-list data structure. It has 2 constructors
+LinkedList()
+LinkedList(Collection c)
+To obtain the first element call getFirst() method
+Object getFirst()
+Object getLast()
+
+For removing: Object removeFirst() and Object removeLast()
+The LinkedList implements the List interface, calls to add(Object) append items to the end of the list as addLast().
+
+HashSet Class:
+
+It extends AbstractSet and implements Set interface. It creates a collection that uses a hash table for storage. In hashing the informational content of key is used to determine a unique value called its hash code. The hash code is then used as index at which the data associated with the key is stored. The advantage of hashing is that it allows the execution time of basic operations, such as add(), contains(), remove(), and size() to remain constant even for large sets.
+Constructors:
+HashSet()
+HashSet(Collection c)
+HashSet(int capacity)
+HashSet(int capacity, float fillRatio)
+where the forth form  initializes the capacity and the fill ratio. The fill ratio must be between 0.0 and 1.0
+
+TreeSet Class:
+It provides an implementation of Set interface that uses a tree for storage.
+Constructors:
+TreeSet()
+TreeSet(Collection c)
+TreeSet(Comparator comp)
+TreeSet(SortedSet ss)
+
+Iterator:
+By using iterator object, you can access each element in the collection, one element at a time. The general steps are:
+1) Obtain an iterator to the start of the collection by calling the collection's iterator() method.
+2)Set up a loop that makes a call to hasNext()
+3)Within the loop obtain each element by calling next().
+
+For collections that implement List, you can obtain an iterator by calling ListIterator. The list iterator gives you the ability to access the collection in either forward or backward direction and lets you modify the element.
+
+Map Classes:
+1) AbstractMap
+2)HashMap
+3)Weak HashMap
+
+The HashMap class:
+This class uses a hash table to implement the Map interface. This allows the execution time of basic operations, such as get() and put() to remain constant even for large sets.
+
+Constructors:
+HashMap()
+HashMap(Map m)
+HashMap(int capacity)
+HashMap(int capacity, float fillRatio)
+
+The HashMap implements Map and extends AbstractMap. It does not add any methods of its own.Also it does not give guarante the order of its elements.
+
+Comparators:
+The comparator defines precisely what sorted order means. You can define natural ordering. It is an interface defines two methods:
+1) compare() and 2) equals()
+
+Properties:
+It is a subclass of Hashtable. It is used to maintain lists of values in which key is a String and value is also a String. It is the type of object returned by System.getProperties() when obtaining environmental values.
+It has a constructor like Properties() and Properties(Properties propDefault)
+
+The useful of the propertis is that the information contained in a Properties object can be easily stored or loaded from the disk with store() and load() method. At any time you can write a Properties object to a stream or read back which is useful in implementing a simple database.
+
+UTIL - PART 2
+  
+String Tokenizer:
+
+It allows you to parse a string into tokens. The characters act as delimiters between tokens can be specified. The constructors are-
+StringTokenizer(String str)
+StringTokenizer(String str, String delmiters)
+
+Date:
+Date class encapsulates the current date and time. The constructor is
+Date()
+Date(long millisec)
+
+The epoch is defined as midnight January 1, 1970 GMT
+
+Calendar:
+The abstract Calendar class allows you to interpret date and time information. This class defines several int constants that are used when you get or set components of the calendar. It does not have public constructors. Instead you may use static getInstance() method to obtain a calendar initialized to the current date and time.
+i.e. Calendar getInstance()
+
+Gregorian Calendar: It is a concrete subclass of a Calendar. It provides the logic to manage date and time information according to the rules of the Gregorian calendar. This is the calendar that numbers years starting at the birth of Christ.
+
+Constructors:
+GregorianCalendar()
+GregorianCalendar(int year, int month, int date)
+GregorianCalendar(int year, int month, int date, int hour, int minute, int sec)
+The class provides all the methods defined by Calendar and adds the isLeapYear() method.
+i.e. boolean isLeapYear() This method returns true if the current year is a leap year otherwise returns false.
+
+Enumeration:
+The Enumeration interface allows you to iterate through a set of objects. It defines 2 methods:
+boolean hasMoreElements()
+Object nextElement()
+This interface is implemented by the Vector class.
+Random Class
+The Random class is a generator of pseudorandom numbers. The constructors are-
+Random()
+Random(long seed) where seed specify a seed value manually.
+
+Locale class: 
+It is instantiated to produce objects that describe a geographical or cultural region. 
+
+Observable:
+This class is used to create subclasses that other parts of your program can observe. When the object of subclass is changed, observing classes are notified. It implement the Observer interface which define update() method. The update() method is called when an observer is notified of a change in an observed object.

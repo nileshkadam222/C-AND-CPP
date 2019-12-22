@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+</head>
+
+<body bgcolor="#99FFFF">
+<font size="2" face="Palatino Linotype, Book Antiqua, Palatino, serif" color="#000033">
+Structured Query Language
+SQL (pronounced SeeKwel), is short for Structured Query Language, and is a way to query and write to databases (not just Access). The basics are quite easy to learn. If you want to grab all of the records from a table in a database, you use the SELECT word. Like this:
+SELECT * FROM Table_Name
+SQL is not case sensitive, so the above line could be written:
+Select * from Table_Name
+But your SQL statements are easier to read if you type the keywords in uppercase letters. The keywords in the lines above are SELECT and FROM. The asterisk means "All Records". Table_Name is the name of a table in your database. So the whole line reads:
+"SELECT all the records FROM the table called Table_Name"
+You don't need to select all (*) the records from your database. You can just select the columns that you need. The name of the table in our database is tblContacts. If we wanted to select just the first name and surname columns from this table, we can specify that in our SQL String:
+SELECT tblContacts.FirstName, tblContacts.Surname FROM tblContacts
+When this SQL statement is executed, only the FirstName and Surname columns from the database will be returned.
+There are a lot more SQL commands, but for our purposes this is enough.
+Because we want to SELECT all (*) the records from the table called tblContacts, we pass this string to the string variable we have called sql:
+sql = "SELECT * FROM tblContacts"
+Your code window should now look like this (though the file path to your database might be different):
+ 
+Now that the Data Adapter has selected all of the records from the table in our database, we need somewhere to put those records - in the DataSet.
+ 
+Filling the DataSet
+The Data Adapter can Fill a DataSet with records from a Table. You only need a single line of code to do this:
+da.Fill(ds, "AddressBook")
+As soon as you type the name of your Data Adapter (da for us), you'll get a pop up box of properties and methods. Select Fill from the list, then type a pair of round brackets. In between the round brackets, you need two things: the Name of your DataSet (ds, in our case), and an identifying name. This identifying name can be anything you like. But it is just used to identify this particular Data Adapter Fill. We could have called it "Bacon Sandwich", if we wanted:
+da.Fill(ds, "Bacon Sandwich ")
+The code above still works. But it's better to stick to something a little more descriptive than "Bacon Sandwich"!
+Add the new line after the creation of the Data Adaptor:
+da = New OleDb.OleDbDataAdapter(sql, con)
+da.Fill(ds, "AddressBook")
+And that's it. The DataSet (ds) will now be filled with the records we selected from the table calledtblContact. There's only one slight problem - nobody can see the data yet! We'll tackle that in the next part.
+Part of an ongoing tutorial.The first part of Databases and VB .NET can be found here:
+Coding your own VB .NET database projects
+ 
+</font>
+<br /><br /><br />
+<a href="home.html" target="_parent"> Home </a>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="about.html" target="_parent"> About </a>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="concept.html" target="_parent"> Concept </a>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="history.html" target="_parent"> History </a>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="contact.html" target="_parent"> Contact </a>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="MAIN.html" target="_parent"> Main </a>
+
+</body>
+</html>

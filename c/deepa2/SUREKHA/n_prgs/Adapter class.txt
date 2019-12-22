@@ -1,0 +1,8 @@
+Adapter Class;
+An adapter class provides an empty implementation of all methods in an event listener interface. And useful when you want to receive and process only some of the events that are handled by a particular event listener interface.
+
+Inner Classes: 
+It is defined within other class or even within an expression. It can be used to simplify the code when using event adapter classes.
+
+Anonymous Inner Class:
+An anonymous inner class is one that is not assigned a name.
